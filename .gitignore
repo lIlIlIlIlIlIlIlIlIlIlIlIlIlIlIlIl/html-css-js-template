@@ -1,0 +1,9 @@
+# File types
+.DS_Store
+*.xml
+*.txt
+*.code-workspace
+
+# Folders
+.vscode/*
+dist/
