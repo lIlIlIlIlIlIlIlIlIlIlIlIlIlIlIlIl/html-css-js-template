@@ -22,7 +22,6 @@
     border: 1px solid var(--clr-card-border);
     border-radius: var(--border-radius-16);
     overflow: hidden;
-    box-shadow: var(--shadow-primary);
     transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
     cursor: pointer;
     position: relative;
@@ -73,8 +72,8 @@
 }
 
 .card-logo .logo-circle {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     background-color: var(--clr-accent-color);
     border-radius: 50%;
     display: flex;
@@ -83,8 +82,8 @@
 }
 
 .card-logo .logo-circle svg {
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
     fill: var(--clr-accent-color-pale);
 }
 
