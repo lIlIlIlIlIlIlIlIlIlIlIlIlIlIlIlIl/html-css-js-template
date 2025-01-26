@@ -7,8 +7,8 @@ function handleCardHover(event) {
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
 
-    const percentX = (mouseX / rect.width - 0.5) * 2;
-    const percentY = (mouseY / rect.height - 0.5) * 2;
+    const percentX = (mouseX / rect.width - 0.5) * 4;
+    const percentY = (mouseY / rect.height - 0.5) * 4;
 
     const rotateX = -percentY * 2;
     const rotateY = percentX * 2;
