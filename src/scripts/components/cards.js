@@ -12,15 +12,35 @@ function handleCardHover(event) {
 
     const rotateX = -percentY * 2;
     const rotateY = percentX * 2;
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+    requestAnimationFrame(() => {
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
 }
 
 function resetCardTransform(event) {
     const card = event.currentTarget;
-    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+    requestAnimationFrame(() => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+    });
 }
 
+function throttle(callback, limit) {
+    let waiting = false;
+    return function () {
+        if (!waiting) {
+            callback.apply(this, arguments);
+            waiting = true;
+            setTimeout(() => {
+                waiting = false;
+            }, limit);
+        }
+    }
+}
+
+const throttledHandleCardHover = throttle(handleCardHover, 16);
+
 cards.forEach(card => {
-    card.addEventListener('mousemove', handleCardHover);
+    card.addEventListener('mousemove', throttledHandleCardHover);
     card.addEventListener('mouseleave', resetCardTransform);
 });
