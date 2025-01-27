@@ -23,7 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const enableCarousel = () => totalCardsWidth > containerWidth;
 
-    const setTransform = (position) => track.style.transform = `translateX(${position}px)`;
+    const setTransform = (position) => {
+        track.style.transform = `translateX(${position}px)`;
+    };
 
     const limitTranslate = (translate) => Math.min(Math.max(translate, -(totalCardsWidth - containerWidth)), 0);
 
