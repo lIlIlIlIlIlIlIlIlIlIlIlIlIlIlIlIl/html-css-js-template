@@ -1,5 +1,9 @@
 @import url("../global.css");
 
+.carousel-section {
+  overflow-x: hidden;
+}
+
 .carousel-header {
   display: flex;
   justify-content: flex-end;
@@ -238,6 +242,21 @@
 }
 
 @media (max-width: 768px) {
+  .carousel-section {
+    overflow: hidden;
+  }
+
+  .carousel-card {
+    width: 300px;
+    height: 400px;
+  }
+
+  .carousel-controls {
+    display: none;
+  }
+}
+
+@media (max-width: 345px) {
   .carousel-section {
     overflow: hidden;
   }
