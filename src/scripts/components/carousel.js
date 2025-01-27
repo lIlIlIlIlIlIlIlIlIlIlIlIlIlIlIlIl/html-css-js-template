@@ -4,12 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevButton = document.querySelector('.carousel-prev');
     const nextButton = document.querySelector('.carousel-next');
     const containerGlobal = document.querySelector('.container');
-
-    if (!track || !cards.length || !containerGlobal || !prevButton || !nextButton) {
-        console.error("Éléments du carousel introuvables. Vérifiez les sélecteurs dans le HTML.");
-        return;
-    }
-
     const cardWidth = cards[0].offsetWidth;
     const gap = parseInt(window.getComputedStyle(track).gap);
     const containerWidth = containerGlobal.offsetWidth;
@@ -23,17 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastPos = 0;
 
     const enableCarousel = () => totalCardsWidth > containerWidth;
-
-    const setTransform = (position) => {
-        track.style.transform = `translateX(${position}px)`;
-    };
-
-    const limitTranslate = (translate) => {
-        const maxTranslate = 0;
-        const minTranslate = -(totalCardsWidth - containerWidth);
-        return Math.min(Math.max(translate, minTranslate), maxTranslate);
-    };
-
+    const setTransform = (position) => track.style.transform = `translateX(${position}px)`;
+    const limitTranslate = (translate) => Math.min(Math.max(translate, -(totalCardsWidth - containerWidth)), 0);
     const canScrollLeft = () => currentTranslate < 0;
     const canScrollRight = () => currentTranslate > -(totalCardsWidth - containerWidth);
 
@@ -45,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lastTime = performance.now();
         track.style.cursor = 'grabbing';
         track.style.userSelect = 'none';
-        track.style.transition = 'none';
+        track.style.transition = 'transform 0.1s ease-out';
     };
 
     const drag = (e) => {
@@ -63,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const diff = currentPosition - startPos;
             currentTranslate = limitTranslate(prevTranslate + diff);
             setTransform(currentTranslate);
-
             updateControls();
         }
     };
@@ -77,8 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (Math.abs(velocity) > 0.1) {
                 applyInertia();
             } else {
-                track.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
-                // Pas de crantage ici
+                snapToNearestCard();
             }
 
             updateControls();
@@ -86,55 +69,51 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const applyInertia = () => {
-        const inertiaDuration = 500;
-        const inertiaDistance = velocity * inertiaDuration * 0.5;
-
-        currentTranslate = limitTranslate(currentTranslate + inertiaDistance);
-        track.style.transition = `transform ${inertiaDuration}ms ease-out`;
+        const duration = 500;
+        const distance = velocity * duration * 0.5;
+        let targetTranslate = limitTranslate(currentTranslate + distance);
+        const cardWidthWithGap = cardWidth + gap;
+        const cardIndex = Math.round(-targetTranslate / cardWidthWithGap);
+        targetTranslate = -(cardIndex * cardWidthWithGap);
+        currentTranslate = limitTranslate(targetTranslate);
+        track.style.transition = `transform ${duration}ms ease-out`;
         setTransform(currentTranslate);
-
         velocity = 0;
         prevTranslate = currentTranslate;
+        setTimeout(() => track.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)', duration);
+    };
 
-        setTimeout(() => {
-            track.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
-            // Pas de crantage ici
-            updateControls();
-        }, inertiaDuration);
+    const snapToNearestCard = () => {
+        const cardWidthWithGap = cardWidth + gap;
+        const cardIndex = Math.round(-currentTranslate / cardWidthWithGap);
+        currentTranslate = limitTranslate(-(cardIndex * cardWidthWithGap));
+        track.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
+        setTransform(currentTranslate);
+        prevTranslate = currentTranslate;
     };
 
     const updateControls = () => {
+        const disabledStyle = (btn, condition) => {
+            btn.disabled = condition;
+            btn.style.opacity = condition ? '0.5' : '1';
+        };
+
         if (!enableCarousel()) {
             prevButton.style.display = 'none';
             nextButton.style.display = 'none';
-        } else {
-            prevButton.style.display = 'flex';
-            nextButton.style.display = 'flex';
+            return;
         }
 
-        if (currentTranslate >= 0) {
-            prevButton.disabled = true;
-            prevButton.style.opacity = '0.5';
-        } else {
-            prevButton.disabled = false;
-            prevButton.style.opacity = '1';
-        }
-
-        if (currentTranslate <= -(totalCardsWidth - containerWidth)) {
-            nextButton.disabled = true;
-            nextButton.style.opacity = '0.5';
-        } else {
-            nextButton.disabled = false;
-            nextButton.style.opacity = '1';
-        }
+        prevButton.style.display = 'flex';
+        nextButton.style.display = 'flex';
+        disabledStyle(prevButton, currentTranslate >= 0);
+        disabledStyle(nextButton, currentTranslate <= -(totalCardsWidth - containerWidth));
     };
 
     track.addEventListener('mousedown', startDrag);
     track.addEventListener('touchstart', startDrag, { passive: true });
-
     window.addEventListener('mousemove', drag);
     window.addEventListener('touchmove', drag, { passive: true });
-
     window.addEventListener('mouseup', stopDrag);
     window.addEventListener('touchend', stopDrag);
 
