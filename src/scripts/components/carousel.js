@@ -46,7 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const diff = currentPosition - startPos;
-            currentTranslate = limitTranslate(prevTranslate + diff);
+            currentTranslate = prevTranslate + diff;
+
+            // Apply spring back if moving beyond limits
+            if (currentTranslate > 0 || currentTranslate < -(totalCardsWidth - containerWidth)) {
+                currentTranslate = prevTranslate + diff * 0.3; // Dampen the movement
+            }
+
             setTransform(currentTranslate);
             updateControls();
         }
@@ -58,7 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
             track.style.cursor = 'grab';
             track.style.userSelect = 'auto';
 
-            if (Math.abs(velocity) > 0.1) {
+            if (currentTranslate > 0 || currentTranslate < -(totalCardsWidth - containerWidth)) {
+                springBack();
+            } else if (Math.abs(velocity) > 0.1) {
                 applyInertia();
             } else {
                 snapToNearestCard();
@@ -66,6 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             updateControls();
         }
+    };
+
+    const springBack = () => {
+        const targetTranslate = limitTranslate(currentTranslate);
+        track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
+        currentTranslate = targetTranslate;
+        setTransform(currentTranslate);
+        prevTranslate = currentTranslate;
     };
 
     const applyInertia = () => {
