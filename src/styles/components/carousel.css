@@ -72,20 +72,20 @@
   overflow: visible;
   width: 100%;
   margin: 0 auto;
+  cursor: grab;
 }
 
 .carousel-container {
-  overflow: visible;
-  width: 100%;
+  display: flex;
+  transition: transform 0.3s ease-out;
+  width: auto;
 }
 
 .carousel-track {
   display: flex;
-  transition: transform 0.5s ease;
   gap: var(--padding-24);
   padding-bottom: var(--padding-16);
   user-select: none;
-  margin-left: 0;
   overflow: visible;
 }
 
@@ -96,11 +96,11 @@
   position: relative;
   border-radius: var(--border-radius-16);
   overflow: hidden;
-  cursor: grab;
   background-color: var(--clr-card);
   border: 1px solid var(--clr-primary-10);
   transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
   user-select: none;
+  z-index: 1;
 }
 
 .carousel-card:active {

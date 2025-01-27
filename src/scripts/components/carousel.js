@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const track = document.querySelector('.carousel-track');
+    const container = document.querySelector('.carousel-container');
     const cards = document.querySelectorAll('.carousel-card');
     const prevButton = document.querySelector('.carousel-prev');
     const nextButton = document.querySelector('.carousel-next');
@@ -24,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const enableCarousel = () => totalCardsWidth > containerWidth;
 
     const setTransform = (position) => {
-        track.style.transform = `translateX(${position}px)`;
+        container.style.transform = `translateX(${position}px)`;
     };
 
     const limitTranslate = (translate) => Math.min(Math.max(translate, -(totalCardsWidth - containerWidth)), 0);
@@ -38,9 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
         startPos = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
         lastPos = startPos;
         lastTime = performance.now();
-        track.style.cursor = 'grabbing';
-        track.style.userSelect = 'none';
-        track.style.transition = 'none';
+        container.style.cursor = 'grabbing';
+        container.style.userSelect = 'none';
+        container.style.transition = 'none';
     };
 
     const drag = (e) => {
@@ -70,8 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const stopDrag = () => {
         if (isDragging) {
             isDragging = false;
-            track.style.cursor = 'grab';
-            track.style.userSelect = 'auto';
+            container.style.cursor = 'grab';
+            container.style.userSelect = 'auto';
 
             if (currentTranslate > 0 || currentTranslate < -(totalCardsWidth - containerWidth)) {
                 springBack();
@@ -87,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const springBack = () => {
         const targetTranslate = limitTranslate(currentTranslate);
-        track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
+        container.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
         currentTranslate = targetTranslate;
         setTransform(currentTranslate);
         prevTranslate = currentTranslate;
@@ -101,18 +102,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const cardIndex = Math.round(-targetTranslate / cardWidthWithGap);
         targetTranslate = -(cardIndex * cardWidthWithGap);
         currentTranslate = limitTranslate(targetTranslate);
-        track.style.transition = `transform ${duration}ms ease-out`;
+        container.style.transition = `transform ${duration}ms ease-out`;
         setTransform(currentTranslate);
         velocity = 0;
         prevTranslate = currentTranslate;
-        setTimeout(() => track.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)', duration);
+        setTimeout(() => container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)', duration);
     };
 
     const snapToNearestCard = () => {
         const cardWidthWithGap = cardWidth + gap;
         const cardIndex = Math.round(-currentTranslate / cardWidthWithGap);
         currentTranslate = limitTranslate(-(cardIndex * cardWidthWithGap));
-        track.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
+        container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
         setTransform(currentTranslate);
         prevTranslate = currentTranslate;
     };
@@ -143,8 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
         updateControls();
     });
 
-    track.addEventListener('mousedown', startDrag);
-    track.addEventListener('touchstart', startDrag, { passive: true });
+    container.addEventListener('mousedown', startDrag);
+    container.addEventListener('touchstart', startDrag, { passive: true });
     window.addEventListener('mousemove', drag);
     window.addEventListener('touchmove', drag, { passive: true });
     window.addEventListener('mouseup', stopDrag);
