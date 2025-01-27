@@ -34,6 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const canScrollRight = () => currentTranslate > -(totalCardsWidth - containerWidth);
 
     const startDrag = (e) => {
+        if (e.target.closest('.more-info-button')) {
+            return;
+        }
         if (!enableCarousel()) return;
         isDragging = true;
         startPos = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
