@@ -1,10 +1,6 @@
 @import url("../global.css");
 
-.cards-section {
-  padding: var(--padding-32);
-}
-
-.cards-section h2 {
+section h2 {
   color: var(--clr-primary-100);
   font-size: clamp(2rem, 5vw, 4rem);
   text-align: center;

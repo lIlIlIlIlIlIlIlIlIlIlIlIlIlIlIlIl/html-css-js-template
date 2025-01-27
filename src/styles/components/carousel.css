@@ -1,9 +1,5 @@
 @import url("../global.css");
 
-.carousel-section {
-  padding: var(--padding-32);
-}
-
 .carousel-header {
   display: flex;
   justify-content: flex-end;
