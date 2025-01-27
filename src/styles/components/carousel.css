@@ -156,6 +156,28 @@
   margin-bottom: 24px;
 }
 
+.carousel-card .card-content .buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.carousel-card .card-content .buttons-container button {
+  width: 100%;
+  height: auto;
+}
+
+.carousel-card .card-content .buttons-container:only-child {
+  justify-content: stretch;
+}
+
+.carousel-card .card-content .buttons-container button:only-child {
+  flex-grow: 0;
+  width: 100%;
+  margin: 0;
+}
+
 .more-info-button {
   background-color: var(--clr-primary-100);
   color: var(--clr-primary-0);
