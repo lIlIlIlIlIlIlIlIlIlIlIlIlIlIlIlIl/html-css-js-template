@@ -98,14 +98,20 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const applyInertia = () => {
-        const duration = 500;
-        const distance = velocity * duration * 0.5;
-        let targetTranslate = limitTranslate(currentTranslate + distance);
-        const cardWidthWithGap = cardWidth + gap;
-        const cardIndex = Math.round(-targetTranslate / cardWidthWithGap);
-        targetTranslate = -(cardIndex * cardWidthWithGap);
-        currentTranslate = limitTranslate(targetTranslate);
-        container.style.transition = `transform ${duration}ms ease-out`;
+        const duration = 300;
+        const distance = velocity * duration
+
+        if (currentTranslate > 0) {
+            currentTranslate = 200;
+            container.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
+        } else if (currentTranslate < -(totalCardsWidth - containerWidth)) {
+            currentTranslate = -(totalCardsWidth - containerWidth - 200);
+            container.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
+        } else {
+            currentTranslate = limitTranslate(currentTranslate + distance);
+            container.style.transition = `transform ${duration}ms ease-out`;
+        }
+
         setTransform(currentTranslate);
         velocity = 0;
         prevTranslate = currentTranslate;
