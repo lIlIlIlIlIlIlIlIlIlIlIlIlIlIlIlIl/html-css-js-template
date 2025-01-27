@@ -4,10 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevButton = document.querySelector('.carousel-prev');
     const nextButton = document.querySelector('.carousel-next');
     const containerGlobal = document.querySelector('.container');
-    const cardWidth = cards[0].offsetWidth;
-    const gap = parseInt(window.getComputedStyle(track).gap);
-    const containerWidth = containerGlobal.offsetWidth;
-    const totalCardsWidth = cards.length * (cardWidth + gap) - gap;
+
+    let cardWidth, gap, containerWidth, totalCardsWidth;
     let isDragging = false;
     let startPos = 0;
     let currentTranslate = 0;
@@ -16,9 +14,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastTime = 0;
     let lastPos = 0;
 
+    const calculateDimensions = () => {
+        cardWidth = cards[0].offsetWidth;
+        gap = parseInt(window.getComputedStyle(track).gap) || 0;
+        containerWidth = containerGlobal.offsetWidth;
+        totalCardsWidth = cards.length * (cardWidth + gap) - gap;
+    };
+
     const enableCarousel = () => totalCardsWidth > containerWidth;
+
     const setTransform = (position) => track.style.transform = `translateX(${position}px)`;
+
     const limitTranslate = (translate) => Math.min(Math.max(translate, -(totalCardsWidth - containerWidth)), 0);
+
     const canScrollLeft = () => currentTranslate < 0;
     const canScrollRight = () => currentTranslate > -(totalCardsWidth - containerWidth);
 
@@ -30,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lastTime = performance.now();
         track.style.cursor = 'grabbing';
         track.style.userSelect = 'none';
-        track.style.transition = 'transform 0.1s ease-out';
+        track.style.transition = 'none';
     };
 
     const drag = (e) => {
@@ -48,9 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const diff = currentPosition - startPos;
             currentTranslate = prevTranslate + diff;
 
-            // Apply spring back if moving beyond limits
             if (currentTranslate > 0 || currentTranslate < -(totalCardsWidth - containerWidth)) {
-                currentTranslate = prevTranslate + diff * 0.3; // Dampen the movement
+                currentTranslate = prevTranslate + diff * 0.3;
             }
 
             setTransform(currentTranslate);
@@ -126,6 +133,14 @@ document.addEventListener('DOMContentLoaded', () => {
         disabledStyle(nextButton, currentTranslate <= -(totalCardsWidth - containerWidth));
     };
 
+    window.addEventListener('resize', () => {
+        calculateDimensions();
+        currentTranslate = limitTranslate(currentTranslate);
+        setTransform(currentTranslate);
+        prevTranslate = currentTranslate;
+        updateControls();
+    });
+
     track.addEventListener('mousedown', startDrag);
     track.addEventListener('touchstart', startDrag, { passive: true });
     window.addEventListener('mousemove', drag);
@@ -149,6 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateControls();
     });
 
+    calculateDimensions();
     updateControls();
-    window.addEventListener('resize', updateControls);
 });
