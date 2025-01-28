@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const applyInertia = () => {
-        const duration = 300;
+        const duration = 500;
         const distance = velocity * duration;
 
         if (currentTranslate > 0) {
@@ -113,14 +113,29 @@ document.addEventListener('DOMContentLoaded', () => {
         setTransform(currentTranslate);
         velocity = 0;
         prevTranslate = currentTranslate;
-        setTimeout(() => container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)', duration);
+
+        setTimeout(() => {
+            container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
+            snapToNearestCard();
+        }, duration);
     };
 
     const snapToNearestCard = () => {
         const cardWidthWithGap = cardWidth + gap;
-        const cardIndex = Math.round(-currentTranslate / cardWidthWithGap);
-        currentTranslate = limitTranslate(-(cardIndex * cardWidthWithGap));
+        const maxTranslate = -(totalCardsWidth - containerWidth);
+
+        let snapPosition = Math.round(currentTranslate / cardWidthWithGap) * cardWidthWithGap;
+
+        const isLastCardVisible = currentTranslate <= maxTranslate;
+
+        if (isLastCardVisible) {
+            snapPosition = maxTranslate;
+        } else {
+            snapPosition = Math.max(Math.min(snapPosition, 0), maxTranslate);
+        }
+
         container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
+        currentTranslate = snapPosition;
         setTransform(currentTranslate);
         prevTranslate = currentTranslate;
     };
