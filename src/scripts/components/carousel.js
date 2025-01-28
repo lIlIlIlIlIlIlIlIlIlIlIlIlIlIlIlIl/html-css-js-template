@@ -31,9 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const limitTranslate = (translate) => Math.min(Math.max(translate, -(totalCardsWidth - containerWidth)), 0);
 
-    const canScrollLeft = () => currentTranslate < 0;
-    const canScrollRight = () => currentTranslate > -(totalCardsWidth - containerWidth);
-
     const startDrag = (e) => {
         if (!enableCarousel()) return;
         isDragging = true;
@@ -63,12 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const diff = currentPosition - startPos;
             currentTranslate = prevTranslate + diff;
 
-            if (currentTranslate > 0 || currentTranslate < -(totalCardsWidth - containerWidth)) {
-                currentTranslate = prevTranslate + diff * 0.3;
-            }
+            currentTranslate = limitTranslate(currentTranslate) + diff * 0.2;
 
             setTransform(currentTranslate);
-            updateControls();
         }
     };
 
@@ -93,7 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const springBack = () => {
-        const targetTranslate = limitTranslate(currentTranslate);
+        const maxTranslate = -(totalCardsWidth - containerWidth);
+        const targetTranslate = currentTranslate > 0 ? 0 : maxTranslate;
         container.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
         currentTranslate = targetTranslate;
         setTransform(currentTranslate);
@@ -102,13 +97,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const applyInertia = () => {
         const duration = 300;
-        const distance = velocity * duration
+        const distance = velocity * duration;
 
         if (currentTranslate > 0) {
-            currentTranslate = 200;
+            currentTranslate = 0;
             container.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
         } else if (currentTranslate < -(totalCardsWidth - containerWidth)) {
-            currentTranslate = -(totalCardsWidth - containerWidth - 200);
+            currentTranslate = -(totalCardsWidth - containerWidth);
             container.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
         } else {
             currentTranslate = limitTranslate(currentTranslate + distance);
@@ -163,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('touchend', stopDrag);
 
     prevButton.addEventListener('click', () => {
-        if (!enableCarousel() || !canScrollLeft()) return;
+        if (!enableCarousel() || currentTranslate >= 0) return;
         currentTranslate = limitTranslate(currentTranslate + (cardWidth + gap));
         setTransform(currentTranslate);
         prevTranslate = currentTranslate;
@@ -171,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     nextButton.addEventListener('click', () => {
-        if (!enableCarousel() || !canScrollRight()) return;
+        if (!enableCarousel() || currentTranslate <= -(totalCardsWidth - containerWidth)) return;
         currentTranslate = limitTranslate(currentTranslate - (cardWidth + gap));
         setTransform(currentTranslate);
         prevTranslate = currentTranslate;
