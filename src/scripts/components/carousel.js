@@ -76,65 +76,30 @@ document.addEventListener('DOMContentLoaded', () => {
             container.style.cursor = 'grab';
             container.style.userSelect = 'auto';
 
-            const maxTranslate = -(totalCardsWidth - containerWidth);
+            window.removeEventListener('touchmove', drag);
 
-            if (currentTranslate > 0 || currentTranslate < maxTranslate) {
-                springBack();
-            } else if (Math.abs(velocity) > 0.1) {
-                applyInertia();
+            if (Math.abs(velocity) > 0.1) {
+                applyInertiaWithSnap();
             } else {
                 snapToNearestCard();
             }
-
-            updateControls();
-
-            window.removeEventListener('touchmove', drag);
         }
     };
 
-    const springBack = () => {
-        const maxTranslate = -(totalCardsWidth - containerWidth);
-        const targetTranslate = currentTranslate > 0 ? 0 : maxTranslate;
+    const applyInertiaWithSnap = () => {
+        const cardWidthWithGap = cardWidth + gap;
+        const distance = velocity * 300;
+        let targetTranslate = currentTranslate + distance;
 
-        container.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
+        targetTranslate = Math.round(targetTranslate / cardWidthWithGap) * cardWidthWithGap;
+        targetTranslate = limitTranslate(targetTranslate);
+
+        container.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)';
         currentTranslate = targetTranslate;
         setTransform(currentTranslate);
         prevTranslate = currentTranslate;
-        updateControls();
-    };
-
-    const applyInertia = () => {
-        const duration = 1000;
-        const distance = velocity * duration;
-
-        const maxTranslate = -(totalCardsWidth - containerWidth);
-
-        let targetTranslate = currentTranslate + distance;
-
-        const cardWidthWithGap = cardWidth + gap;
-        let snapPosition = Math.round(targetTranslate / cardWidthWithGap) * cardWidthWithGap;
-        snapPosition = Math.max(Math.min(snapPosition, 0), maxTranslate);
-
-        const overshootPercentage = 0.25;
-        const overshoot = cardWidth * overshootPercentage;
-
-        if (targetTranslate > 0) {
-            targetTranslate = 0 + overshoot;
-        } else if (targetTranslate < maxTranslate) {
-            targetTranslate = maxTranslate - overshoot;
-        } else {
-            targetTranslate = snapPosition;
-        }
-
-        container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
-        currentTranslate = targetTranslate;
-        setTransform(currentTranslate);
 
         setTimeout(() => {
-            container.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
-            currentTranslate = snapPosition;
-            setTransform(currentTranslate);
-            prevTranslate = currentTranslate;
             updateControls();
         }, 300);
     };
@@ -142,15 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const snapToNearestCard = () => {
         const cardWidthWithGap = cardWidth + gap;
         const maxTranslate = -(totalCardsWidth - containerWidth);
-
-        if (currentTranslate <= maxTranslate && !isDragging) {
-            currentTranslate = maxTranslate;
-            container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
-            setTransform(currentTranslate);
-            prevTranslate = currentTranslate;
-            updateControls();
-            return;
-        }
 
         let snapPosition = Math.round(currentTranslate / cardWidthWithGap) * cardWidthWithGap;
         snapPosition = Math.max(Math.min(snapPosition, 0), maxTranslate);
@@ -196,20 +152,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     prevButton.addEventListener('click', () => {
         if (!enableCarousel() || currentTranslate >= 0) return;
-
-        if (currentTranslate <= -(totalCardsWidth - containerWidth)) {
-            const visibleCardIndex = Math.floor(Math.abs(currentTranslate) / (cardWidth + gap));
-            const offset = visibleCardIndex * (cardWidth + gap);
-            currentTranslate = -offset;
-            setTransform(currentTranslate);
-            prevTranslate = currentTranslate;
-            snapToNearestCard();
-        } else {
-            currentTranslate = limitTranslate(currentTranslate + (cardWidth + gap));
-            setTransform(currentTranslate);
-            prevTranslate = currentTranslate;
-        }
-
+        currentTranslate = limitTranslate(currentTranslate + (cardWidth + gap));
+        setTransform(currentTranslate);
+        prevTranslate = currentTranslate;
         updateControls();
     });
 
