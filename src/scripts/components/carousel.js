@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevButton = document.querySelector('.carousel-prev');
     const nextButton = document.querySelector('.carousel-next');
     const containerGlobal = document.querySelector('.container');
+    const moreInfoButtons = document.querySelectorAll('.more-info-button');
 
     let cardWidth, gap, containerWidth, totalCardsWidth;
     let isDragging = false;
@@ -34,9 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const canScrollRight = () => currentTranslate > -(totalCardsWidth - containerWidth);
 
     const startDrag = (e) => {
-        if (e.target.closest('.more-info-button')) {
-            return;
-        }
         if (!enableCarousel()) return;
         isDragging = true;
         startPos = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
@@ -178,6 +176,18 @@ document.addEventListener('DOMContentLoaded', () => {
         setTransform(currentTranslate);
         prevTranslate = currentTranslate;
         updateControls();
+    });
+
+    moreInfoButtons.forEach(button => {
+        button.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            startDrag(e);
+        });
+
+        button.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            startDrag(e);
+        });
     });
 
     calculateDimensions();
