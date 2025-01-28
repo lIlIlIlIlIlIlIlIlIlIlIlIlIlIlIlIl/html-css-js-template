@@ -93,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentTranslate = targetTranslate;
         setTransform(currentTranslate);
         prevTranslate = currentTranslate;
+        updateControls();
     };
 
     const applyInertia = () => {
@@ -131,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
             container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
             setTransform(currentTranslate);
             prevTranslate = currentTranslate;
+            updateControls();
             return;
         }
 
@@ -141,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentTranslate = snapPosition;
         setTransform(currentTranslate);
         prevTranslate = currentTranslate;
+        updateControls();
     };
 
     const updateControls = () => {
