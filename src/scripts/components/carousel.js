@@ -112,7 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let targetTranslate = currentTranslate + distance;
 
         if (targetTranslate > 0 || targetTranslate < maxTranslate) {
-            const overshoot = 200;
+            const overshootPercentage = 0.25;
+            const overshoot = cardWidth * overshootPercentage;
 
             if (targetTranslate > 0) {
                 targetTranslate = 0 + overshoot;
