@@ -109,21 +109,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const maxTranslate = -(totalCardsWidth - containerWidth);
 
-        if (currentTranslate > 0 || currentTranslate < maxTranslate) {
-            springBack();
-            return;
-        }
+        let targetTranslate = currentTranslate + distance;
 
-        currentTranslate = limitTranslate(currentTranslate + distance);
-        container.style.transition = `transform ${duration}ms ease-out`;
-        setTransform(currentTranslate);
-        velocity = 0;
-        prevTranslate = currentTranslate;
+        if (targetTranslate > 0 || targetTranslate < maxTranslate) {
+            const overshoot = 200;
 
-        setTimeout(() => {
+            if (targetTranslate > 0) {
+                targetTranslate = 0 + overshoot;
+            }
+            else if (targetTranslate < maxTranslate) {
+                targetTranslate = maxTranslate - overshoot;
+            }
+
             container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
-            snapToNearestCard();
-        }, duration);
+            currentTranslate = targetTranslate;
+            setTransform(currentTranslate);
+
+            setTimeout(() => {
+                container.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
+                currentTranslate = limitTranslate(targetTranslate);
+                setTransform(currentTranslate);
+                prevTranslate = currentTranslate;
+                updateControls();
+            }, 300);
+        } else {
+            currentTranslate = limitTranslate(targetTranslate);
+            container.style.transition = `transform ${duration}ms ease-out`;
+            setTransform(currentTranslate);
+            velocity = 0;
+            prevTranslate = currentTranslate;
+
+            setTimeout(() => {
+                container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
+                snapToNearestCard();
+            }, duration);
+        }
     };
 
     const snapToNearestCard = () => {
