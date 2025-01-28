@@ -104,47 +104,39 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const applyInertia = () => {
-        const duration = 500;
+        const duration = 1000;
         const distance = velocity * duration;
 
         const maxTranslate = -(totalCardsWidth - containerWidth);
 
         let targetTranslate = currentTranslate + distance;
 
-        if (targetTranslate > 0 || targetTranslate < maxTranslate) {
-            const overshootPercentage = 0.25;
-            const overshoot = cardWidth * overshootPercentage;
+        const cardWidthWithGap = cardWidth + gap;
+        let snapPosition = Math.round(targetTranslate / cardWidthWithGap) * cardWidthWithGap;
+        snapPosition = Math.max(Math.min(snapPosition, 0), maxTranslate);
 
-            if (targetTranslate > 0) {
-                targetTranslate = 0 + overshoot;
-            }
-            else if (targetTranslate < maxTranslate) {
-                targetTranslate = maxTranslate - overshoot;
-            }
+        const overshootPercentage = 0.25;
+        const overshoot = cardWidth * overshootPercentage;
 
-            container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
-            currentTranslate = targetTranslate;
-            setTransform(currentTranslate);
-
-            setTimeout(() => {
-                container.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
-                currentTranslate = limitTranslate(targetTranslate);
-                setTransform(currentTranslate);
-                prevTranslate = currentTranslate;
-                updateControls();
-            }, 300);
+        if (targetTranslate > 0) {
+            targetTranslate = 0 + overshoot;
+        } else if (targetTranslate < maxTranslate) {
+            targetTranslate = maxTranslate - overshoot;
         } else {
-            currentTranslate = limitTranslate(targetTranslate);
-            container.style.transition = `transform ${duration}ms ease-out`;
-            setTransform(currentTranslate);
-            velocity = 0;
-            prevTranslate = currentTranslate;
-
-            setTimeout(() => {
-                container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
-                snapToNearestCard();
-            }, duration);
+            targetTranslate = snapPosition;
         }
+
+        container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
+        currentTranslate = targetTranslate;
+        setTransform(currentTranslate);
+
+        setTimeout(() => {
+            container.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
+            currentTranslate = snapPosition;
+            setTransform(currentTranslate);
+            prevTranslate = currentTranslate;
+            updateControls();
+        }, 300);
     };
 
     const snapToNearestCard = () => {
