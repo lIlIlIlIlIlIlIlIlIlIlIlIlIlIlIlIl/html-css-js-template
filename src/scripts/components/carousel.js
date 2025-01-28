@@ -128,7 +128,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentTranslate <= maxTranslate && !isDragging) {
             const visibleCardIndex = Math.floor(Math.abs(currentTranslate) / cardWidthWithGap);
             const offset = visibleCardIndex * cardWidthWithGap;
-            currentTranslate = -offset;
+
+            if (Math.abs(currentTranslate) === (totalCardsWidth - containerWidth)) {
+                currentTranslate = -(totalCardsWidth - containerWidth);
+            } else {
+                currentTranslate = -offset;
+            }
+
             container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
             setTransform(currentTranslate);
             prevTranslate = currentTranslate;
