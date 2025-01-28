@@ -45,10 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
         container.style.cursor = 'grabbing';
         container.style.userSelect = 'none';
         container.style.transition = 'none';
+
+        window.addEventListener('touchmove', drag, { passive: false });
     };
 
     const drag = (e) => {
         if (isDragging) {
+            e.preventDefault();
             const currentPosition = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
             const currentTime = performance.now();
             const timeDiff = currentTime - lastTime;
@@ -86,6 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             updateControls();
+
+            window.removeEventListener('touchmove', drag);
         }
     };
 
@@ -156,7 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
     container.addEventListener('mousedown', startDrag);
     container.addEventListener('touchstart', startDrag, { passive: true });
     window.addEventListener('mousemove', drag);
-    window.addEventListener('touchmove', drag, { passive: true });
     window.addEventListener('mouseup', stopDrag);
     window.addEventListener('touchend', stopDrag);
 
