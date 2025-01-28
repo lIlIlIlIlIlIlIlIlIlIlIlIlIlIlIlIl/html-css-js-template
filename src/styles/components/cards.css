@@ -11,7 +11,7 @@ section h2 {
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--padding-16);
+  gap: var(--padding-24);
 }
 
 .card {
@@ -63,7 +63,7 @@ section h2 {
 }
 
 .card-logo {
-  padding: var(--padding-24) var(--padding-24) 0 var(--padding-24);
+  padding: var(--padding-32) var(--padding-32) 0 var(--padding-32);
   display: flex;
   align-items: center;
 }
@@ -85,7 +85,7 @@ section h2 {
 }
 
 .card-content {
-  padding: var(--padding-24);
+  padding: var(--padding-32);
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -151,9 +151,17 @@ section h2 {
   .cards-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .card-logo {
+    padding: var(--padding-24) var(--padding-24) 0 var(--padding-24);
+  }
+
+  .card-content {
+    padding: var(--padding-24);
+  }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 540px) {
   .cards-grid {
     grid-template-columns: repeat(1, 1fr);
   }

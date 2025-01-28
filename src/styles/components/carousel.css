@@ -78,7 +78,7 @@
 
 .carousel-track {
   display: flex;
-  gap: var(--padding-16);
+  gap: var(--padding-24);
   padding-bottom: var(--padding-16);
   user-select: none;
   overflow: visible;
@@ -89,7 +89,7 @@
   width: 350px;
   height: 500px;
   position: relative;
-  border-radius: var(--border-radius-16);
+  border-radius: var(--border-radius-12);
   overflow: hidden;
   background-color: var(--clr-card);
   border: 1px solid var(--clr-primary-10);
@@ -134,7 +134,7 @@
   right: 0;
   bottom: 0;
   color: var(--clr-neutral-100);
-  padding: var(--padding-24);
+  padding: var(--padding-32);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -146,14 +146,14 @@
 
 .carousel-card .card-content h3 {
   margin: 0;
-  font-size: clamp(1.5rem, 5vw, 1.75rem);
-  font-weight: normal;
+  font-size: clamp(1.25rem, 5vw, 1.75rem);
+  font-weight: 500;
 }
 
 .carousel-card .card-content p {
   margin: 0;
   font-size: 1rem;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .carousel-card .card-content .buttons-container {
@@ -253,6 +253,10 @@
 
   .carousel-controls {
     display: none;
+  }
+
+  .carousel-card .card-content {
+    padding: var(--padding-24);
   }
 }
 
