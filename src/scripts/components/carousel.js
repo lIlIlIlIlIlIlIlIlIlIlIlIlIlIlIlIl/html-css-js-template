@@ -88,7 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const applyInertiaWithSnap = () => {
         const cardWidthWithGap = cardWidth + gap;
-        const distance = velocity * 300;
+        const distanceMultiplier = 500;
+        const distance = velocity * distanceMultiplier;
         let targetTranslate = currentTranslate + distance;
 
         targetTranslate = Math.round(targetTranslate / cardWidthWithGap) * cardWidthWithGap;
