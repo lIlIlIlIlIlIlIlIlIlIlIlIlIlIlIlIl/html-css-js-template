@@ -60,7 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const diff = currentPosition - startPos;
             currentTranslate = prevTranslate + diff;
 
-            currentTranslate = limitTranslate(currentTranslate) + diff * 0.2;
+            const maxTranslate = -(totalCardsWidth - containerWidth);
+            if (currentTranslate > 0 || currentTranslate < maxTranslate) {
+                const overshoot = currentTranslate > 0 ? currentTranslate : currentTranslate - maxTranslate;
+                currentTranslate = currentTranslate > 0 ? overshoot * 0.2 : maxTranslate + overshoot * 0.2;
+            }
 
             setTransform(currentTranslate);
         }
@@ -72,7 +76,9 @@ document.addEventListener('DOMContentLoaded', () => {
             container.style.cursor = 'grab';
             container.style.userSelect = 'auto';
 
-            if (currentTranslate > 0 || currentTranslate < -(totalCardsWidth - containerWidth)) {
+            const maxTranslate = -(totalCardsWidth - containerWidth);
+
+            if (currentTranslate > 0 || currentTranslate < maxTranslate) {
                 springBack();
             } else if (Math.abs(velocity) > 0.1) {
                 applyInertia();
@@ -89,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const springBack = () => {
         const maxTranslate = -(totalCardsWidth - containerWidth);
         const targetTranslate = currentTranslate > 0 ? 0 : maxTranslate;
+
         container.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
         currentTranslate = targetTranslate;
         setTransform(currentTranslate);
@@ -100,17 +107,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const duration = 500;
         const distance = velocity * duration;
 
-        if (currentTranslate > 0) {
-            currentTranslate = 0;
-            container.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
-        } else if (currentTranslate < -(totalCardsWidth - containerWidth)) {
-            currentTranslate = -(totalCardsWidth - containerWidth);
-            container.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
-        } else {
-            currentTranslate = limitTranslate(currentTranslate + distance);
-            container.style.transition = `transform ${duration}ms ease-out`;
+        const maxTranslate = -(totalCardsWidth - containerWidth);
+
+        if (currentTranslate > 0 || currentTranslate < maxTranslate) {
+            springBack();
+            return;
         }
 
+        currentTranslate = limitTranslate(currentTranslate + distance);
+        container.style.transition = `transform ${duration}ms ease-out`;
         setTransform(currentTranslate);
         velocity = 0;
         prevTranslate = currentTranslate;
@@ -126,15 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const maxTranslate = -(totalCardsWidth - containerWidth);
 
         if (currentTranslate <= maxTranslate && !isDragging) {
-            const visibleCardIndex = Math.floor(Math.abs(currentTranslate) / cardWidthWithGap);
-            const offset = visibleCardIndex * cardWidthWithGap;
-
-            if (Math.abs(currentTranslate) === (totalCardsWidth - containerWidth)) {
-                currentTranslate = -(totalCardsWidth - containerWidth);
-            } else {
-                currentTranslate = -offset;
-            }
-
+            currentTranslate = maxTranslate;
             container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
             setTransform(currentTranslate);
             prevTranslate = currentTranslate;
