@@ -4,21 +4,21 @@ class CardsHalfImageComponent extends HTMLElement {
         const cardsData = [
             {
                 title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
                 imgSrc: "src/assets/images/illustrations/1.jpg",
                 link: "#",
                 type: "image"
             },
             {
                 title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
                 imgSrc: "src/assets/images/illustrations/1.jpg",
                 link: "#",
                 type: "image"
             },
             {
                 title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
                 imgSrc: "src/assets/images/illustrations/1.jpg",
                 link: "#",
                 type: "image"

@@ -4,19 +4,19 @@ class CardsLogoComponent extends HTMLElement {
         const cardsData = [
             {
                 title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
                 link: "#",
                 type: "logo"
             },
             {
                 title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
                 link: "#",
                 type: "logo"
             },
             {
                 title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
                 link: "#",
                 type: "logo"
             }
