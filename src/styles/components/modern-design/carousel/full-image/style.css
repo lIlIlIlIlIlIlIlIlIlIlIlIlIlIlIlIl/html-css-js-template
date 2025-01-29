@@ -134,7 +134,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    color: var(--clr-neutral-100);
+    color: var(--clr-carousel-text);
     padding: var(--padding-32);
     display: flex;
     flex-direction: column;
