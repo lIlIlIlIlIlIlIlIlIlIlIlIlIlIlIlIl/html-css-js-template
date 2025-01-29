@@ -10,55 +10,55 @@ class CarouselFullImageComponent extends HTMLElement {
             {
                 title: "Lorem ipsum",
                 description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/1.jpg",
+                imgSrc: "src/assets/images/illustrations/2.jpg",
                 link: "#"
             },
             {
                 title: "Lorem ipsum",
                 description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/1.jpg",
+                imgSrc: "src/assets/images/illustrations/3.jpg",
                 link: "#"
             },
             {
                 title: "Lorem ipsum",
                 description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/1.jpg",
+                imgSrc: "src/assets/images/illustrations/4.jpg",
                 link: "#"
             },
             {
                 title: "Lorem ipsum",
                 description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/1.jpg",
+                imgSrc: "src/assets/images/illustrations/5.jpg",
                 link: "#"
             },
             {
                 title: "Lorem ipsum",
                 description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/1.jpg",
+                imgSrc: "src/assets/images/illustrations/6.jpg",
                 link: "#"
             },
             {
                 title: "Lorem ipsum",
                 description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/1.jpg",
+                imgSrc: "src/assets/images/illustrations/7.jpg",
                 link: "#"
             },
             {
                 title: "Lorem ipsum",
                 description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/1.jpg",
+                imgSrc: "src/assets/images/illustrations/8.jpg",
                 link: "#"
             },
             {
                 title: "Lorem ipsum",
                 description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/1.jpg",
+                imgSrc: "src/assets/images/illustrations/9.jpg",
                 link: "#"
             },
             {
                 title: "Lorem ipsum",
                 description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/1.jpg",
+                imgSrc: "src/assets/images/illustrations/10.jpg",
                 link: "#"
             },
         ]

@@ -5,21 +5,21 @@ class CardsHalfImageComponent extends HTMLElement {
             {
                 title: "Lorem ipsum",
                 description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/1.jpg",
+                imgSrc: "src/assets/images/illustrations/11.jpg",
                 link: "#",
                 type: "image"
             },
             {
                 title: "Lorem ipsum",
                 description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/1.jpg",
+                imgSrc: "src/assets/images/illustrations/12.jpg",
                 link: "#",
                 type: "image"
             },
             {
                 title: "Lorem ipsum",
                 description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/1.jpg",
+                imgSrc: "src/assets/images/illustrations/13.jpg",
                 link: "#",
                 type: "image"
             }
