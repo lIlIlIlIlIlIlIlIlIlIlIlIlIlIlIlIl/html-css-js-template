@@ -11,6 +11,7 @@
   height: 6.5rem;
   margin: var(--margin-24);
   position: relative;
+  white-space: nowrap;
 }
 
 .carousel-header h2 {
