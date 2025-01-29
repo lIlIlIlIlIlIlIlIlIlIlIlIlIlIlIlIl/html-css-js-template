@@ -28,19 +28,21 @@ class CardsHalfImageComponent extends HTMLElement {
         let cardsHtml = cardsData.map(card => {
             return `
                 <div class="card" id="card">
-                    <img src="${card.imgSrc}" alt="Illustration">
-                    <div class="card-content">
-                        <h3>${card.title}</h3>
-                        <p>${card.description}</p>
-                        <a href="${card.link}" class="card-link">
-                            Lorem ipsum
-                            <span class="arrow-icon">
-                                <svg class="arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </span>
-                        </a>
-                    </div>
+                    <a href="${card.link}">
+                        <img src="${card.imgSrc}" alt="Illustration">
+                        <div class="card-content">
+                            <h3>${card.title}</h3>
+                            <p>${card.description}</p>
+                            <div class="card-cta">
+                                Lorem ipsum
+                                <span class="arrow-icon">
+                                    <svg class="arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             `;
         }).join("");
