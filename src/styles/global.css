@@ -1,170 +1,171 @@
 @import url("https://fonts.googleapis.com/css?family=Fira Code");
 
 @font-face {
-  font-family: "Outfit";
-  src: url("../assets/fonts/Outfit/Outfit-VariableFont.ttf") format("truetype");
-  font-style: normal;
+    font-family: "Outfit";
+    src: url("../assets/fonts/Outfit/Outfit-VariableFont.ttf")
+        format("truetype");
+    font-style: normal;
 }
 
 :root {
-  color-scheme: dark light;
-  font-family: "Outfit", sans-serif;
+    color-scheme: dark light;
+    font-family: "Outfit", sans-serif;
 
-  --clr-neutral-0: hsl(0, 0%, 0%);
-  --clr-neutral-5: hsl(0, 0%, 5%);
-  --clr-neutral-10: hsl(0, 0%, 10%);
-  --clr-neutral-15: hsl(0, 0%, 15%);
-  --clr-neutral-20: hsl(0, 0%, 20%);
-  --clr-neutral-25: hsl(0, 0%, 25%);
-  --clr-neutral-30: hsl(0, 0%, 30%);
-  --clr-neutral-35: hsl(0, 0%, 35%);
-  --clr-neutral-40: hsl(0, 0%, 40%);
-  --clr-neutral-45: hsl(0, 0%, 45%);
-  --clr-neutral-50: hsl(0, 0%, 50%);
-  --clr-neutral-55: hsl(0, 0%, 55%);
-  --clr-neutral-60: hsl(0, 0%, 60%);
-  --clr-neutral-65: hsl(0, 0%, 65%);
-  --clr-neutral-70: hsl(0, 0%, 70%);
-  --clr-neutral-75: hsl(0, 0%, 75%);
-  --clr-neutral-80: hsl(0, 0%, 80%);
-  --clr-neutral-85: hsl(0, 0%, 85%);
-  --clr-neutral-90: hsl(0, 0%, 90%);
-  --clr-neutral-95: hsl(0, 0%, 95%);
-  --clr-neutral-100: hsl(0, 0%, 100%);
-
-  --clr-primary-0: hsl(210, 10%, 0%);
-  --clr-primary-5: hsl(210, 10%, 5%);
-  --clr-primary-10: hsl(210, 10%, 10%);
-  --clr-primary-15: hsl(210, 10%, 15%);
-  --clr-primary-17-5: hsl(210, 10%, 17.5%);
-  --clr-primary-20: hsl(210, 10%, 20%);
-  --clr-primary-22-5: hsl(210, 10%, 22.5%);
-  --clr-primary-25: hsl(210, 10%, 25%);
-  --clr-primary-30: hsl(210, 10%, 30%);
-  --clr-primary-35: hsl(210, 10%, 35%);
-  --clr-primary-40: hsl(210, 10%, 40%);
-  --clr-primary-45: hsl(210, 10%, 45%);
-  --clr-primary-50: hsl(210, 10%, 50%);
-  --clr-primary-55: hsl(210, 10%, 55%);
-  --clr-primary-60: hsl(210, 10%, 60%);
-  --clr-primary-65: hsl(210, 10%, 65%);
-  --clr-primary-70: hsl(210, 10%, 70%);
-  --clr-primary-75: hsl(210, 10%, 75%);
-  --clr-primary-80: hsl(210, 10%, 80%);
-  --clr-primary-85: hsl(210, 10%, 85%);
-  --clr-primary-90: hsl(210, 10%, 90%);
-  --clr-primary-95: hsl(210, 10%, 95%);
-  --clr-primary-100: hsl(210, 10%, 100%);
-
-  --clr-accent-color: hsl(265, 100%, 80%);
-  --clr-accent-color-pale: hsla(265, 100%, 100%, 0.9);
-  --clr-accent-color-variant: hsl(0, 100%, 60%);
-
-  --clr-background: var(--clr-primary-5);
-  --clr-section: var(--clr-primary-10);
-  --clr-section-border: var(--clr-primary-20);
-
-  --clr-card: var(--clr-primary-10);
-  --clr-card-hover: var(--clr-primary-15);
-  --clr-card-border: var(--clr-primary-20);
-  --clr-card-underline: var(--clr-primary-20);
-  --card-shadow: 0 0 24px var(--clr-primary-0);
-
-  --shadow-primary: 0 1px 4px 0 var(--clr-primary-15);
-
-  --padding-16: 16px;
-  --padding-24: 24px;
-  --padding-32: 32px;
-
-  --margin-16: 16px;
-  --margin-24: 24px;
-  --margin-32: 32px;
-
-  --border-radius-12: 12px;
-  --border-radius-16: 16px;
-  --border-radius-24: 24px;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --clr-neutral-0: hsl(0, 0%, 100%);
-    --clr-neutral-5: hsl(0, 0%, 95%);
-    --clr-neutral-10: hsl(0, 0%, 90%);
-    --clr-neutral-15: hsl(0, 0%, 85%);
-    --clr-neutral-20: hsl(0, 0%, 80%);
-    --clr-neutral-25: hsl(0, 0%, 75%);
-    --clr-neutral-30: hsl(0, 0%, 70%);
-    --clr-neutral-35: hsl(0, 0%, 65%);
-    --clr-neutral-40: hsl(0, 0%, 60%);
-    --clr-neutral-45: hsl(0, 0%, 55%);
+    --clr-neutral-0: hsl(0, 0%, 0%);
+    --clr-neutral-5: hsl(0, 0%, 5%);
+    --clr-neutral-10: hsl(0, 0%, 10%);
+    --clr-neutral-15: hsl(0, 0%, 15%);
+    --clr-neutral-20: hsl(0, 0%, 20%);
+    --clr-neutral-25: hsl(0, 0%, 25%);
+    --clr-neutral-30: hsl(0, 0%, 30%);
+    --clr-neutral-35: hsl(0, 0%, 35%);
+    --clr-neutral-40: hsl(0, 0%, 40%);
+    --clr-neutral-45: hsl(0, 0%, 45%);
     --clr-neutral-50: hsl(0, 0%, 50%);
-    --clr-neutral-55: hsl(0, 0%, 45%);
-    --clr-neutral-60: hsl(0, 0%, 40%);
-    --clr-neutral-65: hsl(0, 0%, 35%);
-    --clr-neutral-70: hsl(0, 0%, 30%);
-    --clr-neutral-75: hsl(0, 0%, 25%);
-    --clr-neutral-80: hsl(0, 0%, 20%);
-    --clr-neutral-85: hsl(0, 0%, 15%);
-    --clr-neutral-90: hsl(0, 0%, 10%);
-    --clr-neutral-95: hsl(0, 0%, 5%);
-    --clr-neutral-100: hsl(0, 0%, 0%);
+    --clr-neutral-55: hsl(0, 0%, 55%);
+    --clr-neutral-60: hsl(0, 0%, 60%);
+    --clr-neutral-65: hsl(0, 0%, 65%);
+    --clr-neutral-70: hsl(0, 0%, 70%);
+    --clr-neutral-75: hsl(0, 0%, 75%);
+    --clr-neutral-80: hsl(0, 0%, 80%);
+    --clr-neutral-85: hsl(0, 0%, 85%);
+    --clr-neutral-90: hsl(0, 0%, 90%);
+    --clr-neutral-95: hsl(0, 0%, 95%);
+    --clr-neutral-100: hsl(0, 0%, 100%);
 
-    --clr-primary-0: hsl(210, 10%, 100%);
-    --clr-primary-5: hsl(210, 10%, 95%);
-    --clr-primary-10: hsl(210, 10%, 90%);
-    --clr-primary-15: hsl(210, 10%, 85%);
-    --clr-primary-20: hsl(210, 10%, 80%);
-    --clr-primary-25: hsl(210, 10%, 75%);
-    --clr-primary-30: hsl(210, 10%, 70%);
-    --clr-primary-35: hsl(210, 10%, 65%);
-    --clr-primary-40: hsl(210, 10%, 60%);
-    --clr-primary-45: hsl(210, 10%, 55%);
+    --clr-primary-0: hsl(210, 10%, 0%);
+    --clr-primary-5: hsl(210, 10%, 5%);
+    --clr-primary-10: hsl(210, 10%, 10%);
+    --clr-primary-15: hsl(210, 10%, 15%);
+    --clr-primary-17-5: hsl(210, 10%, 17.5%);
+    --clr-primary-20: hsl(210, 10%, 20%);
+    --clr-primary-22-5: hsl(210, 10%, 22.5%);
+    --clr-primary-25: hsl(210, 10%, 25%);
+    --clr-primary-30: hsl(210, 10%, 30%);
+    --clr-primary-35: hsl(210, 10%, 35%);
+    --clr-primary-40: hsl(210, 10%, 40%);
+    --clr-primary-45: hsl(210, 10%, 45%);
     --clr-primary-50: hsl(210, 10%, 50%);
-    --clr-primary-55: hsl(210, 10%, 45%);
-    --clr-primary-60: hsl(210, 10%, 40%);
-    --clr-primary-65: hsl(210, 10%, 35%);
-    --clr-primary-70: hsl(210, 10%, 30%);
-    --clr-primary-75: hsl(210, 10%, 25%);
-    --clr-primary-80: hsl(210, 10%, 20%);
-    --clr-primary-85: hsl(210, 10%, 15%);
-    --clr-primary-90: hsl(210, 10%, 10%);
-    --clr-primary-95: hsl(210, 10%, 5%);
-    --clr-primary-100: hsl(210, 10%, 0%);
+    --clr-primary-55: hsl(210, 10%, 55%);
+    --clr-primary-60: hsl(210, 10%, 60%);
+    --clr-primary-65: hsl(210, 10%, 65%);
+    --clr-primary-70: hsl(210, 10%, 70%);
+    --clr-primary-75: hsl(210, 10%, 75%);
+    --clr-primary-80: hsl(210, 10%, 80%);
+    --clr-primary-85: hsl(210, 10%, 85%);
+    --clr-primary-90: hsl(210, 10%, 90%);
+    --clr-primary-95: hsl(210, 10%, 95%);
+    --clr-primary-100: hsl(210, 10%, 100%);
 
-    --clr-accent-color: hsl(210, 10%, 30%);
+    --clr-accent-color: hsl(265, 100%, 80%);
+    --clr-accent-color-pale: hsla(265, 100%, 100%, 0.9);
     --clr-accent-color-variant: hsl(0, 100%, 60%);
 
     --clr-background: var(--clr-primary-5);
-    --clr-section: var(--clr-primary-0);
-    --clr-section-border: var(--clr-primary-10);
+    --clr-section: var(--clr-primary-10);
+    --clr-section-border: var(--clr-primary-20);
 
-    --clr-card: var(--clr-primary-0);
-    --clr-card-hover: var(--clr-primary-5);
-    --clr-card-border: var(--clr-primary-10);
-    --card-shadow: 0 0 24px var(--clr-primary-5);
-  }
+    --clr-card: var(--clr-primary-10);
+    --clr-card-hover: var(--clr-primary-15);
+    --clr-card-border: var(--clr-primary-20);
+    --clr-card-underline: var(--clr-primary-20);
+    --card-shadow: 0 0 24px var(--clr-primary-0);
+
+    --shadow-primary: 0 1px 4px 0 var(--clr-primary-15);
+
+    --padding-16: 16px;
+    --padding-24: 24px;
+    --padding-32: 32px;
+
+    --margin-16: 16px;
+    --margin-24: 24px;
+    --margin-32: 32px;
+
+    --border-radius-12: 12px;
+    --border-radius-16: 16px;
+    --border-radius-24: 24px;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --clr-neutral-0: hsl(0, 0%, 100%);
+        --clr-neutral-5: hsl(0, 0%, 95%);
+        --clr-neutral-10: hsl(0, 0%, 90%);
+        --clr-neutral-15: hsl(0, 0%, 85%);
+        --clr-neutral-20: hsl(0, 0%, 80%);
+        --clr-neutral-25: hsl(0, 0%, 75%);
+        --clr-neutral-30: hsl(0, 0%, 70%);
+        --clr-neutral-35: hsl(0, 0%, 65%);
+        --clr-neutral-40: hsl(0, 0%, 60%);
+        --clr-neutral-45: hsl(0, 0%, 55%);
+        --clr-neutral-50: hsl(0, 0%, 50%);
+        --clr-neutral-55: hsl(0, 0%, 45%);
+        --clr-neutral-60: hsl(0, 0%, 40%);
+        --clr-neutral-65: hsl(0, 0%, 35%);
+        --clr-neutral-70: hsl(0, 0%, 30%);
+        --clr-neutral-75: hsl(0, 0%, 25%);
+        --clr-neutral-80: hsl(0, 0%, 20%);
+        --clr-neutral-85: hsl(0, 0%, 15%);
+        --clr-neutral-90: hsl(0, 0%, 10%);
+        --clr-neutral-95: hsl(0, 0%, 5%);
+        --clr-neutral-100: hsl(0, 0%, 0%);
+
+        --clr-primary-0: hsl(210, 10%, 100%);
+        --clr-primary-5: hsl(210, 10%, 95%);
+        --clr-primary-10: hsl(210, 10%, 90%);
+        --clr-primary-15: hsl(210, 10%, 85%);
+        --clr-primary-20: hsl(210, 10%, 80%);
+        --clr-primary-25: hsl(210, 10%, 75%);
+        --clr-primary-30: hsl(210, 10%, 70%);
+        --clr-primary-35: hsl(210, 10%, 65%);
+        --clr-primary-40: hsl(210, 10%, 60%);
+        --clr-primary-45: hsl(210, 10%, 55%);
+        --clr-primary-50: hsl(210, 10%, 50%);
+        --clr-primary-55: hsl(210, 10%, 45%);
+        --clr-primary-60: hsl(210, 10%, 40%);
+        --clr-primary-65: hsl(210, 10%, 35%);
+        --clr-primary-70: hsl(210, 10%, 30%);
+        --clr-primary-75: hsl(210, 10%, 25%);
+        --clr-primary-80: hsl(210, 10%, 20%);
+        --clr-primary-85: hsl(210, 10%, 15%);
+        --clr-primary-90: hsl(210, 10%, 10%);
+        --clr-primary-95: hsl(210, 10%, 5%);
+        --clr-primary-100: hsl(210, 10%, 0%);
+
+        --clr-accent-color: hsl(210, 10%, 30%);
+        --clr-accent-color-variant: hsl(0, 100%, 60%);
+
+        --clr-background: var(--clr-primary-5);
+        --clr-section: var(--clr-primary-0);
+        --clr-section-border: var(--clr-primary-10);
+
+        --clr-card: var(--clr-primary-0);
+        --clr-card-hover: var(--clr-primary-5);
+        --clr-card-border: var(--clr-primary-10);
+        --card-shadow: 0 0 24px var(--clr-primary-5);
+    }
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  background-color: var(--clr-background);
-  color: var(--clr-neutral-90);
-  font-family: "Outfit", sans-serif;
-  line-height: 1.6;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+    background-color: var(--clr-background);
+    color: var(--clr-neutral-90);
+    font-family: "Outfit", sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 section {
-  padding: var(--padding-32);
+    padding: var(--padding-32);
 }
 
 .container {
-  max-width: 1280px;
-  margin-right: auto;
-  margin-left: auto;
+    max-width: 1280px;
+    margin-right: auto;
+    margin-left: auto;
 }

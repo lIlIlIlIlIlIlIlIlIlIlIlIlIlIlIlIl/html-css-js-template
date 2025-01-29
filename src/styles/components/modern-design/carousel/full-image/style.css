@@ -1,277 +1,277 @@
 @import url("../../../../global.css");
 
 .carousel-section {
-  overflow-x: hidden;
+    overflow-x: hidden;
 }
 
 .carousel-header {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  height: 6.5rem;
-  margin: var(--margin-24);
-  position: relative;
-  white-space: nowrap;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 6.5rem;
+    margin: var(--margin-24);
+    position: relative;
+    white-space: nowrap;
 }
 
 .carousel-header h2 {
-  color: var(--clr-primary-100);
-  font-size: clamp(3rem, 5vw, 4rem);
-  font-weight: normal;
-  margin: 0;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+    color: var(--clr-primary-100);
+    font-size: clamp(3rem, 5vw, 4rem);
+    font-weight: normal;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .carousel-controls {
-  display: flex;
-  gap: 16px;
+    display: flex;
+    gap: 16px;
 }
 
 .carousel-controls button {
-  background: var(--clr-primary-100);
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  color: var(--clr-neutral-0);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s ease;
+    background: var(--clr-primary-100);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    color: var(--clr-neutral-0);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
 }
 
 .carousel-controls button:hover {
-  background: var(--clr-primary-90);
+    background: var(--clr-primary-90);
 }
 
 .carousel-controls button:disabled {
-  cursor: not-allowed;
-  background: var(--clr-primary-100);
+    cursor: not-allowed;
+    background: var(--clr-primary-100);
 }
 
 .carousel-controls button .arrow-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .carousel-controls button .arrow {
-  width: 24px;
-  height: 24px;
+    width: 24px;
+    height: 24px;
 }
 
 .carousel {
-  position: relative;
-  overflow: visible;
-  width: 100%;
-  margin: 0 auto;
-  cursor: grab;
+    position: relative;
+    overflow: visible;
+    width: 100%;
+    margin: 0 auto;
+    cursor: grab;
 }
 
 .carousel-container {
-  display: flex;
-  transition: transform 0.3s ease-out;
-  width: auto;
+    display: flex;
+    transition: transform 0.3s ease-out;
+    width: auto;
 }
 
 .carousel-track {
-  display: flex;
-  gap: var(--padding-24);
-  padding-bottom: var(--padding-16);
-  user-select: none;
-  overflow: visible;
+    display: flex;
+    gap: var(--padding-24);
+    padding-bottom: var(--padding-16);
+    user-select: none;
+    overflow: visible;
 }
 
 .carousel-card {
-  flex: 0 0 auto;
-  width: 350px;
-  height: 500px;
-  position: relative;
-  border-radius: var(--border-radius-12);
-  overflow: hidden;
-  background-color: var(--clr-card);
-  border: 1px solid var(--clr-primary-10);
-  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
-  user-select: none;
-  z-index: 1;
+    flex: 0 0 auto;
+    width: 350px;
+    height: 500px;
+    position: relative;
+    border-radius: var(--border-radius-12);
+    overflow: hidden;
+    background-color: var(--clr-card);
+    border: 1px solid var(--clr-primary-10);
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+    user-select: none;
+    z-index: 1;
 }
 
 .carousel-card:active {
-  cursor: grabbing;
+    cursor: grabbing;
 }
 
 .carousel-card:hover {
-  transform: none;
+    transform: none;
 }
 
 .carousel-card:hover img {
-  transform: scale(1.1);
-  transition: transform 0.5s ease;
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
 }
 
 .carousel-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
 .carousel-card .card-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.1);
-  z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 1;
 }
 
 .carousel-card .card-content {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  color: var(--clr-neutral-100);
-  padding: var(--padding-32);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  text-align: left;
-  z-index: 2;
-  gap: 8px;
-  user-select: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: var(--clr-neutral-100);
+    padding: var(--padding-32);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+    z-index: 2;
+    gap: 8px;
+    user-select: none;
 }
 
 .carousel-card .card-content h3 {
-  margin: 0;
-  font-size: clamp(1.25rem, 5vw, 1.75rem);
-  font-weight: 500;
+    margin: 0;
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
+    font-weight: 500;
 }
 
 .carousel-card .card-content p {
-  margin: 0;
-  font-size: 1rem;
-  margin-bottom: 16px;
+    margin: 0;
+    font-size: 1rem;
+    margin-bottom: 16px;
 }
 
 .carousel-card .card-content .buttons-container {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
 }
 
 .carousel-card .card-content .buttons-container button {
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: auto;
 }
 
 .carousel-card .card-content .buttons-container:only-child {
-  justify-content: stretch;
+    justify-content: stretch;
 }
 
 .carousel-card .card-content .buttons-container button:only-child {
-  flex-grow: 0;
-  width: 100%;
-  margin: 0;
+    flex-grow: 0;
+    width: 100%;
+    margin: 0;
 }
 
 .more-info-button {
-  background-color: var(--clr-primary-100);
-  color: var(--clr-primary-0);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  text-decoration: none;
-  transition: all 0.2s cubic-bezier(0.3, 0.7, 0.4, 1.5);
-  position: relative;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  display: inline-flex;
-  align-items: center;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  font-family: inherit;
-  width: fit-content;
+    background-color: var(--clr-primary-100);
+    color: var(--clr-primary-0);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.3, 0.7, 0.4, 1.5);
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: inline-flex;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: inherit;
+    width: fit-content;
 }
 
 .more-info-button:hover {
-  transform: scale(1.025);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    transform: scale(1.025);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
 .more-info-button a {
-  color: inherit;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
+    color: inherit;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
 .carousel-card .card-content .more-info-button p {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .more-info-button .arrow-icon {
-  margin-top: 1px;
-  margin-left: 4px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: auto;
-  overflow: visible;
+    margin-top: 1px;
+    margin-left: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    overflow: visible;
 }
 
 .more-info-button .arrow {
-  position: relative;
-  top: 0;
-  left: auto;
-  transform: none;
-  transition: transform 0.3s ease-out;
-  width: 16px;
-  height: 16px;
-  color: var(--clr-neutral-0);
-  opacity: 1;
+    position: relative;
+    top: 0;
+    left: auto;
+    transform: none;
+    transition: transform 0.3s ease-out;
+    width: 16px;
+    height: 16px;
+    color: var(--clr-neutral-0);
+    opacity: 1;
 }
 
 .more-info-button:hover .arrow {
-  transform: translateX(4px);
+    transform: translateX(4px);
 }
 
 @media (max-width: 768px) {
-  .carousel-section {
-    overflow: hidden;
-  }
+    .carousel-section {
+        overflow: hidden;
+    }
 
-  .carousel-card {
-    width: 320px;
-    height: 440px;
-  }
+    .carousel-card {
+        width: 320px;
+        height: 440px;
+    }
 
-  .carousel-controls {
-    display: none;
-  }
+    .carousel-controls {
+        display: none;
+    }
 
-  .carousel-card .card-content {
-    padding: var(--padding-24);
-  }
+    .carousel-card .card-content {
+        padding: var(--padding-24);
+    }
 }
 
 @media (max-width: 345px) {
-  .carousel-section {
-    overflow: hidden;
-  }
+    .carousel-section {
+        overflow: hidden;
+    }
 
-  .carousel-card {
-    width: 250px;
-    height: 350px;
-  }
+    .carousel-card {
+        width: 250px;
+        height: 350px;
+    }
 
-  .carousel-controls {
-    display: none;
-  }
+    .carousel-controls {
+        display: none;
+    }
 }
