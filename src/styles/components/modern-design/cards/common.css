@@ -10,8 +10,21 @@ section h2 {
 
 .cards-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: var(--padding-24);
+}
+
+.cards-grid-3x1 {
+    grid-template-columns: var(--grid-3-columns);
+}
+
+.cards-grid-3x2 {
+    grid-template-columns: var(--grid-3-columns);
+    grid-template-rows: var(--grid-2-rows);
+}
+
+.cards-grid-2x2 {
+    grid-template-columns: var(--grid-2-columns);
+    grid-template-rows: var(--grid-2-rows);
 }
 
 .card {
@@ -128,8 +141,16 @@ section h2 {
 }
 
 @media (max-width: 1024px) {
-    .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .cards-grid-3x1,
+    .cards-grid-3x2 {
+        grid-template-columns: var(--grid-2-columns);
+    }
+    .cards-grid-2x2 {
+        grid-template-columns: var(--grid-2-columns);
+    }
+
+    .cards-grid .card:nth-child(3):last-child {
+        grid-column: span 2;
     }
 }
 
@@ -141,6 +162,6 @@ section h2 {
 
 @media (max-width: 540px) {
     .cards-grid {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: var(--grid-1-column);
     }
 }

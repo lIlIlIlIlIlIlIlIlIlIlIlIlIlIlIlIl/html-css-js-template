@@ -22,6 +22,27 @@ class CardsHalfImageComponent extends HTMLElement {
                 imgSrc: "src/assets/images/illustrations/13.jpg",
                 link: "#",
                 type: "image"
+            },
+            {
+                title: "Lorem ipsum",
+                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
+                imgSrc: "src/assets/images/illustrations/14.jpg",
+                link: "#",
+                type: "image"
+            },
+            {
+                title: "Lorem ipsum",
+                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
+                imgSrc: "src/assets/images/illustrations/15.jpg",
+                link: "#",
+                type: "image"
+            },
+            {
+                title: "Lorem ipsum",
+                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
+                imgSrc: "src/assets/images/illustrations/16.jpg",
+                link: "#",
+                type: "image"
             }
         ];
 
@@ -51,7 +72,7 @@ class CardsHalfImageComponent extends HTMLElement {
         <section>
             <div class="container">
                 <h2>Lorem ipsum</h2>
-                <div class="cards-grid">
+                <div class="cards-grid cards-grid-3x2">
                     ${cardsHtml}
                 </div>
             </div>

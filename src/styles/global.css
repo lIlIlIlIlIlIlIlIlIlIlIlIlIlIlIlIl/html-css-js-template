@@ -66,6 +66,16 @@
 
     --clr-carousel-text: var(--clr-primary-100);
 
+    --grid-1-column: repeat(1, 1fr);
+    --grid-2-columns: repeat(2, 1fr);
+    --grid-3-columns: repeat(3, 1fr);
+    --grid-4-columns: repeat(4, 1fr);
+
+    --grid-1-row: auto;
+    --grid-2-rows: repeat(2, auto);
+    --grid-3-rows: repeat(3, auto);
+    --grid-4-rows: repeat(4, auto);
+
     --clr-card: var(--clr-primary-10);
     --clr-card-hover: var(--clr-primary-15);
     --clr-card-border: var(--clr-primary-20);

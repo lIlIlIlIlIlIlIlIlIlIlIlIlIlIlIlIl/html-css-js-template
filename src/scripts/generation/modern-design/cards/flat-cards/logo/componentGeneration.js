@@ -19,6 +19,12 @@ class CardsLogoComponent extends HTMLElement {
                 description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
                 link: "#",
                 type: "logo"
+            },
+            {
+                title: "Lorem ipsum",
+                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
+                link: "#",
+                type: "logo"
             }
         ];
 
@@ -56,7 +62,7 @@ class CardsLogoComponent extends HTMLElement {
         <section>
             <div class="container">
                 <h2>Lorem ipsum</h2>
-                <div class="cards-grid">
+                <div class="cards-grid cards-grid-2x2">
                     ${cardsHtml}
                 </div>
             </div>
