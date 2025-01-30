@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastPosition = 0;
     let animationFrame;
 
+    const TRANSITION_DURATION = '0.3s';
+    const TRANSITION_TIMING = 'cubic-bezier(0.25, 0.1, 0.25, 1)';
+
     const calculateDimensions = () => {
         cardWidth = carouselCards[0].offsetWidth;
         cardGap = parseInt(window.getComputedStyle(carouselTrack).gap) || 0;
@@ -95,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             window.removeEventListener('touchmove', handleCarouselDrag);
 
-            carouselContainer.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
+            carouselContainer.style.transition = `transform ${TRANSITION_DURATION} ${TRANSITION_TIMING}`;
 
             if (Math.abs(velocity) > 0.1) {
                 applyCarouselInertia();
@@ -148,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (progress < 1) {
                     animationFrame = requestAnimationFrame(animate);
                 } else {
-                    carouselContainer.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
+                    carouselContainer.style.transition = `transform ${TRANSITION_DURATION} ${TRANSITION_TIMING}`;
                     currentTranslate = snapPosition;
                     setCarouselTransform(currentTranslate);
                     previousTranslate = currentTranslate;
@@ -174,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         updateCarouselControls();
-        carouselContainer.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
+        carouselContainer.style.transition = `transform ${TRANSITION_DURATION} ${TRANSITION_TIMING}`;
         currentTranslate = snapPosition;
         setCarouselTransform(currentTranslate);
         previousTranslate = currentTranslate;
@@ -215,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
     prevButton.addEventListener('click', () => {
         if (!isCarouselEnabled() || currentTranslate >= 0) return;
 
-        carouselContainer.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
+        carouselContainer.style.transition = `transform ${TRANSITION_DURATION} ${TRANSITION_TIMING}`;
 
         currentTranslate = limitCarouselTranslate(currentTranslate + (cardWidth + cardGap));
         setCarouselTransform(currentTranslate);
@@ -226,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
     nextButton.addEventListener('click', () => {
         if (!isCarouselEnabled() || currentTranslate <= -(totalCardsWidth - containerWidth)) return;
 
-        carouselContainer.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
+        carouselContainer.style.transition = `transform ${TRANSITION_DURATION} ${TRANSITION_TIMING}`;
 
         currentTranslate = limitCarouselTranslate(currentTranslate - (cardWidth + cardGap));
         setCarouselTransform(currentTranslate);
