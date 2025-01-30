@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             carouselContainer.style.transition = `transform ${TRANSITION_DURATION} ${TRANSITION_TIMING}`;
 
-            if (Math.abs(velocity) > 0.1) {
+            if (Math.abs(velocity) > 0) {
                 applyCarouselInertia();
             } else {
                 snapToNearestCarouselCard();
@@ -167,15 +167,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const cardWidthWithGap = cardWidth + cardGap;
         const maxTranslate = -(totalCardsWidth - containerWidth);
 
-        let snapPosition = Math.round((currentTranslate + cardGap / 2) / cardWidthWithGap) * cardWidthWithGap;
-        if (Math.abs(currentTranslate - maxTranslate) < cardWidth / 2) {
-            snapPosition = maxTranslate;
-        } else {
-            snapPosition = Math.max(Math.min(snapPosition, 0), maxTranslate);
+        if (currentTranslate <= maxTranslate && !isDragging) {
+            const visibleCardIndex = Math.floor(Math.abs(currentTranslate) / cardWidthWithGap);
+            const offset = visibleCardIndex * cardWidthWithGap;
+            currentTranslate = -offset;
+            setCarouselTransform(currentTranslate);
+            previousTranslate = currentTranslate;
+            updateCarouselControls(true);
+            return;
         }
 
-        carouselContainer.style.transition = `transform ${TRANSITION_DURATION} ${TRANSITION_TIMING}`;
-        currentTranslate = snapPosition;
+        currentTranslate = limitCarouselTranslate(currentTranslate);
         setCarouselTransform(currentTranslate);
         previousTranslate = currentTranslate;
         updateCarouselControls(true);
@@ -219,18 +221,23 @@ document.addEventListener('DOMContentLoaded', () => {
     prevButton.addEventListener('click', () => {
         if (!isCarouselEnabled() || currentTranslate >= 0) return;
 
-        carouselContainer.style.transition = `transform ${TRANSITION_DURATION} ${TRANSITION_TIMING}`;
-
-        currentTranslate = limitCarouselTranslate(currentTranslate + (cardWidth + cardGap));
-        setCarouselTransform(currentTranslate);
-        previousTranslate = currentTranslate;
+        if (currentTranslate <= -(totalCardsWidth - containerWidth)) {
+            const visibleCardIndex = Math.floor(Math.abs(currentTranslate) / (cardWidth + cardGap));
+            const offset = visibleCardIndex * (cardWidth + cardGap);
+            currentTranslate = -offset;
+            setCarouselTransform(currentTranslate);
+            previousTranslate = currentTranslate;
+            snapToNearestCarouselCard();
+        } else {
+            currentTranslate = limitCarouselTranslate(currentTranslate + (cardWidth + cardGap));
+            setCarouselTransform(currentTranslate);
+            previousTranslate = currentTranslate;
+        }
         updateCarouselControls(true);
     });
 
     nextButton.addEventListener('click', () => {
         if (!isCarouselEnabled() || currentTranslate <= -(totalCardsWidth - containerWidth)) return;
-
-        carouselContainer.style.transition = `transform ${TRANSITION_DURATION} ${TRANSITION_TIMING}`;
 
         currentTranslate = limitCarouselTranslate(currentTranslate - (cardWidth + cardGap));
         setCarouselTransform(currentTranslate);
