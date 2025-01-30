@@ -30,7 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
         container.style.transform = `translateX(${position}px)`;
     };
 
-    const limitTranslate = (translate) => Math.min(Math.max(translate, -(totalCardsWidth - containerWidth)), 0);
+    const limitTranslate = (translate) => {
+        const maxTranslate = -(totalCardsWidth - containerWidth);
+        return Math.min(Math.max(translate, maxTranslate), 0);
+    };
 
     const startDrag = (e) => {
         if (!enableCarousel()) return;
@@ -108,7 +111,12 @@ document.addEventListener('DOMContentLoaded', () => {
             finalTranslate = limitTranslate(finalTranslate);
 
             let snapPosition = Math.round((finalTranslate + gap / 2) / cardWidthWithGap) * cardWidthWithGap;
-            snapPosition = Math.max(Math.min(snapPosition, 0), maxTranslate);
+
+            if (Math.abs(finalTranslate - maxTranslate) < cardWidth / 2) {
+                snapPosition = maxTranslate;
+            } else {
+                snapPosition = Math.max(Math.min(snapPosition, 0), maxTranslate);
+            }
 
             return snapPosition;
         };
