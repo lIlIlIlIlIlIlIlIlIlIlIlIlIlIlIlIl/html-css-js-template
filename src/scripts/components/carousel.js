@@ -167,17 +167,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const cardWidthWithGap = cardWidth + cardGap;
         const maxTranslate = -(totalCardsWidth - containerWidth);
 
-        if (currentTranslate <= maxTranslate && !isDragging) {
-            const visibleCardIndex = Math.floor(Math.abs(currentTranslate) / cardWidthWithGap);
-            const offset = visibleCardIndex * cardWidthWithGap;
-            currentTranslate = -offset;
-            setCarouselTransform(currentTranslate);
-            previousTranslate = currentTranslate;
-            updateCarouselControls(true);
-            return;
+        if (currentTranslate >= 0) {
+            currentTranslate = 0;
+        }
+        else if (currentTranslate <= maxTranslate) {
+            currentTranslate = maxTranslate;
+        }
+        else {
+            const visibleCardIndex = Math.round(Math.abs(currentTranslate) / cardWidthWithGap);
+            currentTranslate = -visibleCardIndex * cardWidthWithGap;
         }
 
-        currentTranslate = limitCarouselTranslate(currentTranslate);
         setCarouselTransform(currentTranslate);
         previousTranslate = currentTranslate;
         updateCarouselControls(true);
