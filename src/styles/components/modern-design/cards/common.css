@@ -10,7 +10,7 @@ section h2 {
 
 .cards-grid {
     display: grid;
-    gap: var(--padding-24);
+    gap: var(--padding-16);
 }
 
 .cards-grid-3x1 {

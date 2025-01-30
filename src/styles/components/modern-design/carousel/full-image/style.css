@@ -79,7 +79,7 @@
 
 .carousel-track {
     display: flex;
-    gap: var(--padding-24);
+    gap: var(--padding-16);
     padding-bottom: var(--padding-16);
     user-select: none;
     overflow: visible;
@@ -93,7 +93,6 @@
     border-radius: var(--border-radius-12);
     overflow: hidden;
     background-color: var(--clr-card);
-    border: 1px solid var(--clr-primary-10);
     transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
     user-select: none;
     z-index: 1;
@@ -108,23 +107,23 @@
 }
 
 .carousel-card:hover img {
-    transform: scale(1.1);
-    transition: transform 0.5s ease;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
 }
 
 .carousel-card img {
     width: 100%;
     height: 100%;
+    padding: 0.5rem;
+    border-radius: var(--border-radius-16);
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.3s ease;
 }
 
 .carousel-card .card-background {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0.5rem;
+    border-radius: var(--border-radius-8);
     background: rgba(0, 0, 0, 0.25);
     z-index: 1;
 }
