@@ -100,22 +100,49 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const applyInertia = () => {
-        const friction = 0.95;
-        const minVelocity = 0.1;
+        const calculateSnapPosition = () => {
+            const cardWidthWithGap = cardWidth + gap;
+            const maxTranslate = -(totalCardsWidth - containerWidth);
 
-        const move = () => {
-            if (Math.abs(velocity) > minVelocity) {
-                currentTranslate += velocity * 10;
-                currentTranslate = limitTranslate(currentTranslate);
-                setTransform(currentTranslate);
-                velocity *= friction;
-                animationFrame = requestAnimationFrame(move);
-            } else {
-                snapToNearestCard();
-            }
+            let finalTranslate = currentTranslate + velocity * 1000;
+            finalTranslate = limitTranslate(finalTranslate);
+
+            let snapPosition = Math.round((finalTranslate + gap / 2) / cardWidthWithGap) * cardWidthWithGap;
+            snapPosition = Math.max(Math.min(snapPosition, 0), maxTranslate);
+
+            return snapPosition;
         };
 
-        move();
+        const snapPosition = calculateSnapPosition();
+
+        const animateToSnapPosition = () => {
+            const duration = 400;
+            const startTime = performance.now();
+            const startPosition = currentTranslate;
+
+            const animate = (currentTime) => {
+                const elapsedTime = currentTime - startTime;
+                const progress = Math.min(elapsedTime / duration, 1);
+
+                const easeOutProgress = 1 - Math.pow(1 - progress, 3);
+
+                currentTranslate = startPosition + (snapPosition - startPosition) * easeOutProgress;
+                setTransform(currentTranslate);
+
+                if (progress < 1) {
+                    animationFrame = requestAnimationFrame(animate);
+                } else {
+                    currentTranslate = snapPosition;
+                    setTransform(currentTranslate);
+                    prevTranslate = currentTranslate;
+                    updateControls();
+                }
+            };
+
+            animationFrame = requestAnimationFrame(animate);
+        };
+
+        animateToSnapPosition();
     };
 
     const snapToNearestCard = () => {
@@ -170,6 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     prevButton.addEventListener('click', () => {
         if (!enableCarousel() || currentTranslate >= 0) return;
+        container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
         currentTranslate = limitTranslate(currentTranslate + (cardWidth + gap));
         updateControls();
         setTransform(currentTranslate);
@@ -178,6 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     nextButton.addEventListener('click', () => {
         if (!enableCarousel() || currentTranslate <= -(totalCardsWidth - containerWidth)) return;
+        container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
         currentTranslate = limitTranslate(currentTranslate - (cardWidth + gap));
         updateControls();
         setTransform(currentTranslate);
