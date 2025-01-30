@@ -1,80 +1,80 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const track = document.querySelector('.carousel-track');
-    const container = document.querySelector('.carousel-container');
-    const cards = document.querySelectorAll('.carousel-card');
+    const carouselTrack = document.querySelector('.carousel-track');
+    const carouselContainer = document.querySelector('.carousel-container');
+    const carouselCards = document.querySelectorAll('.carousel-card');
     const prevButton = document.querySelector('.carousel-prev');
     const nextButton = document.querySelector('.carousel-next');
-    const containerGlobal = document.querySelector('.container');
+    const globalContainer = document.querySelector('.container');
     const moreInfoButtons = document.querySelectorAll('.more-info-button');
 
-    let cardWidth, gap, containerWidth, totalCardsWidth;
+    let cardWidth, cardGap, containerWidth, totalCardsWidth;
     let isDragging = false;
-    let startPos = 0;
+    let startPosition = 0;
     let currentTranslate = 0;
-    let prevTranslate = 0;
+    let previousTranslate = 0;
     let velocity = 0;
     let lastTime = 0;
-    let lastPos = 0;
+    let lastPosition = 0;
     let animationFrame;
 
     const calculateDimensions = () => {
-        cardWidth = cards[0].offsetWidth;
-        gap = parseInt(window.getComputedStyle(track).gap) || 0;
-        containerWidth = containerGlobal.offsetWidth;
-        totalCardsWidth = cards.length * (cardWidth + gap) - gap;
+        cardWidth = carouselCards[0].offsetWidth;
+        cardGap = parseInt(window.getComputedStyle(carouselTrack).gap) || 0;
+        containerWidth = globalContainer.offsetWidth;
+        totalCardsWidth = carouselCards.length * (cardWidth + cardGap) - cardGap;
     };
 
-    const enableCarousel = () => totalCardsWidth > containerWidth;
+    const isCarouselEnabled = () => totalCardsWidth > containerWidth;
 
-    const setTransform = (position) => {
-        container.style.transform = `translateX(${position}px)`;
+    const setCarouselTransform = (position) => {
+        carouselContainer.style.transform = `translateX(${position}px)`;
     };
 
-    const limitTranslate = (translate) => {
+    const limitCarouselTranslate = (translate) => {
         const maxTranslate = -(totalCardsWidth - containerWidth);
         return Math.min(Math.max(translate, maxTranslate), 0);
     };
 
-    const startDrag = (e) => {
-        if (!enableCarousel()) return;
+    const startCarouselDrag = (event) => {
+        if (!isCarouselEnabled()) return;
         isDragging = true;
-        startPos = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-        lastPos = startPos;
+        startPosition = event.type.includes('touch') ? event.touches[0].clientX : event.clientX;
+        lastPosition = startPosition;
         lastTime = performance.now();
-        container.style.cursor = 'grabbing';
-        container.style.userSelect = 'none';
-        container.style.transition = 'none';
+        carouselContainer.style.cursor = 'grabbing';
+        carouselContainer.style.userSelect = 'none';
+        carouselContainer.style.transition = 'none';
 
         if (animationFrame) {
             cancelAnimationFrame(animationFrame);
             animationFrame = null;
         }
 
-        const computedTransform = window.getComputedStyle(container).transform;
+        const computedTransform = window.getComputedStyle(carouselContainer).transform;
         if (computedTransform !== 'none') {
             const matrix = RegExp(/matrix.*\((.+)\)/).exec(computedTransform)[1].split(', ');
             currentTranslate = parseFloat(matrix[4]);
-            prevTranslate = currentTranslate;
+            previousTranslate = currentTranslate;
         }
 
-        window.addEventListener('touchmove', drag, { passive: false });
+        window.addEventListener('touchmove', handleCarouselDrag, { passive: false });
     };
 
-    const drag = (e) => {
+    const handleCarouselDrag = (event) => {
         if (isDragging) {
-            e.preventDefault();
-            const currentPosition = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            event.preventDefault();
+            const currentPosition = event.type.includes('touch') ? event.touches[0].clientX : event.clientX;
             const currentTime = performance.now();
             const timeDiff = currentTime - lastTime;
 
             if (timeDiff > 0) {
-                velocity = (currentPosition - lastPos) / timeDiff;
-                lastPos = currentPosition;
+                velocity = (currentPosition - lastPosition) / timeDiff;
+                lastPosition = currentPosition;
                 lastTime = currentTime;
             }
 
-            const diff = currentPosition - startPos;
-            currentTranslate = prevTranslate + diff;
+            const positionDiff = currentPosition - startPosition;
+            currentTranslate = previousTranslate + positionDiff;
 
             const maxTranslate = -(totalCardsWidth - containerWidth);
             if (currentTranslate > 0 || currentTranslate < maxTranslate) {
@@ -82,35 +82,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentTranslate = currentTranslate > 0 ? overshoot * 0.2 : maxTranslate + overshoot * 0.2;
             }
 
-            setTransform(currentTranslate);
+            setCarouselTransform(currentTranslate);
+            updateCarouselControls();
         }
     };
 
-    const stopDrag = () => {
+    const stopCarouselDrag = () => {
         if (isDragging) {
             isDragging = false;
-            container.style.cursor = 'grab';
-            container.style.userSelect = 'auto';
+            carouselContainer.style.cursor = 'grab';
+            carouselContainer.style.userSelect = 'auto';
 
-            window.removeEventListener('touchmove', drag);
+            window.removeEventListener('touchmove', handleCarouselDrag);
+
+            carouselContainer.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
 
             if (Math.abs(velocity) > 0.1) {
-                applyInertia();
+                applyCarouselInertia();
             } else {
-                snapToNearestCard();
+                snapToNearestCarouselCard();
             }
+
+            updateCarouselControls();
         }
     };
 
-    const applyInertia = () => {
+    const applyCarouselInertia = () => {
         const calculateSnapPosition = () => {
-            const cardWidthWithGap = cardWidth + gap;
+            const cardWidthWithGap = cardWidth + cardGap;
             const maxTranslate = -(totalCardsWidth - containerWidth);
 
             let finalTranslate = currentTranslate + velocity * 1000;
-            finalTranslate = limitTranslate(finalTranslate);
+            finalTranslate = limitCarouselTranslate(finalTranslate);
 
-            let snapPosition = Math.round((finalTranslate + gap / 2) / cardWidthWithGap) * cardWidthWithGap;
+            let snapPosition = Math.round((finalTranslate + cardGap / 2) / cardWidthWithGap) * cardWidthWithGap;
 
             if (Math.abs(finalTranslate - maxTranslate) < cardWidth / 2) {
                 snapPosition = maxTranslate;
@@ -128,6 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const startTime = performance.now();
             const startPosition = currentTranslate;
 
+            carouselContainer.style.transition = 'none';
+
             const animate = (currentTime) => {
                 const elapsedTime = currentTime - startTime;
                 const progress = Math.min(elapsedTime / duration, 1);
@@ -135,15 +142,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const easeOutProgress = 1 - Math.pow(1 - progress, 3);
 
                 currentTranslate = startPosition + (snapPosition - startPosition) * easeOutProgress;
-                setTransform(currentTranslate);
+                setCarouselTransform(currentTranslate);
+                updateCarouselControls();
 
                 if (progress < 1) {
                     animationFrame = requestAnimationFrame(animate);
                 } else {
+                    carouselContainer.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
                     currentTranslate = snapPosition;
-                    setTransform(currentTranslate);
-                    prevTranslate = currentTranslate;
-                    updateControls();
+                    setCarouselTransform(currentTranslate);
+                    previousTranslate = currentTranslate;
+                    updateCarouselControls();
                 }
             };
 
@@ -153,31 +162,31 @@ document.addEventListener('DOMContentLoaded', () => {
         animateToSnapPosition();
     };
 
-    const snapToNearestCard = () => {
-        const cardWidthWithGap = cardWidth + gap;
+    const snapToNearestCarouselCard = () => {
+        const cardWidthWithGap = cardWidth + cardGap;
         const maxTranslate = -(totalCardsWidth - containerWidth);
 
-        let snapPosition = Math.round((currentTranslate + gap / 2) / cardWidthWithGap) * cardWidthWithGap;
+        let snapPosition = Math.round((currentTranslate + cardGap / 2) / cardWidthWithGap) * cardWidthWithGap;
         if (Math.abs(currentTranslate - maxTranslate) < cardWidth / 2) {
             snapPosition = maxTranslate;
         } else {
             snapPosition = Math.max(Math.min(snapPosition, 0), maxTranslate);
         }
 
-        updateControls();
-        container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
+        updateCarouselControls();
+        carouselContainer.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
         currentTranslate = snapPosition;
-        setTransform(currentTranslate);
-        prevTranslate = currentTranslate;
+        setCarouselTransform(currentTranslate);
+        previousTranslate = currentTranslate;
     };
 
-    const updateControls = () => {
-        const disabledStyle = (btn, condition) => {
-            btn.disabled = condition;
-            btn.style.opacity = condition ? '0.5' : '1';
+    const updateCarouselControls = () => {
+        const setButtonDisabledStyle = (button, isDisabled) => {
+            button.disabled = isDisabled;
+            button.style.opacity = isDisabled ? '0.5' : '1';
         };
 
-        if (!enableCarousel()) {
+        if (!isCarouselEnabled()) {
             prevButton.style.display = 'none';
             nextButton.style.display = 'none';
             return;
@@ -185,54 +194,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
         prevButton.style.display = 'flex';
         nextButton.style.display = 'flex';
-        disabledStyle(prevButton, currentTranslate >= 0);
-        disabledStyle(nextButton, currentTranslate <= -(totalCardsWidth - containerWidth));
+        setButtonDisabledStyle(prevButton, currentTranslate >= 0);
+        setButtonDisabledStyle(nextButton, currentTranslate <= -(totalCardsWidth - containerWidth));
     };
 
     window.addEventListener('resize', () => {
         calculateDimensions();
-        currentTranslate = limitTranslate(currentTranslate);
-        setTransform(currentTranslate);
-        prevTranslate = currentTranslate;
-        updateControls();
+        currentTranslate = limitCarouselTranslate(currentTranslate);
+        setCarouselTransform(currentTranslate);
+        previousTranslate = currentTranslate;
+        updateCarouselControls();
     });
 
-    container.addEventListener('mousedown', startDrag);
-    container.addEventListener('touchstart', startDrag, { passive: true });
-    window.addEventListener('mousemove', drag);
-    window.addEventListener('mouseup', stopDrag);
-    window.addEventListener('touchend', stopDrag);
+    carouselContainer.addEventListener('mousedown', startCarouselDrag);
+    carouselContainer.addEventListener('touchstart', startCarouselDrag, { passive: true });
+    window.addEventListener('mousemove', handleCarouselDrag);
+    window.addEventListener('mouseup', stopCarouselDrag);
+    window.addEventListener('touchend', stopCarouselDrag);
 
     prevButton.addEventListener('click', () => {
-        if (!enableCarousel() || currentTranslate >= 0) return;
-        container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
-        currentTranslate = limitTranslate(currentTranslate + (cardWidth + gap));
-        updateControls();
-        setTransform(currentTranslate);
-        prevTranslate = currentTranslate;
+        if (!isCarouselEnabled() || currentTranslate >= 0) return;
+
+        carouselContainer.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
+
+        currentTranslate = limitCarouselTranslate(currentTranslate + (cardWidth + cardGap));
+        setCarouselTransform(currentTranslate);
+        updateCarouselControls();
+        previousTranslate = currentTranslate;
     });
 
     nextButton.addEventListener('click', () => {
-        if (!enableCarousel() || currentTranslate <= -(totalCardsWidth - containerWidth)) return;
-        container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
-        currentTranslate = limitTranslate(currentTranslate - (cardWidth + gap));
-        updateControls();
-        setTransform(currentTranslate);
-        prevTranslate = currentTranslate;
+        if (!isCarouselEnabled() || currentTranslate <= -(totalCardsWidth - containerWidth)) return;
+
+        carouselContainer.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
+
+        currentTranslate = limitCarouselTranslate(currentTranslate - (cardWidth + cardGap));
+        setCarouselTransform(currentTranslate);
+        updateCarouselControls();
+        previousTranslate = currentTranslate;
     });
 
     moreInfoButtons.forEach(button => {
-        button.addEventListener('mousedown', (e) => {
-            e.preventDefault();
-            startDrag(e);
+        button.addEventListener('mousedown', (event) => {
+            event.preventDefault();
+            startCarouselDrag(event);
         });
 
-        button.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            startDrag(e);
+        button.addEventListener('touchstart', (event) => {
+            event.preventDefault();
+            startCarouselDrag(event);
         });
     });
 
     calculateDimensions();
-    updateControls();
+    updateCarouselControls();
 });
