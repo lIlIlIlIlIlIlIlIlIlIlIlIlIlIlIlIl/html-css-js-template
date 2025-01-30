@@ -122,14 +122,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const cardWidthWithGap = cardWidth + gap;
         const maxTranslate = -(totalCardsWidth - containerWidth);
 
-        let snapPosition = Math.round(currentTranslate / cardWidthWithGap) * cardWidthWithGap;
-        snapPosition = Math.max(Math.min(snapPosition, 0), maxTranslate);
+        let snapPosition = Math.round((currentTranslate + gap / 2) / cardWidthWithGap) * cardWidthWithGap;
+        if (Math.abs(currentTranslate - maxTranslate) < cardWidth / 2) {
+            snapPosition = maxTranslate;
+        } else {
+            snapPosition = Math.max(Math.min(snapPosition, 0), maxTranslate);
+        }
 
+        updateControls();
         container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)';
         currentTranslate = snapPosition;
         setTransform(currentTranslate);
         prevTranslate = currentTranslate;
-        updateControls();
     };
 
     const updateControls = () => {
@@ -167,17 +171,17 @@ document.addEventListener('DOMContentLoaded', () => {
     prevButton.addEventListener('click', () => {
         if (!enableCarousel() || currentTranslate >= 0) return;
         currentTranslate = limitTranslate(currentTranslate + (cardWidth + gap));
+        updateControls();
         setTransform(currentTranslate);
         prevTranslate = currentTranslate;
-        updateControls();
     });
 
     nextButton.addEventListener('click', () => {
         if (!enableCarousel() || currentTranslate <= -(totalCardsWidth - containerWidth)) return;
         currentTranslate = limitTranslate(currentTranslate - (cardWidth + gap));
+        updateControls();
         setTransform(currentTranslate);
         prevTranslate = currentTranslate;
-        updateControls();
     });
 
     moreInfoButtons.forEach(button => {
