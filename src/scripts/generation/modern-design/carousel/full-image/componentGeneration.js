@@ -66,7 +66,8 @@ class CarouselFullImageComponent extends HTMLElement {
         let cardsHtml = cardsData.map(card => `
             <div class="carousel-card">
                 <img src="${card.imgSrc}" alt="Illustration">
-                <div class="card-background"></div>
+                <div class="overlay-transparent"></div>
+                <div class="overlay-dark"></div>
                 <div class="card-content">
                     <h3>${card.title}</h3>
                     <p>${card.description}</p>

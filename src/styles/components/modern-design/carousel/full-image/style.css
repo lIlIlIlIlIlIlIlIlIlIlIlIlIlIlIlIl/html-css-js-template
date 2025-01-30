@@ -120,7 +120,15 @@
     transition: transform 0.3s ease;
 }
 
-.carousel-card .card-background {
+.carousel-card .overlay-transparent {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--border-radius-8);
+    background: transparent;
+    z-index: 1;
+}
+
+.carousel-card .overlay-dark {
     position: absolute;
     inset: 0.5rem;
     border-radius: var(--border-radius-8);
