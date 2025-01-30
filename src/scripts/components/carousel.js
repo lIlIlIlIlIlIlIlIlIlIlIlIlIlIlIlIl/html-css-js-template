@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let velocity = 0;
     let lastTime = 0;
     let lastPos = 0;
+    let animationFrame;
 
     const calculateDimensions = () => {
         cardWidth = cards[0].offsetWidth;
@@ -40,6 +41,18 @@ document.addEventListener('DOMContentLoaded', () => {
         container.style.cursor = 'grabbing';
         container.style.userSelect = 'none';
         container.style.transition = 'none';
+
+        if (animationFrame) {
+            cancelAnimationFrame(animationFrame);
+            animationFrame = null;
+        }
+
+        const computedTransform = window.getComputedStyle(container).transform;
+        if (computedTransform !== 'none') {
+            const matrix = RegExp(/matrix.*\((.+)\)/).exec(computedTransform)[1].split(', ');
+            currentTranslate = parseFloat(matrix[4]);
+            prevTranslate = currentTranslate;
+        }
 
         window.addEventListener('touchmove', drag, { passive: false });
     };
@@ -79,30 +92,30 @@ document.addEventListener('DOMContentLoaded', () => {
             window.removeEventListener('touchmove', drag);
 
             if (Math.abs(velocity) > 0.1) {
-                applyInertiaWithSnap();
+                applyInertia();
             } else {
                 snapToNearestCard();
             }
         }
     };
 
-    const applyInertiaWithSnap = () => {
-        const cardWidthWithGap = cardWidth + gap;
-        const distanceMultiplier = 500;
-        const distance = velocity * distanceMultiplier;
-        let targetTranslate = currentTranslate + distance;
+    const applyInertia = () => {
+        const friction = 0.95;
+        const minVelocity = 0.1;
 
-        targetTranslate = Math.round(targetTranslate / cardWidthWithGap) * cardWidthWithGap;
-        targetTranslate = limitTranslate(targetTranslate);
+        const move = () => {
+            if (Math.abs(velocity) > minVelocity) {
+                currentTranslate += velocity * 10;
+                currentTranslate = limitTranslate(currentTranslate);
+                setTransform(currentTranslate);
+                velocity *= friction;
+                animationFrame = requestAnimationFrame(move);
+            } else {
+                snapToNearestCard();
+            }
+        };
 
-        container.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)';
-        currentTranslate = targetTranslate;
-        setTransform(currentTranslate);
-        prevTranslate = currentTranslate;
-
-        setTimeout(() => {
-            updateControls();
-        }, 300);
+        move();
     };
 
     const snapToNearestCard = () => {
