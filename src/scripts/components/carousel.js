@@ -102,8 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 snapToNearestCarouselCard();
             }
-
-            updateCarouselControls(true);
         }
     };
 
@@ -128,6 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const snapPosition = calculateSnapPosition();
 
+        updateCarouselControls(snapPosition);
+
         const animateToSnapPosition = () => {
             const duration = 400;
             const startTime = performance.now();
@@ -150,7 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     currentTranslate = snapPosition;
                     setCarouselTransform(currentTranslate);
                     previousTranslate = currentTranslate;
-                    updateCarouselControls(true);
                 }
             };
 
@@ -175,10 +174,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setCarouselTransform(currentTranslate);
         previousTranslate = currentTranslate;
-        updateCarouselControls(true);
     };
 
-    const updateCarouselControls = (isSnapping = false) => {
+    const updateCarouselControls = (position) => {
         const setButtonDisabledStyle = (button, isDisabled) => {
             button.disabled = isDisabled;
             button.style.opacity = isDisabled ? '0.5' : '1';
@@ -193,10 +191,8 @@ document.addEventListener('DOMContentLoaded', () => {
         prevButton.style.display = 'flex';
         nextButton.style.display = 'flex';
 
-        if (isSnapping) {
-            setButtonDisabledStyle(prevButton, currentTranslate >= 0);
-            setButtonDisabledStyle(nextButton, currentTranslate <= -(totalCardsWidth - containerWidth));
-        }
+        setButtonDisabledStyle(prevButton, position >= 0);
+        setButtonDisabledStyle(nextButton, position <= -(totalCardsWidth - containerWidth));
     };
 
     window.addEventListener('resize', () => {
@@ -204,7 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
         currentTranslate = limitCarouselTranslate(currentTranslate);
         setCarouselTransform(currentTranslate);
         previousTranslate = currentTranslate;
-        updateCarouselControls(true);
     });
 
     carouselContainer.addEventListener('mousedown', startCarouselDrag);
@@ -228,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setCarouselTransform(currentTranslate);
             previousTranslate = currentTranslate;
         }
-        updateCarouselControls(true);
+        updateCarouselControls(currentTranslate);
     });
 
     nextButton.addEventListener('click', () => {
@@ -236,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentTranslate = limitCarouselTranslate(currentTranslate - (cardWidth + cardGap));
         setCarouselTransform(currentTranslate);
         previousTranslate = currentTranslate;
-        updateCarouselControls(true);
+        updateCarouselControls(currentTranslate);
     });
 
     moreInfoButtons.forEach(button => {
@@ -252,5 +247,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     calculateDimensions();
-    updateCarouselControls(true);
+    updateCarouselControls(currentTranslate);
 });
