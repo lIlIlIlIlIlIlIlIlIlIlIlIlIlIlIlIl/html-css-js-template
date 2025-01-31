@@ -125,7 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const snapPosition = calculateSnapPosition();
-
         updateCarouselControls(snapPosition);
 
         const animateToSnapPosition = () => {
