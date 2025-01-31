@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const cardWidthWithGap = cardWidth + cardGap;
             const maxTranslate = -(totalCardsWidth - containerWidth);
 
-            let finalTranslate = currentTranslate + velocity * 1000;
+            let finalTranslate = currentTranslate + velocity * 300;
             finalTranslate = limitCarouselTranslate(finalTranslate);
 
             let snapPosition = Math.round((finalTranslate + cardGap / 2) / cardWidthWithGap) * cardWidthWithGap;
