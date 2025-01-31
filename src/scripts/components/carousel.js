@@ -94,9 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isDragging = false;
             carouselContainer.style.cursor = 'grab';
             carouselContainer.style.userSelect = 'auto';
-
             window.removeEventListener('touchmove', handleCarouselDrag);
-
             carouselContainer.style.transition = `transform ${TRANSITION_DURATION} ${TRANSITION_TIMING}`;
 
             if (Math.abs(velocity) > 0) {
@@ -140,7 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const animate = (currentTime) => {
                 const elapsedTime = currentTime - startTime;
                 const progress = Math.min(elapsedTime / duration, 1);
-
                 const easeOutProgress = 1 - Math.pow(1 - progress, 3);
 
                 currentTranslate = startPosition + (snapPosition - startPosition) * easeOutProgress;
@@ -169,11 +166,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (currentTranslate >= 0) {
             currentTranslate = 0;
-        }
-        else if (currentTranslate <= maxTranslate) {
+        } else if (currentTranslate <= maxTranslate) {
             currentTranslate = maxTranslate;
-        }
-        else {
+        } else {
             const visibleCardIndex = Math.round(Math.abs(currentTranslate) / cardWidthWithGap);
             currentTranslate = -visibleCardIndex * cardWidthWithGap;
         }
@@ -238,7 +233,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     nextButton.addEventListener('click', () => {
         if (!isCarouselEnabled() || currentTranslate <= -(totalCardsWidth - containerWidth)) return;
-
         currentTranslate = limitCarouselTranslate(currentTranslate - (cardWidth + cardGap));
         setCarouselTransform(currentTranslate);
         previousTranslate = currentTranslate;
