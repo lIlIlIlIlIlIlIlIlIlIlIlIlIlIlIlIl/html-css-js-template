@@ -174,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setCarouselTransform(currentTranslate);
         previousTranslate = currentTranslate;
+        updateCarouselControls(currentTranslate);
     };
 
     const updateCarouselControls = (position) => {
