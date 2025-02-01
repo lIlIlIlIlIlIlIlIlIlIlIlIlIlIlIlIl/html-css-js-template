@@ -65,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const handleCarouselDrag = (event) => {
         if (isDragging) {
-            event.preventDefault();
             const currentPosition = event.type.includes('touch') ? event.touches[0].clientX : event.clientX;
             const currentTime = performance.now();
             const timeDiff = currentTime - lastTime;
@@ -244,6 +243,14 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             startCarouselDrag(event);
         });
+    });
+
+    carouselCards.forEach(card => {
+        card.addEventListener('touchmove', (event) => {
+            if (isDragging && event.cancelable) {
+                event.preventDefault();
+            }
+        }, { passive: false });
     });
 
     calculateDimensions();

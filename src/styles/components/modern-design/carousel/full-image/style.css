@@ -74,6 +74,7 @@
 .carousel-container {
     display: flex;
     transition: transform 0.3s ease-out;
+    touch-action: pan-y;
     width: auto;
 }
 
