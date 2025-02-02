@@ -113,27 +113,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const screenY = canvas.height / 2 + (rotated.y * scale) + (yOffset * ((rotated.z + radius) / (2 * radius)));
 
             const distanceFromTop = (rotated.z + radius) / (2 * radius);
-            const opacity = rotated.z < 0
-                ? 0.15
-                : 0.8;
+            const opacity = rotated.z < 0 ? 0 : 0.8;
             const size = (0.5 + 0.5 * distanceFromTop) * 1.2 * scale;
 
-            ctx.fillStyle = pointColor.replace('1)', `${opacity})`);
-            ctx.beginPath();
-            ctx.arc(screenX, screenY, size, 0, Math.PI * 2);
-            ctx.fill();
+            if (opacity > 0) {
+                ctx.fillStyle = pointColor.replace('1)', `${opacity})`);
+                ctx.beginPath();
+                ctx.arc(screenX, screenY, size, 0, Math.PI * 2);
+                ctx.fill();
+            }
         });
 
-        const innerGradient = ctx.createRadialGradient(
-            canvas.width / 2, canvas.height / 2, 0,
-            canvas.width / 2, canvas.height / 2, radius * scale
+        const innerGradient = ctx.createLinearGradient(
+            canvas.width / 2, 0,
+            canvas.width / 2, canvas.height
         );
-        innerGradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
-        innerGradient.addColorStop(0.4, 'rgba(0, 0, 0, 0.05)');
-        innerGradient.addColorStop(0.6, 'rgba(0, 0, 0, 0.1)');
-        innerGradient.addColorStop(0.8, 'rgba(0, 0, 0, 0.3)');
-        innerGradient.addColorStop(0.9, 'rgba(0, 0, 0, 0.4)');
-        innerGradient.addColorStop(1, 'rgba(0, 0, 0, 0.5)');
+
+        for (let i = 0; i <= 100; i++) {
+            const opacity = (i / 100) * 0.5;
+            innerGradient.addColorStop(i / 100, `rgba(0, 0, 0, ${opacity})`);
+        }
 
         ctx.fillStyle = innerGradient;
         ctx.beginPath();
@@ -146,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
             canvas.width / 2,
             canvas.height / 2
         );
-        highlightGradient.addColorStop(0, 'rgba(255, 255, 255, 0.1)');
+        highlightGradient.addColorStop(0, 'rgba(255, 255, 255, 0.05)');
         highlightGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
         ctx.fillStyle = highlightGradient;
