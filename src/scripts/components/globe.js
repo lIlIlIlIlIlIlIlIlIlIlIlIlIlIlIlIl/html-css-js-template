@@ -78,9 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
             canvas.width / 2, canvas.height / 2, radius * scale,
             canvas.width / 2, canvas.height / 2, (radius + 20) * scale
         );
-        outerGlow.addColorStop(0, 'rgba(255, 255, 255, 0.15)');
-        outerGlow.addColorStop(0.5, 'rgba(255, 255, 255, 0.05)');
-        outerGlow.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+        for (let i = 0; i <= 200; i++) {
+            const opacity = Math.pow((200 - i) / 200, 2) * 0.10;
+            outerGlow.addColorStop(i / 200, `rgba(255, 255, 255, ${opacity})`);
+        }
 
         ctx.fillStyle = outerGlow;
         ctx.beginPath();
