@@ -4,6 +4,8 @@ canvas {
     display: block;
     margin: 0 auto;
     cursor: grab;
+    width: 100%;
+    max-width: 500px;
     background-color: var(--background-color);
 }
 
