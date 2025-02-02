@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('earthCanvas');
     const ctx = canvas.getContext('2d');
     const mapImage = document.getElementById('mapImage');
-    const radius = 200;
+    const radius = 250;
     const margin = 20;
     let mouseDownTime = 0;
     const clickThreshold = 150;
@@ -74,13 +74,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        const planetFillColor = getComputedStyle(document.documentElement).getPropertyValue('--clr-globe-fill').trim();
+        ctx.fillStyle = planetFillColor;
+        ctx.beginPath();
+        ctx.arc(canvas.width / 2, canvas.height / 2, radius * scale, 0, Math.PI * 2);
+        ctx.fill();
+
         const sortedPoints = [...points].sort((a, b) => {
             const aPos = rotatePoint(a);
             const bPos = rotatePoint(b);
             return aPos.z - bPos.z;
         });
 
-        const pointColor = getComputedStyle(document.documentElement).getPropertyValue('--point-color').trim();
+        const pointColor = getComputedStyle(document.documentElement).getPropertyValue('--clr-globe-points').trim();
 
         sortedPoints.forEach(point => {
             const rotated = rotatePoint(point);
