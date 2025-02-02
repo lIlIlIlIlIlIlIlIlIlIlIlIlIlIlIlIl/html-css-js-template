@@ -116,6 +116,12 @@
     padding: 0.5rem;
     border-radius: var(--border-radius-16);
     object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.carousel-card:hover img {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
 }
 
 .carousel-card .overlay-transparent {
