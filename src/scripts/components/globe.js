@@ -80,6 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return aPos.z - bPos.z;
         });
 
+        const pointColor = getComputedStyle(document.documentElement).getPropertyValue('--point-color').trim();
+
         sortedPoints.forEach(point => {
             const rotated = rotatePoint(point);
             const screenX = canvas.width / 2 + (rotated.x * scale);
@@ -87,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const opacity = (rotated.z + radius) / (2 * radius) * 0.8 + 0.2;
             const size = ((rotated.z + radius) / (2 * radius) * 0.5 + 0.8) * 1.2 * scale;
 
-            ctx.fillStyle = `rgba(0, 119, 190, ${opacity})`;
+            ctx.fillStyle = pointColor.replace('1)', `${opacity})`);
             ctx.beginPath();
             ctx.arc(screenX, screenY, size, 0, Math.PI * 2);
             ctx.fill();

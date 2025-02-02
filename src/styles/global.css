@@ -82,6 +82,8 @@
     --clr-card-underline: var(--clr-primary-20);
     --card-shadow: 0 0 24px var(--clr-primary-0);
 
+    --point-color: var(--clr-primary-90);
+
     --shadow-primary: 0 1px 4px 0 var(--clr-primary-15);
 
     --padding-16: 16px;
