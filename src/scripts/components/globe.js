@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tempCtx.scale(-1, 1);
         tempCtx.drawImage(mapImage, 0, 0);
 
-        const step = 2;
+        const step = 4;
         for (let y = 0; y < mapImage.height; y += step) {
             for (let x = 0; x < mapImage.width; x += step) {
                 const imageData = tempCtx.getImageData(x, y, 1, 1).data;
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         active: false,
         startTime: 0,
         duration: 1200,
-        amplitude: 0.08
+        amplitude: 0.03
     };
 
     function draw() {
@@ -74,11 +74,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        const outerGlow = ctx.createRadialGradient(
+            canvas.width / 2, canvas.height / 2, radius * scale,
+            canvas.width / 2, canvas.height / 2, (radius + 20) * scale
+        );
+        outerGlow.addColorStop(0, 'rgba(255, 255, 255, 0.15)');
+        outerGlow.addColorStop(0.5, 'rgba(255, 255, 255, 0.05)');
+        outerGlow.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+        ctx.fillStyle = outerGlow;
+        ctx.beginPath();
+        ctx.arc(canvas.width / 2, canvas.height / 2, (radius + 20) * scale, 0, Math.PI * 2);
+        ctx.fill();
+
         const planetFillColor = getComputedStyle(document.documentElement).getPropertyValue('--clr-globe-fill').trim();
         ctx.fillStyle = planetFillColor;
         ctx.beginPath();
         ctx.arc(canvas.width / 2, canvas.height / 2, radius * scale, 0, Math.PI * 2);
         ctx.fill();
+
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(canvas.width / 2, canvas.height / 2, radius * scale, 0, Math.PI * 2);
+        ctx.stroke();
 
         const sortedPoints = [...points].sort((a, b) => {
             const aPos = rotatePoint(a);
@@ -94,7 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const screenY = canvas.height / 2 + (rotated.y * scale) + (yOffset * ((rotated.z + radius) / (2 * radius)));
 
             const distanceFromTop = (rotated.z + radius) / (2 * radius);
-            const opacity = 0.5 + 0.5 * distanceFromTop;
+            const opacity = rotated.z < 0
+                ? 0.15
+                : 0.8;
             const size = (0.5 + 0.5 * distanceFromTop) * 1.2 * scale;
 
             ctx.fillStyle = pointColor.replace('1)', `${opacity})`);
@@ -102,6 +123,36 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.arc(screenX, screenY, size, 0, Math.PI * 2);
             ctx.fill();
         });
+
+        const innerGradient = ctx.createRadialGradient(
+            canvas.width / 2, canvas.height / 2, 0,
+            canvas.width / 2, canvas.height / 2, radius * scale
+        );
+        innerGradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
+        innerGradient.addColorStop(0.4, 'rgba(0, 0, 0, 0.05)');
+        innerGradient.addColorStop(0.6, 'rgba(0, 0, 0, 0.1)');
+        innerGradient.addColorStop(0.8, 'rgba(0, 0, 0, 0.3)');
+        innerGradient.addColorStop(0.9, 'rgba(0, 0, 0, 0.4)');
+        innerGradient.addColorStop(1, 'rgba(0, 0, 0, 0.5)');
+
+        ctx.fillStyle = innerGradient;
+        ctx.beginPath();
+        ctx.arc(canvas.width / 2, canvas.height / 2, radius * scale, 0, Math.PI * 2);
+        ctx.fill();
+
+        const highlightGradient = ctx.createLinearGradient(
+            canvas.width / 2,
+            canvas.height / 2 - radius * scale,
+            canvas.width / 2,
+            canvas.height / 2
+        );
+        highlightGradient.addColorStop(0, 'rgba(255, 255, 255, 0.1)');
+        highlightGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+        ctx.fillStyle = highlightGradient;
+        ctx.beginPath();
+        ctx.arc(canvas.width / 2, canvas.height / 2, radius * scale, 0, Math.PI * 2);
+        ctx.fill();
     }
 
     function rotatePoint(point) {

@@ -82,8 +82,10 @@
     --clr-card-underline: var(--clr-primary-20);
     --card-shadow: 0 0 24px var(--clr-primary-0);
 
-    --clr-globe-fill: var(--clr-primary-10);
+    --clr-globe-fill: var(--clr-primary-5);
     --clr-globe-points: var(--clr-primary-90);
+    --clr-globe-glow: rgba(255, 255, 255, 0.1);
+    --clr-globe-shadow: rgba(0, 0, 0, 0.3);
 
     --shadow-primary: 0 1px 4px 0 var(--clr-primary-15);
 
