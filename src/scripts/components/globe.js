@@ -131,9 +131,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        const innerGradient = ctx.createLinearGradient(
-            canvas.width / 2, 0,
-            canvas.width / 2, canvas.height
+        const innerGradient = ctx.createRadialGradient(
+            canvas.width / 2, canvas.height / 2, radius * scale * 2,
+            canvas.width / 2, canvas.height / 2, radius * scale
         );
 
         for (let i = 0; i <= 100; i++) {
