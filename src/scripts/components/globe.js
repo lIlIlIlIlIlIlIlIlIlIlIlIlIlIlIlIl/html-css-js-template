@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     resizeCanvas();
 
     const points = [];
-    let rotationX = Math.PI / 1.1;
+    let rotationX = Math.PI / 1.05;
     let rotationY = Math.PI / 2;
     let isDragging = false;
     let previousMouseX = 0;
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         );
 
         for (let i = 0; i <= 100; i++) {
-            const opacity = (i / 100) * 0.5;
+            const opacity = (i / 100) * 0.2;
             innerGradient.addColorStop(i / 100, `rgba(0, 0, 0, ${opacity})`);
         }
 
