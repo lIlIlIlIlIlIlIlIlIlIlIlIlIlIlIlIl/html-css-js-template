@@ -1,7 +1,7 @@
 @import url("../../../../global.css");
 
 .carousel-section {
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .carousel-header {
@@ -94,9 +94,12 @@
     border-radius: var(--border-radius-12);
     overflow: hidden;
     background-color: var(--clr-card);
-    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+    transition: transform 0.15s ease-out;
     user-select: none;
     z-index: 1;
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 .carousel-card:active {
@@ -107,18 +110,12 @@
     transform: none;
 }
 
-.carousel-card:hover img {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
-}
-
 .carousel-card img {
     width: 100%;
     height: 100%;
     padding: 0.5rem;
     border-radius: var(--border-radius-16);
     object-fit: cover;
-    transition: transform 0.3s ease;
 }
 
 .carousel-card .overlay-transparent {
