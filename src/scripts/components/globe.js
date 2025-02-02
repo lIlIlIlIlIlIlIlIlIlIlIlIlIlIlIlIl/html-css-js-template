@@ -86,8 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const rotated = rotatePoint(point);
             const screenX = canvas.width / 2 + (rotated.x * scale);
             const screenY = canvas.height / 2 + (rotated.y * scale) + (yOffset * ((rotated.z + radius) / (2 * radius)));
-            const opacity = (rotated.z + radius) / (2 * radius) * 0.8 + 0.2;
-            const size = ((rotated.z + radius) / (2 * radius) * 0.5 + 0.8) * 1.2 * scale;
+
+            const distanceFromTop = (rotated.z + radius) / (2 * radius);
+            const opacity = 0.5 + 0.5 * distanceFromTop;
+            const size = (0.5 + 0.5 * distanceFromTop) * 1.2 * scale;
 
             ctx.fillStyle = pointColor.replace('1)', `${opacity})`);
             ctx.beginPath();
