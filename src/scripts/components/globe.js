@@ -122,6 +122,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.fillStyle = pointColor.replace('1)', `${opacity})`);
                 ctx.beginPath();
                 ctx.arc(screenX, screenY, size, 0, Math.PI * 2);
+                ctx.lineWidth = 1;
+                ctx.strokeStyle = ctx.fillStyle;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                ctx.stroke();
                 ctx.fill();
             }
         });
