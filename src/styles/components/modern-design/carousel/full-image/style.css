@@ -253,6 +253,17 @@
     transform: translateX(4px);
 }
 
+@media (max-width: 1024px) {
+    .carousel-card img {
+        transition: none;
+    }
+
+    .carousel-card:hover img {
+        transform: none;
+        transition: none;
+    }
+}
+
 @media (max-width: 768px) {
     .carousel-section {
         overflow: hidden;
