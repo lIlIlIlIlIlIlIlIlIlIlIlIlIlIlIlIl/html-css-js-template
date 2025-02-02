@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let isDragging = false;
     let previousMouseX = 0;
     let previousMouseY = 0;
+    let touchStartX = 0;
+    let touchStartY = 0;
 
     function generatePointsFromImage() {
         const tempCanvas = document.createElement('canvas');
@@ -132,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const innerGradient = ctx.createRadialGradient(
-            canvas.width / 2, canvas.height / 2, radius * scale * 2,
+            canvas.width / 2, canvas.height / 2, radius * scale,
             canvas.width / 2, canvas.height / 2, radius * scale
         );
 
@@ -200,6 +202,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     canvas.addEventListener('mouseleave', () => {
+        isDragging = false;
+        canvas.classList.remove('grabbing');
+    });
+
+    canvas.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        const rect = canvas.getBoundingClientRect();
+        touchStartX = e.touches[0].clientX - rect.left;
+        touchStartY = e.touches[0].clientY - rect.top;
+        canvas.classList.add('grabbing');
+        mouseDownTime = Date.now();
+    });
+
+    canvas.addEventListener('touchmove', (e) => {
+        if (isDragging) {
+            const rect = canvas.getBoundingClientRect();
+            const x = e.touches[0].clientX - rect.left;
+            const deltaX = x - touchStartX;
+            rotationY += deltaX * 0.005;
+            touchStartX = x;
+            touchStartY = e.touches[0].clientY - rect.top;
+            e.preventDefault();
+        }
+    });
+
+    document.addEventListener('touchend', () => {
+        const clickDuration = Date.now() - mouseDownTime;
+        if (clickDuration < clickThreshold) {
+            bounceAnimation.active = true;
+            bounceAnimation.startTime = Date.now();
+        }
         isDragging = false;
         canvas.classList.remove('grabbing');
     });
