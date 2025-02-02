@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tempCtx.scale(-1, 1);
         tempCtx.drawImage(mapImage, 0, 0);
 
-        const step = 3;
+        const step = 2;
         for (let y = 0; y < mapImage.height; y += step) {
             for (let x = 0; x < mapImage.width; x += step) {
                 const imageData = tempCtx.getImageData(x, y, 1, 1).data;
