@@ -10,20 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const FRAME_RATE = 60;
     const FRAME_INTERVAL = 1000 / FRAME_RATE;
+    const MIN_ROTATION_X = Math.PI / 1.2;
+    const MAX_ROTATION_X = Math.PI / 0.8;
+    const dampingFactor = 0.9;
+    const autoRotationSpeed = 0.001;
     let isDragging = false;
     let previousMousePosition = { x: 0, y: 0 };
     let rotation = { x: Math.PI / 1, y: Math.PI / 2 };
-    const MIN_ROTATION_X = Math.PI / 1.2;
-    const MAX_ROTATION_X = Math.PI / 0.8;
     let points = [];
     let lastRenderTime = 0;
-
-    const cities = [
-        { name: 'Paris', lat: 43, lon: 2.333333 },
-        { name: 'Los Angeles', lat: 25, lon: 117 },
-        { name: 'New York', lat: 37, lon: 71 },
-        { name: 'Tokyo', lat: 28, lon: -129 },
-    ];
+    let velocity = { x: 0, y: 0 };
 
     function setupCanvas() {
         const devicePixelRatio = window.devicePixelRatio || 1;
@@ -167,31 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.fill();
         });
 
-        const cityPointColor = getComputedStyle(document.documentElement).getPropertyValue('--clr-globe-city-point').trim();
-        const sizeMultiplier = 3;
-        cities.forEach(city => {
-            const { lat, lon } = city;
-            const phi = (90 - lat) * Math.PI / 180;
-            const theta = lon * Math.PI / 180;
-            const cityX = radius * scale * -Math.sin(phi) * Math.cos(theta);
-            const cityY = radius * scale * Math.cos(phi);
-            const cityZ = radius * scale * Math.sin(phi) * Math.sin(theta);
-
-            const cityRotated = rotatePoint({ x: cityX, y: cityY, z: cityZ });
-
-            if (cityRotated.z >= 0) {
-                const cityXScreen = center.x + (cityRotated.x * scale);
-                const cityYScreen = center.y + (cityRotated.y * scale);
-                const cityOpacity = Math.pow(cityRotated.z / radius + 1, 2) / 3;
-                const citySize = (0.25 + (cityRotated.z / radius) * sizeMultiplier) * scale;
-
-                ctx.fillStyle = cityPointColor;
-                ctx.beginPath();
-                ctx.arc(cityXScreen, cityYScreen, citySize, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        });
-
         ctx.restore();
 
         const globeOutlineColor = getComputedStyle(document.documentElement).getPropertyValue('--clr-globe-outline').trim();
@@ -269,7 +240,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         rotation.y += deltaMove.x * 0.005;
-
         rotation.x -= deltaMove.y * 0.005;
         rotation.x = Math.max(MIN_ROTATION_X, Math.min(MAX_ROTATION_X, rotation.x));
 
@@ -296,6 +266,9 @@ document.addEventListener('DOMContentLoaded', () => {
             bounceAnimation.startTime = Date.now();
         }
 
+        velocity.x = (touch.clientY - previousMousePosition.y) * 0.005;
+        velocity.y = (touch.clientX - previousMousePosition.x) * 0.005;
+
         isDragging = false;
         canvas.classList.remove('grabbing');
     }
@@ -303,10 +276,23 @@ document.addEventListener('DOMContentLoaded', () => {
     function animate() {
         const currentTime = performance.now();
 
-        if (!isDragging && currentTime - lastRenderTime >= FRAME_INTERVAL) {
-            rotation.y += 0.002;
+        if (!isDragging) {
+            rotation.y += velocity.y;
+            rotation.x -= velocity.x;
+            rotation.x = Math.max(MIN_ROTATION_X, Math.min(MAX_ROTATION_X, rotation.x));
+            velocity.x *= dampingFactor;
+            velocity.y *= dampingFactor;
+            rotation.y += autoRotationSpeed;
+
+            if (Math.abs(velocity.x) < 0.001 && Math.abs(velocity.y) < 0.001) {
+                velocity.x = 0;
+                velocity.y = 0;
+            }
+
             drawEarth();
             lastRenderTime = currentTime;
+        } else {
+            drawEarth();
         }
 
         requestAnimationFrame(animate);
