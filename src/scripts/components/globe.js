@@ -1,26 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const radius = 200;
-    const margin = 50;
+    const MAX_WIDTH = 500;
+    const containerWidth = Math.min(window.innerWidth, MAX_WIDTH);
+    const scale = containerWidth / MAX_WIDTH;
+    const radius = 200 * scale;
+    const margin = 50 * scale;
     const canvas = document.getElementById('earthCanvas');
     const ctx = canvas.getContext('2d');
     const img = document.getElementById('mapImage');
 
+    const FRAME_RATE = 60;
+    const FRAME_INTERVAL = 1000 / FRAME_RATE;
     let isDragging = false;
     let previousMousePosition = { x: 0, y: 0 };
     let rotation = { x: Math.PI / 1.05, y: Math.PI / 2 };
     let points = [];
     let lastRenderTime = 0;
-    const FRAME_RATE = 60;
-    const FRAME_INTERVAL = 1000 / FRAME_RATE;
 
     function setupCanvas() {
         const devicePixelRatio = window.devicePixelRatio || 1;
-        const scale = 2 * devicePixelRatio;
-        canvas.width = (radius * 2 + margin * 2) * scale;
-        canvas.height = (radius * 2 + margin * 2) * scale;
-        canvas.style.width = `${radius * 2 + margin * 2}px`;
-        canvas.style.height = `${radius * 2 + margin * 2}px`;
-        ctx.scale(scale, scale);
+        const pixelScale = 2 * devicePixelRatio;
+
+        canvas.width = (radius * 2 + margin * 2) * pixelScale;
+        canvas.height = (radius * 2 + margin * 2) * pixelScale;
+        canvas.style.width = '100%';
+        canvas.style.maxWidth = `${MAX_WIDTH}px`;
+        canvas.style.aspectRatio = '1/1';
+
+        ctx.scale(pixelScale, pixelScale);
         ctx.imageSmoothingEnabled = true;
         ctx.imageSmoothingQuality = 'high';
     }
@@ -77,35 +83,20 @@ document.addEventListener('DOMContentLoaded', () => {
             if (progress >= 1) {
                 bounceAnimation.active = false;
             } else {
-                const wave = Math.sin(progress * Math.PI * 4.5) *
-                    Math.sin(progress * Math.PI * 3) *
-                    Math.exp(-progress * 3);
+                const wave = Math.sin(progress * Math.PI * 4.5) * Math.sin(progress * Math.PI * 3) * Math.exp(-progress * 3);
                 scale = 1 + (wave * bounceAnimation.amplitude);
                 yOffset = wave * 10;
             }
         }
 
-        const globeFillColor = getComputedStyle(document.documentElement)
-            .getPropertyValue('--clr-globe-fill').trim();
-        const globeGlowColor = getComputedStyle(document.documentElement)
-            .getPropertyValue('--clr-globe-glow').trim();
-        const globeShadowColor = getComputedStyle(document.documentElement)
-            .getPropertyValue('--clr-globe-shadow').trim();
-        const globeOutlineColor = getComputedStyle(document.documentElement)
-            .getPropertyValue('--clr-globe-outline').trim();
+        const globeFillColor = getComputedStyle(document.documentElement).getPropertyValue('--clr-globe-fill').trim();
+        const globeShadowColor = getComputedStyle(document.documentElement).getPropertyValue('--clr-globe-shadow').trim();
+        const globeOutlineColor = getComputedStyle(document.documentElement).getPropertyValue('--clr-globe-outline').trim();
 
         const outerGlowRadius = radius * 1.1;
-        const glowGradient = ctx.createRadialGradient(
-            center.x,
-            center.y,
-            radius * scale,
-            center.x,
-            center.y,
-            outerGlowRadius * scale
-        );
+        const glowGradient = ctx.createRadialGradient(center.x, center.y, radius * scale, center.x, center.y, outerGlowRadius * scale);
 
-        const glowColor = getComputedStyle(document.documentElement)
-            .getPropertyValue('--clr-globe-glow').trim();
+        const glowColor = getComputedStyle(document.documentElement).getPropertyValue('--clr-globe-glow').trim();
 
         let colorValues;
         if (glowColor.startsWith('rgba')) {
@@ -145,8 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         visiblePoints.forEach(({ original, rotated }) => {
             const x = center.x + (rotated.x * scale);
-            const y = center.y + (rotated.y * scale) +
-                (yOffset * ((rotated.z + radius) / (2 * radius)));
+            const y = center.y + (rotated.y * scale) + (yOffset * ((rotated.z + radius) / (2 * radius)));
             const opacity = Math.pow(rotated.z / radius + 1, 2) / 3;
             const size = (0.5 + (rotated.z / radius)) * scale;
 
@@ -195,9 +185,59 @@ document.addEventListener('DOMContentLoaded', () => {
         amplitude: 0.03
     };
 
-    function handleMouseUp(e) {
+    function handleStart(e) {
+        isDragging = true;
+        mouseDownTime = Date.now();
+
+        const touch = e.type === 'touchstart' ? e.touches[0] : e;
+
+        startPosition = {
+            x: touch.clientX,
+            y: touch.clientY
+        };
+        previousMousePosition = {
+            x: touch.clientX,
+            y: touch.clientY
+        };
+
+        canvas.classList.add('grabbing');
+
+        if (e.type === 'touchstart') {
+            e.preventDefault();
+        }
+    }
+
+    function handleMove(e) {
+        if (!isDragging) return;
+
+        const currentTime = performance.now();
+        if (currentTime - lastRenderTime < FRAME_INTERVAL) return;
+
+        const touch = e.type === 'touchmove' ? e.touches[0] : e;
+
+        const deltaMove = {
+            x: touch.clientX - previousMousePosition.x
+        };
+
+        rotation.y += deltaMove.x * 0.005;
+
+        previousMousePosition = {
+            x: touch.clientX,
+            y: touch.clientY
+        };
+
+        lastRenderTime = currentTime;
+        requestAnimationFrame(drawEarth);
+
+        if (e.type === 'touchmove') {
+            e.preventDefault();
+        }
+    }
+
+    function handleEnd(e) {
+        const touch = e.type === 'touchend' ? e.changedTouches[0] : e;
         const clickDuration = Date.now() - mouseDownTime;
-        const totalMove = Math.abs(e.clientX - startPosition.x);
+        const totalMove = Math.abs(touch.clientX - startPosition.x);
 
         if (clickDuration < clickThreshold && totalMove < moveThreshold) {
             bounceAnimation.active = true;
@@ -206,41 +246,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         isDragging = false;
         canvas.classList.remove('grabbing');
-    }
-
-    function handleMouseDown(e) {
-        isDragging = true;
-        mouseDownTime = Date.now();
-        startPosition = {
-            x: e.clientX,
-            y: e.clientY
-        };
-        previousMousePosition = {
-            x: e.clientX,
-            y: e.clientY
-        };
-        canvas.classList.add('grabbing');
-    }
-
-    function handleMouseMove(e) {
-        if (!isDragging) return;
-
-        const currentTime = performance.now();
-        if (currentTime - lastRenderTime < FRAME_INTERVAL) return;
-
-        const deltaMove = {
-            x: e.clientX - previousMousePosition.x
-        };
-
-        rotation.y += deltaMove.x * 0.005;
-
-        previousMousePosition = {
-            x: e.clientX,
-            y: e.clientY
-        };
-
-        lastRenderTime = currentTime;
-        requestAnimationFrame(drawEarth);
     }
 
     function animate() {
@@ -255,19 +260,27 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(animate);
     }
 
+    function addEventListeners() {
+        canvas.addEventListener('mousedown', handleStart);
+        document.addEventListener('mousemove', handleMove);
+        document.addEventListener('mouseup', handleEnd);
+
+        canvas.addEventListener('touchstart', handleStart, { passive: false });
+        canvas.addEventListener('touchmove', handleMove, { passive: false });
+        canvas.addEventListener('touchend', handleEnd);
+        canvas.addEventListener('touchcancel', handleEnd);
+
+        window.addEventListener('resize', () => {
+            setupCanvas();
+            drawEarth();
+        });
+    }
+
     setupCanvas();
     img.onload = () => {
         generatePointsFromImage();
         drawEarth();
         animate();
+        addEventListeners();
     };
-
-    canvas.addEventListener('mousedown', handleMouseDown);
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleMouseUp);
-
-    window.addEventListener('resize', () => {
-        setupCanvas();
-        drawEarth();
-    });
 });
