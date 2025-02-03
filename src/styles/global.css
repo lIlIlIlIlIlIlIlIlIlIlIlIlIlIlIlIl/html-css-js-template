@@ -85,7 +85,8 @@
     --clr-globe-fill: var(--clr-primary-5);
     --clr-globe-points: var(--clr-primary-90);
     --clr-globe-outline: rgba(255, 255, 255, 0.1);
-    --clr-globe-glow: rgba(61, 61, 61, 0.068);
+    --clr-globe-glow-outer: rgba(50, 50, 50, 0.01);
+    --clr-globe-glow-inner: rgba(50, 50, 50, 0.1);
     --clr-globe-shadow: rgba(10, 10, 10, 0.3);
 
     --shadow-primary: 0 1px 4px 0 var(--clr-primary-15);

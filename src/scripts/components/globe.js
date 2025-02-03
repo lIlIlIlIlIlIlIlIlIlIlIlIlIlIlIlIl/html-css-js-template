@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const FRAME_INTERVAL = 1000 / FRAME_RATE;
     let isDragging = false;
     let previousMousePosition = { x: 0, y: 0 };
-    let rotation = { x: Math.PI / 1.05, y: Math.PI / 2 };
+    let rotation = { x: Math.PI / 1, y: Math.PI / 2 };
     let points = [];
     let lastRenderTime = 0;
 
@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
         tempCtx.scale(-1, 1);
         tempCtx.drawImage(img, 0, 0);
 
-        const pointRadius = radius * 0.99;
-        const step = 3.5;
+        const pointRadius = radius * 0.975;
+        const step = 4;
 
         for (let y = 0; y < img.height; y += step) {
             for (let x = 0; x < img.width; x += step) {
@@ -73,58 +73,70 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const center = { x: radius + margin, y: radius + margin };
 
-        let scale = 1;
-        let yOffset = 0;
+        const outerGlowRadius = radius * 1.1;
+        const outerGlowColor = getComputedStyle(document.documentElement).getPropertyValue('--clr-globe-glow-outer').trim();
+        let outerGlowColorValues;
 
-        if (bounceAnimation.active) {
-            const elapsed = Date.now() - bounceAnimation.startTime;
-            const progress = elapsed / bounceAnimation.duration;
+        if (outerGlowColor.startsWith('rgba')) {
+            outerGlowColorValues = outerGlowColor.match(/[\d.]+/g);
+            const r = outerGlowColorValues[0];
+            const g = outerGlowColorValues[1];
+            const b = outerGlowColorValues[2];
 
-            if (progress >= 1) {
-                bounceAnimation.active = false;
-            } else {
-                const wave = Math.sin(progress * Math.PI * 4.5) * Math.sin(progress * Math.PI * 3) * Math.exp(-progress * 3);
-                scale = 1 + (wave * bounceAnimation.amplitude);
-                yOffset = wave * 10;
-            }
+            const outerGlowGradient = ctx.createRadialGradient(center.x, center.y, radius * scale, center.x, center.y, outerGlowRadius * scale);
+            outerGlowGradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0.15)`);
+            outerGlowGradient.addColorStop(0.2, `rgba(${r}, ${g}, ${b}, 0.12)`);
+            outerGlowGradient.addColorStop(0.4, `rgba(${r}, ${g}, ${b}, 0.08)`);
+            outerGlowGradient.addColorStop(0.6, `rgba(${r}, ${g}, ${b}, 0.05)`);
+            outerGlowGradient.addColorStop(0.8, `rgba(${r}, ${g}, ${b}, 0.02)`);
+            outerGlowGradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+
+            ctx.fillStyle = outerGlowGradient;
+            ctx.beginPath();
+            ctx.arc(center.x, center.y, outerGlowRadius * scale, 0, Math.PI * 2);
+            ctx.fill();
         }
 
         const globeFillColor = getComputedStyle(document.documentElement).getPropertyValue('--clr-globe-fill').trim();
-        const globeShadowColor = getComputedStyle(document.documentElement).getPropertyValue('--clr-globe-shadow').trim();
-        const globeOutlineColor = getComputedStyle(document.documentElement).getPropertyValue('--clr-globe-outline').trim();
-
-        const outerGlowRadius = radius * 1.1;
-        const glowGradient = ctx.createRadialGradient(center.x, center.y, radius * scale, center.x, center.y, outerGlowRadius * scale);
-
-        const glowColor = getComputedStyle(document.documentElement).getPropertyValue('--clr-globe-glow').trim();
-
-        let colorValues;
-        if (glowColor.startsWith('rgba')) {
-            colorValues = glowColor.match(/[\d.]+/g);
-            const r = colorValues[0];
-            const g = colorValues[1];
-            const b = colorValues[2];
-
-            glowGradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0.15)`);
-            glowGradient.addColorStop(0.2, `rgba(${r}, ${g}, ${b}, 0.12)`);
-            glowGradient.addColorStop(0.4, `rgba(${r}, ${g}, ${b}, 0.08)`);
-            glowGradient.addColorStop(0.6, `rgba(${r}, ${g}, ${b}, 0.05)`);
-            glowGradient.addColorStop(0.8, `rgba(${r}, ${g}, ${b}, 0.02)`);
-            glowGradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
-        }
-
-        ctx.fillStyle = glowGradient;
-        ctx.beginPath();
-        ctx.arc(center.x, center.y, outerGlowRadius * scale, 0, Math.PI * 2);
-        ctx.fill();
-
         ctx.fillStyle = globeFillColor;
         ctx.beginPath();
         ctx.arc(center.x, center.y, radius * scale, 0, Math.PI * 2);
         ctx.fill();
 
         ctx.save();
+        const innerGlowGradient = ctx.createRadialGradient(
+            center.x,
+            center.y,
+            radius * 0.8 * scale,
+            center.x,
+            center.y,
+            radius * scale
+        );
+
+        const innerGlowColor = getComputedStyle(document.documentElement).getPropertyValue('--clr-globe-glow-inner').trim();
+        let innerGlowColorValues;
+
+        if (innerGlowColor.startsWith('rgba')) {
+            innerGlowColorValues = innerGlowColor.match(/[\d.]+/g);
+            const r = innerGlowColorValues[0];
+            const g = innerGlowColorValues[1];
+            const b = innerGlowColorValues[2];
+
+            innerGlowGradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0.0)`);
+            innerGlowGradient.addColorStop(0.2, `rgba(${r}, ${g}, ${b}, 0.05)`);
+            innerGlowGradient.addColorStop(0.4, `rgba(${r}, ${g}, ${b}, 0.1)`);
+            innerGlowGradient.addColorStop(0.6, `rgba(${r}, ${g}, ${b}, 0.15)`);
+            innerGlowGradient.addColorStop(0.8, `rgba(${r}, ${g}, ${b}, 0.2)`);
+            innerGlowGradient.addColorStop(0.9, `rgba(${r}, ${g}, ${b}, 0.25)`);
+            innerGlowGradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0.3)`);
+        }
+
+        ctx.globalCompositeOperation = 'screen';
+        ctx.fillStyle = innerGlowGradient;
         ctx.beginPath();
+        ctx.arc(center.x, center.y, radius * scale, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalCompositeOperation = 'source-over';
 
         const visiblePoints = points
             .map(point => ({
@@ -136,9 +148,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         visiblePoints.forEach(({ original, rotated }) => {
             const x = center.x + (rotated.x * scale);
-            const y = center.y + (rotated.y * scale) + (yOffset * ((rotated.z + radius) / (2 * radius)));
+            const y = center.y + (rotated.y * scale);
             const opacity = Math.pow(rotated.z / radius + 1, 2) / 3;
-            const size = (0.5 + (rotated.z / radius)) * scale;
+            const size = (0.25 + (rotated.z / radius)) * scale;
 
             ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
             ctx.beginPath();
@@ -148,12 +160,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         ctx.restore();
 
+        const globeOutlineColor = getComputedStyle(document.documentElement).getPropertyValue('--clr-globe-outline').trim();
         ctx.strokeStyle = globeOutlineColor;
         ctx.lineWidth = 0.5;
         ctx.beginPath();
         ctx.arc(center.x, center.y, radius * scale, 0, Math.PI * 2);
         ctx.stroke();
 
+        const globeShadowColor = getComputedStyle(document.documentElement).getPropertyValue('--clr-globe-shadow').trim();
         const shadowGradient = ctx.createRadialGradient(
             center.x - radius * 0.1,
             center.y - radius * 0.1,
