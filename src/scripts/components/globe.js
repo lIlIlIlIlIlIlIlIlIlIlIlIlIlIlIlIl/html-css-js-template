@@ -18,6 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let points = [];
     let lastRenderTime = 0;
 
+    const cities = [
+        { name: 'Paris', lat: 43, lon: 2.333333 },
+        { name: 'Los Angeles', lat: 25, lon: 117 },
+        { name: 'New York', lat: 37, lon: 71 },
+        { name: 'Tokyo', lat: 28, lon: -129 },
+    ];
+
     function setupCanvas() {
         const devicePixelRatio = window.devicePixelRatio || 1;
         const pixelScale = 2 * devicePixelRatio;
@@ -158,6 +165,31 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.beginPath();
             ctx.arc(x, y, size, 0, Math.PI * 2);
             ctx.fill();
+        });
+
+        const cityPointColor = getComputedStyle(document.documentElement).getPropertyValue('--clr-globe-city-point').trim();
+        const sizeMultiplier = 3;
+        cities.forEach(city => {
+            const { lat, lon } = city;
+            const phi = (90 - lat) * Math.PI / 180;
+            const theta = lon * Math.PI / 180;
+            const cityX = radius * scale * -Math.sin(phi) * Math.cos(theta);
+            const cityY = radius * scale * Math.cos(phi);
+            const cityZ = radius * scale * Math.sin(phi) * Math.sin(theta);
+
+            const cityRotated = rotatePoint({ x: cityX, y: cityY, z: cityZ });
+
+            if (cityRotated.z >= 0) {
+                const cityXScreen = center.x + (cityRotated.x * scale);
+                const cityYScreen = center.y + (cityRotated.y * scale);
+                const cityOpacity = Math.pow(cityRotated.z / radius + 1, 2) / 3;
+                const citySize = (0.25 + (cityRotated.z / radius) * sizeMultiplier) * scale;
+
+                ctx.fillStyle = cityPointColor;
+                ctx.beginPath();
+                ctx.arc(cityXScreen, cityYScreen, citySize, 0, Math.PI * 2);
+                ctx.fill();
+            }
         });
 
         ctx.restore();
