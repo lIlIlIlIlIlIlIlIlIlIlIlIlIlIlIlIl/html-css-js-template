@@ -1,16 +1,26 @@
 @import url("../../../global.css");
 
-canvas {
+#earthCanvas {
     display: block;
     margin: 0 auto;
     cursor: grab;
     width: 100%;
     max-width: 500px;
+    transform: scale(1.2);
+    image-rendering: crisp-edges;
     background-color: var(--background-color);
 }
 
-canvas.grabbing {
+#earthCanvas.grabbing {
     cursor: grabbing;
+}
+
+.points-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    width: 100%;
 }
 
 #mapImage {
