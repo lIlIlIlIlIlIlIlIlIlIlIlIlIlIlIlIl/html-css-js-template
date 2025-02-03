@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let isDragging = false;
     let previousMousePosition = { x: 0, y: 0 };
     let rotation = { x: Math.PI / 1, y: Math.PI / 2 };
+    const MIN_ROTATION_X = Math.PI / 1.2;
+    const MAX_ROTATION_X = Math.PI / 0.8;
     let points = [];
     let lastRenderTime = 0;
 
@@ -230,10 +232,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const touch = e.type === 'touchmove' ? e.touches[0] : e;
 
         const deltaMove = {
-            x: touch.clientX - previousMousePosition.x
+            x: touch.clientX - previousMousePosition.x,
+            y: touch.clientY - previousMousePosition.y
         };
 
         rotation.y += deltaMove.x * 0.005;
+
+        rotation.x -= deltaMove.y * 0.005;
+        rotation.x = Math.max(MIN_ROTATION_X, Math.min(MAX_ROTATION_X, rotation.x));
 
         previousMousePosition = {
             x: touch.clientX,
