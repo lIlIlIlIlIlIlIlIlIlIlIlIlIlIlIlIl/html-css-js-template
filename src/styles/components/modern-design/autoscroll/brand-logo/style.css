@@ -1,0 +1,56 @@
+@import url("../../../../global.css");
+
+.autoscroll-container {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: var(--padding-16);
+    mask-image: linear-gradient(
+        to right,
+        hsl(0 0% 0% / 0),
+        hsl(0 0% 0% / 1) 20%,
+        hsl(0 0% 0% / 1) 80%,
+        hsl(0 0% 0% / 0)
+    );
+}
+
+.autoscroll-track {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: var(--padding-16);
+    min-width: 100%;
+    animation: scroll-horizontal 20s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .autoscroll-track {
+        animation-play-state: paused;
+    }
+}
+
+.autoscroll-container--reverse .autoscroll-track {
+    animation-direction: reverse;
+    animation-delay: -3s;
+}
+
+@keyframes scroll-horizontal {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(calc(-100% - var(--padding-16)));
+    }
+}
+
+.autoscroll-container svg {
+    display: grid;
+    place-items: center;
+    width: clamp(6rem, 1rem + 15vmin, 12rem);
+    fill: var(--clr-primary-95);
+    background: var(--clr-primary-10);
+    aspect-ratio: 16/9;
+    padding: calc(clamp(6rem, 1rem + 15vmin, 12rem) / 10);
+    border-radius: 0.5rem;
+}
