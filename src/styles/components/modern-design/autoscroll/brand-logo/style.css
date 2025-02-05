@@ -21,18 +21,7 @@
     justify-content: space-around;
     gap: var(--padding-16);
     min-width: 100%;
-    animation: scroll-horizontal 20s linear infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .autoscroll-track {
-        animation-play-state: paused;
-    }
-}
-
-.autoscroll-container--reverse .autoscroll-track {
-    animation-direction: reverse;
-    animation-delay: -3s;
+    animation: scroll-horizontal 30s linear infinite;
 }
 
 @keyframes scroll-horizontal {
@@ -44,13 +33,29 @@
     }
 }
 
+.autoscroll-container--reverse .autoscroll-track {
+    animation-direction: reverse;
+    animation-delay: -3s;
+}
+
 .autoscroll-container svg {
     display: grid;
     place-items: center;
-    width: clamp(6rem, 1rem + 15vmin, 12rem);
+    width: 10rem;
     fill: var(--clr-primary-95);
-    background: var(--clr-primary-10);
-    aspect-ratio: 16/9;
-    padding: calc(clamp(6rem, 1rem + 15vmin, 12rem) / 10);
+    aspect-ratio: 3/2;
+    padding: 1rem;
     border-radius: 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .autoscroll-track {
+        animation-play-state: paused;
+    }
+}
+
+@media (max-width: 1024px) {
+    .autoscroll-container svg {
+        width: 9rem;
+    }
 }
