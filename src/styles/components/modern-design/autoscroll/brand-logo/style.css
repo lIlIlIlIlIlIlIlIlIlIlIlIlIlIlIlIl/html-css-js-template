@@ -24,6 +24,10 @@
     animation: scroll-horizontal 30s linear infinite;
 }
 
+.autoscroll-container:hover .autoscroll-track {
+    animation-play-state: paused;
+}
+
 @keyframes scroll-horizontal {
     from {
         transform: translateX(0);
