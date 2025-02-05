@@ -63,19 +63,15 @@
     height: 24px;
 }
 
-.carousel {
-    position: relative;
-    overflow: visible;
-    width: 100%;
-    margin: 0 auto;
-    cursor: grab;
-}
-
 .carousel-container {
     display: flex;
     transition: transform 0.3s ease-out;
     touch-action: pan-y;
     width: auto;
+    position: relative;
+    overflow: visible;
+    margin: 0 auto;
+    cursor: grab;
 }
 
 .carousel-track {

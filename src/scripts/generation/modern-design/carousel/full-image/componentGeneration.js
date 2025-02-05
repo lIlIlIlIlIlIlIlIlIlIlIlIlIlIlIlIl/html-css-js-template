@@ -105,11 +105,9 @@ class CarouselFullImageComponent extends HTMLElement {
                         </button>
                     </div>
                 </div>
-                <div class="carousel">
-                    <div class="carousel-container">
-                        <div class="carousel-track">
-                            ${cardsHtml}
-                        </div>
+                <div class="carousel-container">
+                    <div class="carousel-track">
+                        ${cardsHtml}
                     </div>
                 </div>
             </div>
