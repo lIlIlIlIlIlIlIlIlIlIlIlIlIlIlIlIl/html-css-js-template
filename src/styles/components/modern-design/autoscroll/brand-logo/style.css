@@ -45,7 +45,7 @@
 .autoscroll-container svg {
     display: grid;
     place-items: center;
-    width: 10rem;
+    width: clamp(9rem, 5vw + 7rem, 10rem);
     fill: var(--clr-primary-95);
     aspect-ratio: 3/2;
     padding: 1rem;
@@ -55,11 +55,5 @@
 @media (prefers-reduced-motion: reduce) {
     .autoscroll-track {
         animation-play-state: paused;
-    }
-}
-
-@media (max-width: 1024px) {
-    .autoscroll-container svg {
-        width: 9rem;
     }
 }
