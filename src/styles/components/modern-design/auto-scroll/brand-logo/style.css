@@ -1,6 +1,6 @@
 @import url("../../../../global.css");
 
-.autoscroll-container {
+.auto-scroll-container {
     display: flex;
     overflow: hidden;
     user-select: none;
@@ -14,21 +14,21 @@
     );
 }
 
-.autoscroll-track {
+.auto-scroll-track {
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: space-around;
     gap: var(--padding-16);
     min-width: 100%;
-    animation: scroll-horizontal 30s linear infinite;
+    animation: scroll-infinite 30s linear infinite;
 }
 
-.autoscroll-container:hover .autoscroll-track {
+.auto-scroll-container:hover .auto-scroll-track {
     animation-play-state: paused;
 }
 
-@keyframes scroll-horizontal {
+@keyframes scroll-infinite {
     from {
         transform: translateX(0);
     }
@@ -37,12 +37,7 @@
     }
 }
 
-.autoscroll-container--reverse .autoscroll-track {
-    animation-direction: reverse;
-    animation-delay: -3s;
-}
-
-.autoscroll-container svg {
+.auto-scroll-container svg {
     display: grid;
     place-items: center;
     width: clamp(9rem, 5vw + 7rem, 10rem);
@@ -53,7 +48,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .autoscroll-track {
+    .auto-scroll-track {
         animation-play-state: paused;
     }
 }
