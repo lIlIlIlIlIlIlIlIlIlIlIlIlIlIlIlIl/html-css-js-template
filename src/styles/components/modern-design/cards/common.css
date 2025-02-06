@@ -108,7 +108,25 @@ section h2 {
     text-decoration: none;
     font-weight: bold;
     margin-top: auto;
-    transition: transform 0.15s ease-out;
+}
+
+.cta-text {
+    position: relative;
+}
+
+.cta-text::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--clr-accent-color);
+    transition: width 0.3s ease;
+}
+
+.card:hover .cta-text::after {
+    width: 100%;
 }
 
 .arrow-icon {
