@@ -1,6 +1,30 @@
 class CardsLogoComponent extends HTMLElement {
+    async connectedCallback() {
+        const arrowData = {
+            path: "src/assets/images/icons/arrow.svg"
+        };
+        const logoData = {
+            path: "src/assets/images/icons/logo.svg"
+        };
 
-    connectedCallback() {
+        const generateSVG = async ({ path }) => {
+            try {
+                const response = await fetch(path);
+                let svgText = await response.text();
+
+                if (!svgText.includes('viewBox')) {
+                    svgText = svgText.replace('<svg', '<svg viewBox="0 0 24 24"');
+                }
+
+                return svgText;
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        const arrowSVG = await generateSVG(arrowData);
+        const logoSVG = await generateSVG(logoData);
+
         const cardsData = [
             {
                 title: "Lorem ipsum",
@@ -34,11 +58,7 @@ class CardsLogoComponent extends HTMLElement {
                     <a href="${card.link}">
                         <div class="card-logo">
                             <div class="logo-circle">
-                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6h2V7zm0 8h-2v2h2v-2z"
-                                        fill="var(--clr-accent-color-pale)" />
-                                </svg>
+                                ${logoSVG}
                             </div>
                         </div>
                         <div class="card-content">
@@ -47,9 +67,7 @@ class CardsLogoComponent extends HTMLElement {
                             <div class="card-cta">
                                 Lorem ipsum
                                 <span class="arrow-icon">
-                                    <svg class="arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
+                                    ${arrowSVG}
                                 </span>
                             </div>
                         </div>
