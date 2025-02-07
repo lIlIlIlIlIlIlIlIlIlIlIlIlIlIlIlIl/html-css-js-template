@@ -37,14 +37,17 @@
     }
 }
 
-.auto-scroll-container svg {
-    display: grid;
-    place-items: center;
+.auto-scroll-container svg,
+.auto-scroll-container svg * {
+    display: block;
     width: clamp(9rem, 5vw + 7rem, 10rem);
-    fill: var(--clr-primary-95);
-    aspect-ratio: 3/2;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    aspect-ratio: 3 / 2;
     padding: 1rem;
     border-radius: 0.5rem;
+    fill: var(--clr-primary-95);
 }
 
 @media (prefers-reduced-motion: reduce) {
