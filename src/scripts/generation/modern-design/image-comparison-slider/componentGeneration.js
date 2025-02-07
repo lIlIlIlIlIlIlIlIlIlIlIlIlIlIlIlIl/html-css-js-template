@@ -33,6 +33,7 @@ class ImageComparisonSliderComponent extends HTMLElement {
         this.innerHTML = `
             <section>
                 <div class="container">
+                    <h2>Lorem ipsum</h2>
                     <div class="cards-grid cards-grid-2x1">
                         ${slidersHtml}
                     </div>
