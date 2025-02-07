@@ -133,3 +133,10 @@ p {
 .cta-button:hover .arrow {
     transform: translateX(4px);
 }
+
+@media (max-width: 768px) {
+    .hero::before {
+        left: -300%;
+        right: -300%;
+    }
+}
