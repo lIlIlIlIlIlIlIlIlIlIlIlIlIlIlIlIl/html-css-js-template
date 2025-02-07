@@ -1,5 +1,26 @@
 class ImageComparisonSliderComponent extends HTMLElement {
-    connectedCallback() {
+    async connectedCallback() {
+        const sliderArrowData = {
+            path: "src/assets/images/icons/slider-arrows.svg"
+        };
+
+        const generateSVG = async ({ path }) => {
+            try {
+                const response = await fetch(path);
+                let svgText = await response.text();
+
+                if (!svgText.includes('viewBox')) {
+                    svgText = svgText.replace('<svg', '<svg viewBox="0 0 24 24"');
+                }
+
+                return svgText;
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        const sliderArrowSVG = await generateSVG(sliderArrowData);
+
         const cardsData = [
             {
                 beforeImage: "src/assets/images/illustrations/17.jpg",
@@ -19,9 +40,7 @@ class ImageComparisonSliderComponent extends HTMLElement {
                             <input type="range" min="0" max="100" value="50" oninput="this.style.setProperty('--value', this.value + '%');">
                             <div class="slider-line">
                                 <div class="slider-handle">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
-                                        <path d="M7 7L3 11M3 11L7 15M3 11H21M17 7L21 11M21 11L17 15"/>
-                                    </svg>
+                                    ${sliderArrowSVG}
                                 </div>
                             </div>
                         </div>
@@ -40,6 +59,8 @@ class ImageComparisonSliderComponent extends HTMLElement {
                 </div>
             </section>
         `;
+
+        window.dispatchEvent(new CustomEvent('imageComparisonLoaded'));
     }
 }
 

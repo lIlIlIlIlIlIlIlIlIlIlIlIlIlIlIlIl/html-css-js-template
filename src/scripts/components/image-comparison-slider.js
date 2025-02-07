@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('imageComparisonLoaded', () => {
     const sliders = document.querySelectorAll('.image-comparison input[type="range"]');
 
     sliders.forEach(slider => {
