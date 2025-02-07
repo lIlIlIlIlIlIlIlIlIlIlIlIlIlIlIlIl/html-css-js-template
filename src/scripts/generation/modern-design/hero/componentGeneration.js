@@ -4,8 +4,7 @@ class HeroSectionComponent extends HTMLElement {
             <section class="hero">
                 <div class="hero-content">
                     <h1>Lorem Ipsum</h1>
-                    <p>Dolor sit amet, consectetur adipiscing elit.<br>
-                    Praesent elementum ultricies metus.</p>
+                    <p>Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.</p>
                     <div class="cta-container">
                         <button class="cta-button">
                             <a href="#">
