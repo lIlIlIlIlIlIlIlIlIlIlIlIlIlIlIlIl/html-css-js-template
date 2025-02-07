@@ -191,7 +191,7 @@
     background-color: var(--clr-primary-100);
     color: var(--clr-primary-0);
     padding: 0.5rem 1rem;
-    border-radius: 20px;
+    border-radius: 8px;
     text-decoration: none;
     transition: all 0.2s cubic-bezier(0.3, 0.7, 0.4, 1.5);
     position: relative;
