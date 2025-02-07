@@ -1,16 +1,13 @@
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('cardsLoaded', () => {
     const cards = document.querySelectorAll('#card');
 
     function handleCardHover(event) {
         const card = event.currentTarget;
         const rect = card.getBoundingClientRect();
-
         const mouseX = event.clientX - rect.left;
         const mouseY = event.clientY - rect.top;
-
         const percentX = (mouseX / rect.width - 0.5) * 4;
         const percentY = (mouseY / rect.height - 0.5) * 4;
-
         const rotateX = -percentY * 2;
         const rotateY = percentX * 2;
 

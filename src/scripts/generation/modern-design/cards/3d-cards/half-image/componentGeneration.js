@@ -1,6 +1,26 @@
 class CardsHalfImageComponent extends HTMLElement {
+    async connectedCallback() {
+        const arrowData = {
+            path: "src/assets/images/icons/arrow.svg"
+        };
 
-    connectedCallback() {
+        const generateSVG = async ({ path }) => {
+            try {
+                const response = await fetch(path);
+                let svgText = await response.text();
+
+                if (!svgText.includes('viewBox')) {
+                    svgText = svgText.replace('<svg', '<svg viewBox="0 0 24 24"');
+                }
+
+                return svgText;
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        const arrowSVG = await generateSVG(arrowData);
+
         const cardsData = [
             {
                 title: "Lorem ipsum",
@@ -57,9 +77,7 @@ class CardsHalfImageComponent extends HTMLElement {
                             <div class="card-cta">
                                 Lorem ipsum
                                 <span class="arrow-icon">
-                                    <svg class="arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
+                                    ${arrowSVG}
                                 </span>
                             </div>
                         </div>
@@ -78,6 +96,8 @@ class CardsHalfImageComponent extends HTMLElement {
             </div>
         </section>
         `;
+
+        window.dispatchEvent(new CustomEvent('cardsLoaded'));
     }
 }
 
