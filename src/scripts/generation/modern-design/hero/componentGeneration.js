@@ -1,5 +1,26 @@
 class HeroSectionComponent extends HTMLElement {
-    connectedCallback() {
+    async connectedCallback() {
+        const arrowData = {
+            path: "src/assets/images/icons/arrow.svg"
+        };
+
+        const generateArrowSVG = async ({ path }) => {
+            try {
+                const response = await fetch(path);
+                let svgText = await response.text();
+
+                if (!svgText.includes('viewBox')) {
+                    svgText = svgText.replace('<svg', '<svg viewBox="0 0 24 24"');
+                }
+
+                return svgText;
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        const arrowSVG = await generateArrowSVG(arrowData);
+
         this.innerHTML = `
             <section class="hero">
                 <div class="hero-content">
@@ -10,9 +31,7 @@ class HeroSectionComponent extends HTMLElement {
                             <a href="#">
                                 <p>Lorem ipsum</p>
                                 <span class="arrow-icon">
-                                    <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
+                                    ${arrowSVG}
                                 </span>
                             </a>
                         </button>
