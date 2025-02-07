@@ -50,17 +50,17 @@
 .carousel-controls button:disabled {
     cursor: not-allowed;
     background: var(--clr-primary-100);
+    opacity: 0.5;
+}
+
+.carousel-prev svg {
+    transform: rotate(180deg);
 }
 
 .carousel-controls button .arrow-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.carousel-controls button .arrow {
-    width: 24px;
-    height: 24px;
 }
 
 .carousel-container {
@@ -234,7 +234,7 @@
     overflow: visible;
 }
 
-.more-info-button .arrow {
+.more-info-button .arrow-icon svg {
     position: relative;
     top: 0;
     left: auto;
@@ -246,7 +246,7 @@
     opacity: 1;
 }
 
-.more-info-button:hover .arrow {
+.more-info-button:hover .arrow-icon svg {
     transform: translateX(4px);
 }
 

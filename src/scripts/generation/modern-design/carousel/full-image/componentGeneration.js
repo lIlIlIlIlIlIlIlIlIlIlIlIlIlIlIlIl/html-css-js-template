@@ -1,5 +1,26 @@
 class CarouselFullImageComponent extends HTMLElement {
-    connectedCallback() {
+    async connectedCallback() {
+        const arrowData = {
+            path: "src/assets/images/icons/arrow.svg"
+        };
+
+        const generateSVG = async ({ path }) => {
+            try {
+                const response = await fetch(path);
+                let svgText = await response.text();
+
+                if (!svgText.includes('viewBox')) {
+                    svgText = svgText.replace('<svg', '<svg viewBox="0 0 24 24"');
+                }
+
+                return svgText;
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        const arrowSVG = await generateSVG(arrowData);
+
         const cardsData = [
             {
                 title: "Lorem ipsum",
@@ -76,9 +97,7 @@ class CarouselFullImageComponent extends HTMLElement {
                             <a href="${card.link}">
                                 <p>Lorem ipsum</p>
                                 <span class="arrow-icon">
-                                    <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
+                                    ${arrowSVG}
                                 </span>
                             </a>
                         </button>
@@ -93,26 +112,24 @@ class CarouselFullImageComponent extends HTMLElement {
                 <div class="carousel-header">
                     <h2>Lorem ipsum</h2>
                     <div class="carousel-controls">
-                        <button class="carousel-prev">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
+                        <button class="carousel-prev" id="carousel-prev">
+                            ${arrowSVG}
                         </button>
-                        <button class="carousel-next">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
+                        <button class="carousel-next" id="carousel-next">
+                            ${arrowSVG}
                         </button>
                     </div>
                 </div>
                 <div class="carousel-container">
-                    <div class="carousel-track">
+                    <div class="carousel-track" id="carousel-track">
                         ${cardsHtml}
                     </div>
                 </div>
             </div>
         </section>
         `;
+
+        window.dispatchEvent(new CustomEvent('carouselLoaded'));
     }
 }
 

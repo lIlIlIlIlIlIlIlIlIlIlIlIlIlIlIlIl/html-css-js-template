@@ -141,7 +141,7 @@ section h2 {
     overflow: hidden;
 }
 
-.arrow {
+.arrow-icon svg {
     position: absolute;
     top: 50%;
     left: 0;
@@ -153,7 +153,7 @@ section h2 {
     opacity: 0;
 }
 
-.card:hover .arrow {
+.card:hover .arrow-icon svg {
     transform: translateY(-50%) translateX(0);
     opacity: 1;
 }

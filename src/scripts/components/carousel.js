@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('carouselLoaded', () => {
     const carouselTrack = document.querySelector('.carousel-track');
     const carouselContainer = document.querySelector('.carousel-container');
     const carouselCards = document.querySelectorAll('.carousel-card');
@@ -194,6 +194,9 @@ document.addEventListener('DOMContentLoaded', () => {
         setButtonDisabledStyle(nextButton, position <= -(totalCardsWidth - containerWidth));
     };
 
+    calculateDimensions();
+    updateCarouselControls(currentTranslate);
+
     window.addEventListener('resize', () => {
         calculateDimensions();
         currentTranslate = limitCarouselTranslate(currentTranslate);
@@ -214,14 +217,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const visibleCardIndex = Math.floor(Math.abs(currentTranslate) / (cardWidth + cardGap));
             const offset = visibleCardIndex * (cardWidth + cardGap);
             currentTranslate = -offset;
-            setCarouselTransform(currentTranslate);
-            previousTranslate = currentTranslate;
-            snapToNearestCarouselCard();
         } else {
             currentTranslate = limitCarouselTranslate(currentTranslate + (cardWidth + cardGap));
-            setCarouselTransform(currentTranslate);
-            previousTranslate = currentTranslate;
         }
+
+        setCarouselTransform(currentTranslate);
+        previousTranslate = currentTranslate;
         updateCarouselControls(currentTranslate);
     });
 
@@ -244,7 +245,4 @@ document.addEventListener('DOMContentLoaded', () => {
             startCarouselDrag(event);
         });
     });
-
-    calculateDimensions();
-    updateCarouselControls(currentTranslate);
 });
