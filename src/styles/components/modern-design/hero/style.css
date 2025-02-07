@@ -56,7 +56,7 @@ h1 {
     text-align: center;
 }
 
-p {
+.hero-content p {
     font-size: clamp(1.2rem, 3vw, 1.75rem);
     font-weight: 200;
     margin: 0 0 3rem;
