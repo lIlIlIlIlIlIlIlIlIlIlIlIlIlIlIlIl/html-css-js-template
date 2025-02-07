@@ -245,14 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    carouselCards.forEach(card => {
-        card.addEventListener('touchmove', (event) => {
-            if (isDragging && event.cancelable) {
-                event.preventDefault();
-            }
-        }, { passive: false });
-    });
-
     calculateDimensions();
     updateCarouselControls(currentTranslate);
 });
