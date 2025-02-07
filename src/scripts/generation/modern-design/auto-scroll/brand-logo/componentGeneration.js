@@ -47,8 +47,7 @@ class AutoScrollBrandLogoComponent extends HTMLElement {
         this.innerHTML = `
         <section>
             <div class="container">
-                <h2>Nos Partenaires</h2>
-                <div class="auto-scroll-container" aria-label="Logos de nos partenaires">
+                <div class="auto-scroll-container" aria-label="Lorem Ipsum">
                     <div class="auto-scroll-track">${svgs.join('')}</div>
                     <div class="auto-scroll-track" aria-hidden="true">${svgs.join('')}</div>
                 </div>
