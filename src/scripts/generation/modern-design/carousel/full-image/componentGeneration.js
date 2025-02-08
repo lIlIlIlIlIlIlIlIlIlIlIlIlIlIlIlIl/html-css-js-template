@@ -93,7 +93,7 @@ class CarouselFullImageComponent extends HTMLElement {
                     <h3>${card.title}</h3>
                     <p>${card.description}</p>
                     <div class="buttons-container">
-                        <button class="more-info-button">
+                        <button class="cta-button">
                             <a href="${card.link}">
                                 <p>Lorem ipsum</p>
                                 <span class="arrow-icon">
