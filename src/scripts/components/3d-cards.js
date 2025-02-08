@@ -1,5 +1,5 @@
 window.addEventListener('cardsLoaded', () => {
-    const cards = document.querySelectorAll('#card');
+    const cards = document.querySelectorAll('#card-3d');
 
     function handleCardHover(event) {
         const card = event.currentTarget;

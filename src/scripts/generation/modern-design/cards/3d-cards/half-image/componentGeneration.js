@@ -68,7 +68,7 @@ class CardsHalfImageComponent extends HTMLElement {
 
         let cardsHtml = cardsData.map(card => {
             return `
-                <div class="card" id="card">
+                <div class="card" id="card-3d">
                     <a href="${card.link}">
                         <img src="${card.imgSrc}" alt="Illustration">
                         <div class="card-content">
