@@ -76,6 +76,8 @@
     --grid-3-rows: repeat(3, auto);
     --grid-4-rows: repeat(4, auto);
 
+    --clr-button-background: hsla(200, 10%, 0%, 0.5);
+    --clr-button-text: var(--clr-primary-100);
     --clr-card: var(--clr-primary-10);
     --clr-card-hover: var(--clr-primary-15);
     --clr-card-border: var(--clr-primary-20);
@@ -154,7 +156,7 @@
         --clr-section-border: var(--clr-primary-10);
 
         --clr-carousel-text: var(--clr-primary-0);
-
+        --clr-button-text: var(--clr-primary-0);
         --clr-card: var(--clr-primary-0);
         --clr-card-hover: var(--clr-primary-5);
         --clr-card-border: var(--clr-primary-10);
