@@ -1,0 +1,54 @@
+@import url("../../../global.css");
+
+.back-to-top {
+    z-index: 99;
+    position: fixed;
+    bottom: 35px;
+    right: 35px;
+    background: var(--clr-primary-100);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    text-decoration: none;
+    border-radius: 99px;
+    opacity: 0;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.back-to-top .chevron {
+    fill: var(--clr-primary-0);
+    width: 20px;
+    height: 20px;
+    margin-top: 3px;
+    position: relative;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.back-to-top:hover {
+    opacity: 1;
+    background: var(--clr-primary-90);
+}
+
+.back-to-top.nav-up {
+    opacity: 1;
+}
+
+.back-to-top.nav-down {
+    opacity: 0;
+}
+
+.chevron {
+    fill: var(--clr-primary-0);
+}
