@@ -95,7 +95,7 @@ input[type="range"]::-moz-range-thumb {
     position: absolute;
     inset: 0 auto;
     width: 4px;
-    background: var(--clr-primary-10);
+    background: var(--clr-slider-line);
     left: var(--value, 50%);
     pointer-events: none;
     transform: translateX(-50%);
@@ -105,7 +105,7 @@ input[type="range"]::-moz-range-thumb {
     position: absolute;
     width: 40px;
     height: 40px;
-    background: var(--clr-primary-10);
+    background: var(--clr-slider-handle);
     border-radius: 50%;
     top: 50%;
     left: 50%;
