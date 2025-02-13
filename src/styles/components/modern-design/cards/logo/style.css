@@ -7,6 +7,10 @@
     align-items: center;
 }
 
+.card:hover {
+    transform: scale(1.005);
+}
+
 .card-logo .logo-circle {
     width: 40px;
     height: 40px;

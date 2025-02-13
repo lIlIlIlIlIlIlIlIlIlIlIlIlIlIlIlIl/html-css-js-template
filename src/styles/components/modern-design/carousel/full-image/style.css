@@ -77,7 +77,7 @@
 
 .carousel-track {
     display: flex;
-    gap: var(--padding-16);
+    gap: var(--padding-24);
     padding-bottom: var(--padding-16);
     user-select: none;
     overflow: visible;
