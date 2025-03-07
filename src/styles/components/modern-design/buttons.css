@@ -2,8 +2,8 @@
 
 button,
 .cta-button {
-    background-color: var(--clr-button-background);
-    color: var(--clr-button-text);
+    background-color: var(--clr-primary-100);
+    color: var(--clr-primary-0);
     border-radius: 99px;
     text-decoration: none;
     transition: all 0.2s cubic-bezier(0.3, 0.7, 0.4, 1.5);
@@ -60,7 +60,7 @@ button,
     transition: transform 0.3s ease-out;
     width: 16px;
     height: 16px;
-    color: var(--clr-button-text);
+    color: var(--clr-neutral-0);
     opacity: 1;
 }
 
