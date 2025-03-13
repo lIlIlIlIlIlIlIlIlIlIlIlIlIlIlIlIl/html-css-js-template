@@ -49,13 +49,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--clr-faq-button-opacity);
+    background-color: var(--clr-button-opacity);
     border-radius: var(--border-radius-8);
     transition: background-color 0.3s ease;
 }
 
 .faq-icon-container:hover {
-    background-color: var(--clr-faq-button-opacity-hover);
+    background-color: var(--clr-button-opacity-hover);
 }
 
 .faq-icon {
