@@ -116,7 +116,6 @@ nav::before,
     font-size: 1.25rem;
     color: var(--clr-primary-100);
     text-decoration: none;
-    margin-left: 0.5rem;
 }
 
 .desktop-nav {

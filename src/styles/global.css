@@ -94,12 +94,14 @@
     --shadow-primary: 0 1px 4px 0 var(--clr-primary-15);
 
     --padding-8: 8px;
+    --padding-12: 12px;
     --padding-16: 16px;
     --padding-24: 24px;
     --padding-32: 32px;
 
     --margin-4: 4px;
     --margin-8: 8px;
+    --margin-12: 12px;
     --margin-16: 16px;
     --margin-24: 24px;
     --margin-32: 32px;
@@ -109,6 +111,7 @@
     --border-radius-12: 12px;
     --border-radius-16: 16px;
     --border-radius-24: 24px;
+    --border-radius-32: 32px;
 }
 
 @media (prefers-color-scheme: light) {

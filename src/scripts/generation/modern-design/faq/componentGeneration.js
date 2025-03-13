@@ -47,7 +47,9 @@ class FAQComponent extends HTMLElement {
                 <div class="faq-item">
                     <div class="faq-question" data-index="${index}">
                         <h3>${faq.title}</h3>
-                        <div class="faq-icon">${plusSVG}</div>
+                        <div class="faq-icon-container">
+                            <div class="faq-icon">${plusSVG}</div>
+                        </div>
                     </div>
                     <div class="faq-answer">
                         <p>${faq.content}</p>
