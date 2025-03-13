@@ -308,6 +308,7 @@ nav::before,
     background-color: var(--clr-button-opacity);
     border-radius: var(--border-radius-8);
     position: relative;
+    transition: background-color 0.3s ease;
 }
 
 .burger-icon {
@@ -360,12 +361,12 @@ nav::before,
 }
 
 .burger-menu-btn:hover {
-    background-color: var(--clr-button-opacity);
+    background-color: var(--clr-button-opacity-hover, rgba(255, 255, 255, 0.1));
 }
 
 .mobile-menu {
     position: fixed;
-    top: calc(calc(36px + 1rem) + 20px);
+    top: calc(calc(36px + 1rem) + 36px);
     left: 10px;
     right: 10px;
     bottom: 10px;
@@ -467,21 +468,13 @@ nav::before,
     transform: rotate(180deg);
 }
 
-@media (max-width: 767px) {
-    nav {
-        padding: 0.5rem;
-    }
-
-    .logo {
-        margin-bottom: 0;
-    }
-
+@media (max-width: 991px) {
     .cta-buttons {
         gap: 0;
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
     .desktop-nav {
         display: flex;
         align-items: center;
