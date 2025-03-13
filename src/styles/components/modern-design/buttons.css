@@ -10,6 +10,7 @@ button.cta-button {
     box-shadow: 0 0px 1px rgba(0, 0, 0, 0.1);
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     border: none;
     cursor: pointer;
     font-family: inherit;
@@ -47,8 +48,17 @@ button.cta-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: auto;
-    overflow: visible;
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin-left: 0;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover .arrow-icon {
+    width: 24px;
+    opacity: 1;
+    margin-left: 0;
 }
 
 .cta-button .arrow-icon svg {
@@ -61,6 +71,7 @@ button.cta-button {
     height: 16px;
     color: var(--clr-neutral-0);
     opacity: 1;
+    min-width: 16px;
 }
 
 .cta-button:hover .arrow-icon svg {
