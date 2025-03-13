@@ -291,29 +291,46 @@ nav::before,
 .burger-menu-btn {
     background: transparent;
     border: none;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-left: 0.5rem;
     padding: 0.5rem;
     border-radius: var(--border-radius-8);
-    transition: background-color 0.3s;
+    transform: rotate(0deg);
+    transition: transform 0.4s ease-in-out;
 }
 
 .burger-bar {
-    width: 24px;
+    display: block;
+    position: absolute;
+    width: 20px;
     height: 2px;
     background-color: var(--clr-primary-100);
-    margin: 3px 0;
     border-radius: 2px;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease-in-out;
+}
+
+.burger-bar:nth-child(1) {
+    transform: translateY(-6px);
+}
+
+.burger-bar:nth-child(2) {
+    transform: translateY(0);
+}
+
+.burger-bar:nth-child(3) {
+    transform: translateY(6px);
+}
+
+.burger-menu-btn.active {
+    transform: rotate(180deg);
 }
 
 .burger-menu-btn.active .burger-bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
+    transform: rotate(45deg);
 }
 
 .burger-menu-btn.active .burger-bar:nth-child(2) {
@@ -321,12 +338,16 @@ nav::before,
 }
 
 .burger-menu-btn.active .burger-bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.burger-menu-btn:hover {
+    background-color: var(--clr-button-opacity);
 }
 
 .mobile-menu {
     position: fixed;
-    top: calc(calc(40px + 1rem) + 20px);
+    top: calc(calc(36px + 1rem) + 20px);
     left: 10px;
     right: 10px;
     bottom: 10px;
