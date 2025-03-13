@@ -247,7 +247,6 @@ nav::before,
 }
 
 .dropdown-item .item-title {
-    font-weight: 500;
     font-size: 1rem;
 }
 
@@ -361,7 +360,7 @@ nav::before,
 }
 
 .burger-menu-btn:hover {
-    background-color: var(--clr-button-opacity-hover, rgba(255, 255, 255, 0.1));
+    background-color: var(--clr-button-opacity-hover);
 }
 
 .mobile-menu {
