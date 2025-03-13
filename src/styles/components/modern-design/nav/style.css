@@ -114,11 +114,10 @@ nav::before,
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     color: var(--clr-primary-100);
     text-decoration: none;
     margin-left: 0.5rem;
-    margin-bottom: 0.25rem;
 }
 
 .desktop-nav {
@@ -134,7 +133,7 @@ nav::before,
     top: 100%;
     left: 0;
     width: 100%;
-    height: 32px;
+    height: 24px;
     background: transparent;
     z-index: 101;
     pointer-events: auto;
@@ -143,7 +142,7 @@ nav::before,
 .dropdown-container {
     position: absolute;
     left: 0;
-    top: calc(100% + 32px);
+    top: calc(100% + 24px);
     z-index: 102;
     border-radius: var(--border-radius-12);
     opacity: 0;
@@ -358,7 +357,7 @@ nav::before,
     position: relative;
     height: 100%;
     overflow-y: auto;
-    padding: 1.5rem;
+    padding: 0.25rem 1rem 0.25rem 1rem;
     z-index: 1;
 }
 
