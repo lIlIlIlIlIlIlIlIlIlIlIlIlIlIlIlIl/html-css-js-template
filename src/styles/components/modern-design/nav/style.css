@@ -26,8 +26,8 @@ nav::before,
 .mobile-menu::before,
 .dropdown-container {
     background-color: var(--clr-nav-blur-background);
-    backdrop-filter: blur(40px);
-    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(200px);
+    -webkit-backdrop-filter: blur(200px);
     border-radius: var(--border-radius-8);
 }
 
