@@ -144,9 +144,11 @@ class NavComponent extends HTMLElement {
         const generateBurgerButton = (id) => {
             return `
                 <button class="burger-menu-btn" id="${id}" aria-label="Toggle menu">
-                    <div class="burger-bar"></div>
-                    <div class="burger-bar"></div>
-                    <div class="burger-bar"></div>
+                    <div class="burger-icon">
+                        <span class="burger-bar"></span>
+                        <span class="burger-bar"></span>
+                        <span class="burger-bar"></span>
+                    </div>
                 </button>
             `;
         };
