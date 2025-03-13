@@ -198,8 +198,7 @@
 }
 
 .buttons-container .cta-button .arrow-icon {
-    margin-top: 1px;
-    margin-left: 4px;
+    margin-top: 2px;
 }
 
 @media (max-width: 1024px) {

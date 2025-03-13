@@ -33,7 +33,6 @@ nav::before,
 
 .ghost-button,
 .mobile-ghost-button,
-.primary-button,
 .mobile-primary-button,
 .burger-menu-btn,
 .dropdown-item,
@@ -60,7 +59,15 @@ nav::before,
     background-color: var(--clr-button-opacity);
 }
 
-.primary-button,
+.cta-buttons .cta-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+}
+
+.cta-buttons .cta-button p {
+    margin: 0;
+}
+
 .mobile-primary-button {
     background-color: var(--clr-primary-100);
     color: var(--clr-primary-0);

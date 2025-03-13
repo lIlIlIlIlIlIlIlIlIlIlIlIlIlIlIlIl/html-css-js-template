@@ -64,9 +64,40 @@ class NavComponent extends HTMLElement {
             burgerMenuId: "burger-menu-btn"
         };
 
+        const arrowData = {
+            path: "src/assets/images/icons/arrow.svg"
+        };
+
+        const generateArrowSVG = async ({ path }) => {
+            try {
+                const response = await fetch(path);
+                let svgText = await response.text();
+
+                if (!svgText.includes('viewBox')) {
+                    svgText = svgText.replace('<svg', '<svg viewBox="0 0 24 24"');
+                }
+
+                return svgText;
+            } catch (error) {
+                console.error(error);
+                return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>';
+            }
+        };
+
+        const arrowSVG = await generateArrowSVG(arrowData);
+
         const generateButton = (buttonData) => {
-            const buttonClass = buttonData.type === "primary" ? "primary-button" : "ghost-button";
-            return `<button class="${buttonClass}">${buttonData.title}</button>`;
+            const buttonClass = buttonData.type === "primary" ? "cta-button" : "ghost-button";
+            if (buttonData.type === "primary") {
+                return `<button class="${buttonClass}">
+                    <p>${buttonData.title}</p>
+                    <span class="arrow-icon">
+                        ${arrowSVG}
+                    </span>
+                </button>`;
+            } else {
+                return `<button class="${buttonClass}">${buttonData.title}</button>`;
+            }
         };
 
         const generateDropdownItem = (item, isMobile = false) => {
