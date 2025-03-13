@@ -156,6 +156,15 @@ nav::before,
     will-change: transform, opacity;
 }
 
+.nav-group:hover .dropdown-container,
+.nav-bridge:hover ~ .dropdown-container,
+.dropdown-container:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
 #large-dropdown-container .dropdown-container {
     width: 36rem;
 }
@@ -365,12 +374,13 @@ nav::before,
     border-radius: var(--border-radius-12);
     overflow: hidden;
     transform: translateX(150%);
-    transition: transform 0.25s ease-out;
+    transition: transform 0.25s ease-out, visibility 0s linear 0.25s;
     visibility: hidden;
 }
 
 .mobile-menu.active {
     transform: translateX(0);
+    transition: transform 0.25s ease-out, visibility 0s linear 0s;
     visibility: visible;
 }
 
@@ -415,7 +425,8 @@ nav::before,
 .mobile-dropdown {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0;
     position: relative;
 }
 
@@ -477,6 +488,31 @@ nav::before,
 
     .mobile-menu {
         display: none;
+    }
+
+    body.menu-open {
+        overflow: initial !important;
+    }
+
+    .mobile-menu.active {
+        transform: translateX(150%);
+        visibility: hidden;
+    }
+
+    .burger-menu-btn.active .burger-icon {
+        transform: rotate(0deg);
+    }
+
+    .burger-menu-btn.active .burger-bar:nth-child(1) {
+        transform: translateY(-6px);
+    }
+
+    .burger-menu-btn.active .burger-bar:nth-child(2) {
+        opacity: 1;
+    }
+
+    .burger-menu-btn.active .burger-bar:nth-child(3) {
+        transform: translateY(6px);
     }
 }
 

@@ -3,20 +3,13 @@ document.addEventListener('navLoaded', () => {
     const mobileMenu = document.getElementById('mobile-menu');
     const MOBILE_WIDTH = 768;
 
-    const toggleMobileMenu = (isActive) => {
-        document.body.style.overflow = isActive ? 'hidden' : '';
-        mobileMenu.style.visibility = 'visible';
-
-        if (!isActive) {
-            setTimeout(() => !mobileMenu.classList.contains('active') && (mobileMenu.style.visibility = 'hidden'), 250);
-        }
-    };
-
     burgerBtn.addEventListener('click', () => {
         if (window.innerWidth < MOBILE_WIDTH) {
             burgerBtn.classList.toggle('active');
-            const isActive = mobileMenu.classList.toggle('active');
-            toggleMobileMenu(isActive);
+            mobileMenu.classList.toggle('active');
+
+            document.body.classList.toggle('menu-open');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         }
     });
 
@@ -42,12 +35,10 @@ document.addEventListener('navLoaded', () => {
     document.querySelectorAll('.nav-group').forEach(navGroup => {
         const els = {
             button: navGroup.querySelector('.ghost-button'),
-            bridge: navGroup.querySelector('.nav-bridge'),
             dropdown: navGroup.querySelector('.dropdown-container')
         };
 
         const forceReflow = element => element.offsetHeight;
-
         const resetAnimations = () => {
             navGroup.querySelectorAll('.dropdown-item').forEach(item => {
                 const curr = item.style.animation;
@@ -57,33 +48,17 @@ document.addEventListener('navLoaded', () => {
             });
         };
 
-        const shouldClose = (e, targets) => !targets.some(el => el === e.relatedTarget || (el && el.contains(e.relatedTarget)));
-
-        const handleMouseEnter = () => {
-            if (!navGroup.classList.contains('open')) {
-                resetAnimations();
-                navGroup.classList.add('open');
-            }
-        };
-
-        const createMouseLeaveHandler = (excludedElements) => e => {
-            if (shouldClose(e, excludedElements)) {
-                navGroup.classList.remove('open');
-            }
-        };
-
-        Object.values(els).forEach(el => el?.addEventListener('mouseenter', handleMouseEnter));
-
-        els.button?.addEventListener('mouseleave', createMouseLeaveHandler([els.bridge, els.dropdown]));
-        els.bridge?.addEventListener('mouseleave', createMouseLeaveHandler([els.button, els.dropdown]));
-        els.dropdown?.addEventListener('mouseleave', createMouseLeaveHandler([els.button, els.bridge]));
+        els.button?.addEventListener('mouseenter', () => {
+            resetAnimations();
+        });
     });
 
     window.addEventListener('resize', () => {
         if (window.innerWidth >= MOBILE_WIDTH && mobileMenu.classList.contains('active')) {
             mobileMenu.classList.remove('active');
             burgerBtn.classList.remove('active');
-            toggleMobileMenu(false);
+            document.body.classList.remove('menu-open');
+            document.body.style.overflow = '';
         }
     });
 });
