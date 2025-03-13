@@ -38,6 +38,7 @@ nav::before,
 .burger-menu-btn,
 .dropdown-item,
 .mobile-nav-button {
+    font-family: inherit;
     cursor: pointer;
 }
 
@@ -65,13 +66,12 @@ nav::before,
     color: var(--clr-primary-0);
     border: none;
     border-radius: var(--border-radius-8);
-    font-weight: 500;
     text-align: center;
 }
 
 .primary-button {
     padding: 0.5rem 1rem;
-    font-size: 0.875rem;
+    font-size: 1rem;
     white-space: nowrap;
     position: relative;
     overflow: hidden;
@@ -444,7 +444,7 @@ nav::before,
     left: 0;
     right: 0;
     height: 1px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--clr-button-opacity);
     z-index: 1;
 }
 
