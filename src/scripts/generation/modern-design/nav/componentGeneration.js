@@ -1,6 +1,6 @@
 class NavComponent extends HTMLElement {
     async connectedCallback() {
-        const featuresData = [
+        const mediumData = [
             {
                 title: "Lorem ipsum",
                 description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
@@ -27,7 +27,7 @@ class NavComponent extends HTMLElement {
             }
         ];
 
-        const resourcesData = [
+        const smallData = [
             { title: "Lorem ipsum", link: "#", itemIndex: 0 },
             { title: "Lorem ipsum", link: "#", itemIndex: 1 },
             { title: "Lorem ipsum", link: "#", itemIndex: 2 },
@@ -37,8 +37,8 @@ class NavComponent extends HTMLElement {
         ];
 
         const navItemsData = [
-            { type: "dropdown", id: "features-nav", title: "Lorem ipsum", items: featuresData },
-            { type: "dropdown", id: "resources-nav", title: "Lorem ipsum", items: resourcesData },
+            { type: "dropdown", id: "medium-dropdown-container", dataType: "medium", title: "Lorem ipsum", items: mediumData },
+            { type: "dropdown", id: "small-dropdown-container", dataType: "small", title: "Lorem ipsum", items: smallData },
             { type: "link", title: "Lorem ipsum", link: "#" },
             { type: "link", title: "Lorem ipsum", link: "#" }
         ];
@@ -69,13 +69,17 @@ class NavComponent extends HTMLElement {
             return `<button class="${buttonClass}">${buttonData.title}</button>`;
         };
 
-        const generateDropdownContent = (items) => {
-            return items.map(item => `
+        const generateDropdownItem = (item, isMobile = false) => {
+            return `
                 <a href="${item.link}" class="dropdown-item" style="--item-index: ${item.itemIndex}">
-                    <span>${item.title}</span>
-                    ${item.description ? `<span>${item.description}</span>` : ''}
+                    <span class="item-title">${item.title}</span>
+                    ${item.description ? `<span class="item-description">${item.description}</span>` : ''}
                 </a>
-            `).join('');
+            `;
+        };
+
+        const generateDropdownContent = (items, dataType) => {
+            return items.map(item => generateDropdownItem(item)).join('');
         };
 
         const generateDesktopNav = (navItems) => {
@@ -87,7 +91,7 @@ class NavComponent extends HTMLElement {
                             <div class="nav-bridge"></div>
                             <div class="dropdown-container">
                                 <div class="dropdown-content">
-                                    ${generateDropdownContent(item.items)}
+                                    ${generateDropdownContent(item.items, item.dataType)}
                                 </div>
                             </div>
                         </div>
@@ -113,20 +117,15 @@ class NavComponent extends HTMLElement {
         const generateMobileNav = (navItems) => {
             return navItems.map(item => {
                 if (item.type === "dropdown") {
-                    const dropdownId = `${item.id.replace('-nav', '')}-dropdown`;
+                    const dropdownId = `mobile-${item.id.replace('-container', '')}`;
                     return `
                         <div class="mobile-nav-item">
                             <button class="mobile-nav-button" data-target="${dropdownId}">
                                 ${item.title}
                                 <span class="chevron">↓</span>
                             </button>
-                            <div class="mobile-dropdown" id="${dropdownId}">
-                                ${item.items.map(subItem => `
-                                    <a href="${subItem.link}" class="mobile-dropdown-item">
-                                        <span>${subItem.title}</span>
-                                        ${subItem.description ? `<span>${subItem.description}</span>` : ''}
-                                    </a>
-                                `).join('')}
+                            <div class="mobile-dropdown ${item.dataType}" id="${dropdownId}">
+                                ${item.items.map(subItem => generateDropdownItem(subItem, true)).join('')}
                             </div>
                         </div>
                     `;

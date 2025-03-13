@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('navLoaded', () => {
     const burgerBtn = document.getElementById('burger-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     const MOBILE_WIDTH = 768;
