@@ -186,14 +186,37 @@ nav::before,
     margin-bottom: 0.5rem;
     text-decoration: none;
     color: var(--clr-primary-100);
-    transition: background-color var(--transition-fast),
-        transform var(--transition-fast);
     padding: 0.5rem;
     border-radius: var(--border-radius-8);
     opacity: 0;
     transform: translateY(10px);
     animation: fadeInUp 0.4s forwards;
     animation-delay: calc(0.05s * var(--item-index, 0));
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--transition-fast);
+}
+
+.dropdown-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--clr-button-opacity);
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+    border-radius: var(--border-radius-8);
+    z-index: -1;
+}
+
+.dropdown-item:hover::before {
+    opacity: 1;
+}
+
+.dropdown-item:hover {
+    transform: translateY(-2px);
 }
 
 @keyframes fadeInUp {
@@ -201,10 +224,6 @@ nav::before,
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-.dropdown-item:hover {
-    background-color: var(--clr-button-opacity);
 }
 
 .dropdown-item:last-child {
