@@ -1,0 +1,188 @@
+class NavComponent extends HTMLElement {
+    async connectedCallback() {
+        const featuresData = [
+            {
+                title: "Lorem ipsum",
+                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                link: "#",
+                itemIndex: 0
+            },
+            {
+                title: "Lorem ipsum",
+                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                link: "#",
+                itemIndex: 1
+            },
+            {
+                title: "Lorem ipsum",
+                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                link: "#",
+                itemIndex: 2
+            },
+            {
+                title: "Lorem ipsum",
+                description: "",
+                link: "#",
+                itemIndex: 3
+            }
+        ];
+
+        const resourcesData = [
+            { title: "Lorem ipsum", link: "#", itemIndex: 0 },
+            { title: "Lorem ipsum", link: "#", itemIndex: 1 },
+            { title: "Lorem ipsum", link: "#", itemIndex: 2 },
+            { title: "Lorem ipsum", link: "#", itemIndex: 3 },
+            { title: "Lorem ipsum", link: "#", itemIndex: 4 },
+            { title: "Lorem ipsum", link: "#", itemIndex: 5 }
+        ];
+
+        const navItemsData = [
+            { type: "dropdown", id: "features-nav", title: "Lorem ipsum", items: featuresData },
+            { type: "dropdown", id: "resources-nav", title: "Lorem ipsum", items: resourcesData },
+            { type: "link", title: "Lorem ipsum", link: "#" },
+            { type: "link", title: "Lorem ipsum", link: "#" }
+        ];
+
+        const ctaButtonsData = [
+            { type: "ghost", title: "Lorem ipsum", link: "#", class: "cta-ghost-button" },
+            { type: "primary", title: "Lorem ipsum", link: "#", class: "" }
+        ];
+
+        const mobileCta = {
+            title: "Lorem ipsum",
+            link: "#"
+        };
+
+        const logoData = {
+            title: "Lorem Ipsum",
+            link: "#"
+        };
+
+        const componentConfig = {
+            navId: "main-nav",
+            mobileMenuId: "mobile-menu",
+            burgerMenuId: "burger-menu-btn"
+        };
+
+        const generateButton = (buttonData) => {
+            const buttonClass = buttonData.type === "primary" ? "primary-button" : "ghost-button";
+            return `<button class="${buttonClass}">${buttonData.title}</button>`;
+        };
+
+        const generateDropdownContent = (items) => {
+            return items.map(item => `
+                <a href="${item.link}" class="dropdown-item" style="--item-index: ${item.itemIndex}">
+                    <span>${item.title}</span>
+                    ${item.description ? `<span>${item.description}</span>` : ''}
+                </a>
+            `).join('');
+        };
+
+        const generateDesktopNav = (navItems) => {
+            return navItems.map(item => {
+                if (item.type === "dropdown") {
+                    return `
+                        <div class="nav-group" id="${item.id}">
+                            <button class="ghost-button">${item.title}</button>
+                            <div class="nav-bridge"></div>
+                            <div class="dropdown-container">
+                                <div class="dropdown-content">
+                                    ${generateDropdownContent(item.items)}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <a href="${item.link}">
+                            <button class="ghost-button">${item.title}</button>
+                        </a>
+                    `;
+                }
+            }).join('');
+        };
+
+        const generateCtaButtons = (buttons) => {
+            return buttons.map(button => `
+                <a href="${button.link}" ${button.class ? `class="${button.class}"` : ''}>
+                    ${generateButton(button)}
+                </a>
+            `).join('');
+        };
+
+        const generateMobileNav = (navItems) => {
+            return navItems.map(item => {
+                if (item.type === "dropdown") {
+                    const dropdownId = `${item.id.replace('-nav', '')}-dropdown`;
+                    return `
+                        <div class="mobile-nav-item">
+                            <button class="mobile-nav-button" data-target="${dropdownId}">
+                                ${item.title}
+                                <span class="chevron">↓</span>
+                            </button>
+                            <div class="mobile-dropdown" id="${dropdownId}">
+                                ${item.items.map(subItem => `
+                                    <a href="${subItem.link}" class="mobile-dropdown-item">
+                                        <span>${subItem.title}</span>
+                                        ${subItem.description ? `<span>${subItem.description}</span>` : ''}
+                                    </a>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div class="mobile-nav-item">
+                            <a href="${item.link}" class="mobile-nav-button">
+                                ${item.title}
+                            </a>
+                        </div>
+                    `;
+                }
+            }).join('');
+        };
+
+        const generateBurgerButton = (id) => {
+            return `
+                <button class="burger-menu-btn" id="${id}" aria-label="Toggle menu">
+                    <div class="burger-bar"></div>
+                    <div class="burger-bar"></div>
+                    <div class="burger-bar"></div>
+                </button>
+            `;
+        };
+
+        const navHtml = `
+        <nav id="${componentConfig.navId}">
+            <div class="nav-container">
+                <a href="${logoData.link}" class="logo">${logoData.title}</a>
+
+                <div class="desktop-nav">
+                    ${generateDesktopNav(navItemsData)}
+                </div>
+
+                <div class="cta-buttons">
+                    ${generateCtaButtons(ctaButtonsData)}
+                    ${generateBurgerButton(componentConfig.burgerMenuId)}
+                </div>
+            </div>
+        </nav>
+
+        <div class="mobile-menu" id="${componentConfig.mobileMenuId}">
+            <div class="mobile-menu-content">
+                ${generateMobileNav(navItemsData)}
+                <div class="mobile-cta">
+                    <a href="${mobileCta.link}" class="mobile-ghost-button">
+                        ${mobileCta.title}
+                    </a>
+                </div>
+            </div>
+        </div>
+        `;
+
+        this.innerHTML = navHtml;
+        document.dispatchEvent(new CustomEvent('navLoaded'));
+    }
+}
+
+customElements.define('nav-component', NavComponent);

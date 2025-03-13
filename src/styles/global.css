@@ -60,6 +60,8 @@
     --clr-accent-color: hsl(270, 100%, 80%);
     --clr-accent-color-pale: hsla(270, 100%, 100%, 0.75);
 
+    --clr-nav-blur-background: hsla(200, 10%, 20%, 0.5);
+
     --clr-background: var(--clr-primary-5);
     --clr-section: var(--clr-primary-10);
     --clr-section-border: var(--clr-primary-20);
@@ -78,6 +80,7 @@
 
     --clr-button-background: hsla(200, 10%, 0%, 0.5);
     --clr-button-text: var(--clr-primary-100);
+    --clr-button-opacity: hsla(0, 0%, 100%, 0.1);
 
     --clr-card: var(--clr-primary-10);
     --clr-card-hover: var(--clr-primary-15);
@@ -101,6 +104,7 @@
     --margin-24: 24px;
     --margin-32: 32px;
 
+    --border-radius-4: 4px;
     --border-radius-8: 8px;
     --border-radius-12: 12px;
     --border-radius-16: 16px;
@@ -155,12 +159,15 @@
 
         --clr-accent-color: hsl(270, 100%, 80%);
 
+        --clr-nav-blur-background: hsla(200, 10%, 80%, 0.5);
+
         --clr-background: var(--clr-primary-5);
         --clr-section: var(--clr-primary-0);
         --clr-section-border: var(--clr-primary-10);
 
         --clr-carousel-text: var(--clr-primary-0);
         --clr-button-text: var(--clr-primary-0);
+        --clr-button-opacity: hsla(0, 0%, 100%, 0.25);
 
         --clr-card: var(--clr-primary-0);
         --clr-card-hover: var(--clr-primary-5);
