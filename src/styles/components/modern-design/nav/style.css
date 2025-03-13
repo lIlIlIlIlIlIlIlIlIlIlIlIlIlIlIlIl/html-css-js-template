@@ -420,6 +420,13 @@ nav::before,
     display: flex;
     justify-content: space-between;
     align-items: center;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-nav-button:active,
+.mobile-nav-button:focus {
+    background-color: transparent;
+    outline: none;
 }
 
 .mobile-dropdown {
