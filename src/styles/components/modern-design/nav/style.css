@@ -439,22 +439,24 @@ nav::before,
 }
 
 .mobile-nav-button {
+    box-sizing: border-box;
+    line-height: 1.5;
+    height: 4rem;
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
     text-align: left;
     background: transparent;
     color: var(--clr-primary-100);
     border: none;
     font-size: 1.25rem;
-    padding: 1rem 0;
-    min-height: 3.5rem;
-    box-sizing: border-box;
     text-decoration: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     -webkit-tap-highlight-color: transparent;
+    margin: 0;
+    font-family: inherit;
 }
-
 .mobile-nav-button:active,
 .mobile-nav-button:focus {
     background-color: transparent;
