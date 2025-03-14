@@ -49,7 +49,7 @@ nav::before,
     background: transparent;
     color: var(--clr-primary-100);
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.65rem 1rem;
     font-size: 1rem;
     border-radius: var(--border-radius-8);
     transition: background-color 0.3s;
@@ -356,12 +356,12 @@ nav::before,
         display: flex;
         background: transparent;
         border: none;
-        width: 36px;
-        height: 36px;
+        width: 24px;
+        height: 24px;
         justify-content: center;
         align-items: center;
         margin-left: 0.5rem;
-        padding: 0.5rem;
+        padding: 1.25rem;
         background-color: var(--clr-button-opacity);
         border-radius: var(--border-radius-8);
         position: relative;

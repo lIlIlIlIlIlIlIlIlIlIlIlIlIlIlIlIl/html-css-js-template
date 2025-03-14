@@ -31,34 +31,4 @@ document.addEventListener('navLoaded', () => {
             button.classList.toggle('active');
         });
     });
-
-    document.querySelectorAll('.nav-group').forEach(navGroup => {
-        const els = {
-            button: navGroup.querySelector('.ghost-button'),
-            dropdown: navGroup.querySelector('.dropdown-container')
-        };
-
-        const forceReflow = element => element.offsetHeight;
-        const resetAnimations = () => {
-            navGroup.querySelectorAll('.dropdown-item').forEach(item => {
-                const curr = item.style.animation;
-                item.style.animation = 'none';
-                forceReflow(item);
-                item.style.animation = curr || '';
-            });
-        };
-
-        els.button?.addEventListener('mouseenter', () => {
-            resetAnimations();
-        });
-    });
-
-    window.addEventListener('resize', () => {
-        if (window.innerWidth >= MOBILE_WIDTH && mobileMenu.classList.contains('active')) {
-            mobileMenu.classList.remove('active');
-            burgerBtn.classList.remove('active');
-            document.body.classList.remove('menu-open');
-            document.body.style.overflow = '';
-        }
-    });
 });
