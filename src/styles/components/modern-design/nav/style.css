@@ -155,7 +155,7 @@ nav::before,
     top: 100%;
     left: 0;
     width: 100%;
-    height: 24px;
+    height: 30px;
     background: transparent;
     z-index: 101;
     pointer-events: none;
@@ -177,7 +177,7 @@ nav::before,
 .dropdown-container {
     position: absolute;
     left: 0;
-    top: calc(100% + 24px);
+    top: calc(100% + 30px);
     z-index: 102;
     border-radius: var(--border-radius-12);
     opacity: 0;
@@ -232,9 +232,13 @@ nav::before,
     border-radius: var(--border-radius-8);
     opacity: 0;
     transform: translateY(10px);
-    animation: fadeInUp 0.4s forwards;
-    animation-delay: calc(0.05s * var(--item-index, 0));
-    transition: transform var(--transition-fast);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.nav-group:hover .dropdown-content .dropdown-item {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: calc(0.05s * var(--item-index, 0));
 }
 
 .dropdown-content .dropdown-item:last-child {
