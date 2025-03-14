@@ -354,7 +354,6 @@ nav::before,
 
     .burger-menu-btn {
         display: flex;
-        background: transparent;
         border: none;
         width: 24px;
         height: 24px;

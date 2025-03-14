@@ -3,6 +3,22 @@ document.addEventListener('navLoaded', () => {
     const mobileMenu = document.getElementById('mobile-menu');
     const MOBILE_WIDTH = 1025;
 
+    const resetDropdowns = () => {
+        document.querySelectorAll('.mobile-dropdown.open').forEach(dropdown => {
+            dropdown.classList.remove('open');
+        });
+
+        document.querySelectorAll('.mobile-nav-button.active').forEach(button => {
+            button.classList.remove('active');
+        });
+    };
+
+    mobileMenu.addEventListener('transitionend', (e) => {
+        if (e.propertyName === 'transform' && !mobileMenu.classList.contains('active')) {
+            resetDropdowns();
+        }
+    });
+
     burgerBtn.addEventListener('click', () => {
         if (window.innerWidth < MOBILE_WIDTH) {
             burgerBtn.classList.toggle('active');
