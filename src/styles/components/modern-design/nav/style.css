@@ -5,11 +5,11 @@ nav {
     top: 10px;
     left: 10px;
     right: 10px;
-    z-index: 100;
     padding: 1rem;
     max-width: 1440px;
     margin: auto;
     border-radius: var(--border-radius-8);
+    z-index: 101;
 }
 
 nav::before {
@@ -429,8 +429,9 @@ nav::before,
     position: relative;
     height: 100%;
     overflow-y: auto;
-    padding: 0.25rem 1rem 0.25rem 1rem;
+    padding: 0.25rem 1.25rem 0.25rem 1.25rem;
     z-index: 1;
+    margin-top: 4rem;
 }
 
 .mobile-nav-item {
@@ -500,12 +501,41 @@ nav::before,
 }
 
 @media (max-width: 991px) {
+    nav {
+        top: 0;
+        left: 0;
+        right: 0;
+        border-radius: 0;
+    }
+
+    nav::before {
+        background-color: var(--clr-primary-10);
+        border-radius: 0;
+    }
+
     .logo-title {
         display: none;
     }
 
     .cta-buttons {
         gap: 0;
+    }
+
+    .mobile-menu {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 0;
+    }
+
+    .mobile-menu::before {
+        border-radius: 0;
+        background-color: var(--clr-primary-10);
+    }
+
+    .mobile-menu-content {
+        border-radius: var(--border-radius-8);
     }
 }
 

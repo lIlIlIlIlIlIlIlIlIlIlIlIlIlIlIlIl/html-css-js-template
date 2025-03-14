@@ -57,11 +57,11 @@
     --clr-accent-color: hsl(270, 100%, 80%);
     --clr-accent-color-pale: hsla(270, 100%, 100%, 0.75);
 
-    --clr-nav-blur-background: hsla(200, 10%, 15%, 0.5);
+    --clr-nav-blur-background: hsla(200, 10%, 20%, 0.5);
 
-    --clr-background: var(--clr-primary-5);
-    --clr-section: var(--clr-primary-10);
-    --clr-section-border: var(--clr-primary-20);
+    --clr-background: var(--clr-primary-10);
+    --clr-section: var(--clr-primary-15);
+    --clr-section-border: var(--clr-primary-25);
 
     --clr-carousel-text: var(--clr-primary-100);
 
@@ -80,16 +80,16 @@
     --clr-button-opacity: hsla(0, 0%, 80%, 0.1);
     --clr-button-opacity-hover: hsla(0, 0%, 80%, 0.2);
 
-    --clr-card: var(--clr-primary-10);
-    --clr-card-hover: var(--clr-primary-15);
-    --clr-card-border: var(--clr-primary-20);
-    --clr-card-underline: var(--clr-primary-20);
+    --clr-card: var(--clr-primary-15);
+    --clr-card-hover: var(--clr-primary-20);
+    --clr-card-border: var(--clr-primary-25);
+    --clr-card-underline: var(--clr-primary-25);
     --card-shadow: 0 0 24px var(--clr-primary-0);
 
-    --clr-slider-line: var(--clr-primary-10);
-    --clr-slider-handle: var(--clr-primary-10);
+    --clr-slider-line: var(--clr-primary-15);
+    --clr-slider-handle: var(--clr-primary-15);
 
-    --shadow-primary: 0 1px 4px 0 var(--clr-primary-15);
+    --shadow-primary: 0 1px 4px 0 var(--clr-primary-20);
 
     --padding-8: 8px;
     --padding-12: 12px;
@@ -163,11 +163,11 @@
         --clr-accent-color: hsl(270, 100%, 80%);
         --clr-accent-color-pale: hsla(270, 100%, 0%, 0.75);
 
-        --clr-nav-blur-background: hsla(200, 10%, 85%, 0.5);
+        --clr-nav-blur-background: hsla(200, 10%, 80%, 0.5);
 
-        --clr-background: var(--clr-primary-5);
-        --clr-section: var(--clr-primary-10);
-        --clr-section-border: var(--clr-primary-20);
+        --clr-background: var(--clr-primary-10);
+        --clr-section: var(--clr-primary-15);
+        --clr-section-border: var(--clr-primary-25);
 
         --clr-carousel-text: var(--clr-primary-0);
 
@@ -176,16 +176,16 @@
         --clr-button-opacity: hsla(0, 0%, 20%, 0.1);
         --clr-button-opacity-hover: hsla(0, 0%, 20%, 0.2);
 
-        --clr-card: var(--clr-primary-10);
-        --clr-card-hover: var(--clr-primary-15);
-        --clr-card-border: var(--clr-primary-20);
-        --clr-card-underline: var(--clr-primary-20);
-        --card-shadow: 0 0 24px var(--clr-primary-95);
+        --clr-card: var(--clr-primary-15);
+        --clr-card-hover: var(--clr-primary-20);
+        --clr-card-border: var(--clr-primary-25);
+        --clr-card-underline: var(--clr-primary-25);
+        --card-shadow: 0 0 24px var(--clr-primary-0);
 
-        --clr-slider-line: var(--clr-primary-10);
-        --clr-slider-handle: var(--clr-primary-10);
+        --clr-slider-line: var(--clr-primary-15);
+        --clr-slider-handle: var(--clr-primary-15);
 
-        --shadow-primary: 0 1px 4px 0 var(--clr-primary-75);
+        --shadow-primary: 0 1px 4px 0 var(--clr-primary-20);
     }
 }
 
