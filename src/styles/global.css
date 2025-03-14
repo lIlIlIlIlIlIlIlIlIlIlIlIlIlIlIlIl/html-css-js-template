@@ -1,9 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Fira Code");
-
 @font-face {
     font-family: "Outfit";
-    src: url("../assets/fonts/Outfit/Outfit-VariableFont.ttf")
-        format("truetype");
+    src: url("../assets/fonts/Outfit/Outfit-Regular.ttf") format("truetype");
     font-style: normal;
 }
 

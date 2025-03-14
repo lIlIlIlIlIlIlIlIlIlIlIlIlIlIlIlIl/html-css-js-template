@@ -55,7 +55,8 @@ class NavComponent extends HTMLElement {
 
         const logoData = {
             title: "Lorem Ipsum",
-            link: "#"
+            link: "#",
+            path: "src/assets/images/logos/logo.svg"
         };
 
         const componentConfig = {
@@ -66,6 +67,15 @@ class NavComponent extends HTMLElement {
 
         const arrowData = {
             path: "src/assets/images/icons/arrow.svg"
+        };
+
+        const generateLogo = ({ title, link, path }) => {
+            return `
+                <a href="${link}" class="logo">
+                    <img src="${path}" alt="${title}" class="logo-svg" />
+                    <span class="logo-title">${title}</span>
+                </a>
+            `;
         };
 
         const generateArrowSVG = async ({ path }) => {
@@ -185,31 +195,31 @@ class NavComponent extends HTMLElement {
         };
 
         const navHtml = `
-        <nav id="${componentConfig.navId}">
-            <div class="nav-container">
-                <a href="${logoData.link}" class="logo">${logoData.title}</a>
+            <nav id="${componentConfig.navId}">
+                <div class="nav-container">
+                    ${generateLogo(logoData)}
 
-                <div class="desktop-nav">
-                    ${generateDesktopNav(navItemsData)}
+                    <div class="desktop-nav">
+                        ${generateDesktopNav(navItemsData)}
+                    </div>
+
+                    <div class="cta-buttons">
+                        ${generateCtaButtons(ctaButtonsData)}
+                        ${generateBurgerButton(componentConfig.burgerMenuId)}
+                    </div>
                 </div>
+            </nav>
 
-                <div class="cta-buttons">
-                    ${generateCtaButtons(ctaButtonsData)}
-                    ${generateBurgerButton(componentConfig.burgerMenuId)}
+            <div class="mobile-menu" id="${componentConfig.mobileMenuId}">
+                <div class="mobile-menu-content">
+                    ${generateMobileNav(navItemsData)}
+                    <div class="mobile-cta">
+                        <a href="${mobileCta.link}" class="mobile-ghost-button">
+                            ${mobileCta.title}
+                        </a>
+                    </div>
                 </div>
             </div>
-        </nav>
-
-        <div class="mobile-menu" id="${componentConfig.mobileMenuId}">
-            <div class="mobile-menu-content">
-                ${generateMobileNav(navItemsData)}
-                <div class="mobile-cta">
-                    <a href="${mobileCta.link}" class="mobile-ghost-button">
-                        ${mobileCta.title}
-                    </a>
-                </div>
-            </div>
-        </div>
         `;
 
         this.innerHTML = navHtml;

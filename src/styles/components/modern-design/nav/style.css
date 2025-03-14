@@ -65,7 +65,12 @@ nav::before,
 }
 
 .cta-buttons .cta-button p {
-    margin: 0;
+    margin-top: 0;
+    margin-bottom: 1px;
+}
+
+.cta-buttons .arrow-icon {
+    margin-bottom: 2px;
 }
 
 .mobile-primary-button {
@@ -120,9 +125,21 @@ nav::before,
 }
 
 .logo {
-    font-size: 1.25rem;
-    color: var(--clr-primary-100);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     text-decoration: none;
+}
+
+.logo-svg {
+    height: 36px;
+    width: auto;
+}
+
+.logo-title {
+    font-size: 1.5rem;
+    color: var(--clr-primary-100);
+    margin-bottom: 4px;
 }
 
 .desktop-nav {
@@ -475,6 +492,10 @@ nav::before,
 }
 
 @media (max-width: 991px) {
+    .logo-title {
+        display: none;
+    }
+
     .cta-buttons {
         gap: 0;
     }
@@ -496,7 +517,7 @@ nav::before,
     }
 
     body.menu-open {
-        overflow: initial !important;
+        overflow: initial;
     }
 
     .mobile-menu.active {
@@ -519,9 +540,7 @@ nav::before,
     .burger-menu-btn.active .burger-bar:nth-child(3) {
         transform: translateY(6px);
     }
-}
 
-@media (min-width: 992px) {
     .cta-ghost-button {
         display: block;
     }
