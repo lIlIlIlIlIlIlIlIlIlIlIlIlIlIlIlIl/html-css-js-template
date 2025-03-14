@@ -158,6 +158,19 @@ nav::before,
     height: 24px;
     background: transparent;
     z-index: 101;
+    pointer-events: none;
+}
+
+.nav-group:hover .nav-bridge,
+.dropdown-container:hover ~ .nav-bridge {
+    pointer-events: auto;
+}
+
+.nav-group:hover .dropdown-container,
+.dropdown-container:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
     pointer-events: auto;
 }
 
@@ -177,15 +190,6 @@ nav::before,
     pointer-events: none;
     overflow: hidden;
     will-change: transform, opacity;
-}
-
-.nav-group:hover .dropdown-container,
-.nav-bridge:hover ~ .dropdown-container,
-.dropdown-container:hover {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-    pointer-events: auto;
 }
 
 #large-dropdown-container .dropdown-container {
