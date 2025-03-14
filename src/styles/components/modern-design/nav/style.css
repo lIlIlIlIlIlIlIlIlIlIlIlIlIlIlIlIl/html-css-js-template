@@ -405,13 +405,13 @@ nav::before,
     border-radius: var(--border-radius-12);
     overflow: hidden;
     transform: translateX(150%);
-    transition: transform 0.25s ease-out, visibility 0s linear 0.25s;
+    transition: transform 0.4s ease-out, visibility 0s linear 0.4s;
     visibility: hidden;
 }
 
 .mobile-menu.active {
     transform: translateX(0);
-    transition: transform 0.25s ease-out, visibility 0s linear 0s;
+    transition: transform 0.4s ease-out, visibility 0s linear 0s;
     visibility: visible;
 }
 
@@ -466,7 +466,7 @@ nav::before,
 .mobile-dropdown {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
+    transition: max-height 0.4s ease, padding 0.4s ease;
     padding: 0;
     position: relative;
 }
