@@ -116,8 +116,12 @@ h1 {
         right: -300%;
     }
 
+    .hero {
+        height: 70vh;
+    }
+
     .hero-content {
-        padding-top: 4rem;
+        padding-top: 5rem;
     }
 
     .hero-content p {
