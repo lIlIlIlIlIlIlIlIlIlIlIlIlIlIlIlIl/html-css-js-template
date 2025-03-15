@@ -77,3 +77,23 @@ button.cta-button {
 .cta-button:hover .arrow-icon svg {
     transform: translateX(4px);
 }
+
+.ghost-button {
+    font-family: inherit;
+    cursor: pointer;
+    background: transparent;
+    color: var(--clr-primary-100);
+    border: none;
+    padding: 0.65rem 1rem;
+    font-size: 1rem;
+    border-radius: var(--border-radius-8);
+    transition: background-color 0.3s;
+    white-space: nowrap;
+    outline: none;
+    -moz-outline: none;
+    box-shadow: none;
+}
+
+.ghost-button:hover {
+    background-color: var(--clr-button-opacity);
+}
