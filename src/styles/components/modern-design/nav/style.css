@@ -2,14 +2,12 @@
 
 nav {
     position: fixed;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    padding: 1rem;
-    max-width: 1440px;
-    margin: auto;
-    border-radius: var(--border-radius-8);
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem 0;
     z-index: 101;
+    width: 100%;
 }
 
 nav::before {
@@ -25,10 +23,25 @@ nav::before {
 nav::before,
 .mobile-menu::before,
 .dropdown-container {
-    background-color: var(--clr-nav-blur-background);
     backdrop-filter: blur(200px);
     -webkit-backdrop-filter: blur(200px);
-    border-radius: var(--border-radius-8);
+}
+
+nav::before,
+.mobile-menu::before {
+    background-color: var(--clr-nav-blur-background);
+}
+
+.dropdown-container {
+    background-color: var(--clr-nav-dropdown-blur-background);
+    border: 1px solid var(--clr-primary-25);
+}
+
+.nav-inner-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%;
 }
 
 .mobile-menu {

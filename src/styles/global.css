@@ -56,7 +56,8 @@
 
     --clr-accent-color: hsl(10, 100%, 65%);
 
-    --clr-nav-blur-background: hsla(200, 10%, 20%, 0.5);
+    --clr-nav-blur-background: hsla(200, 10%, 10%, 0.5);
+    --clr-nav-dropdown-blur-background: hsla(200, 10%, 20%, 0.5);
 
     --clr-background: var(--clr-primary-10);
     --clr-section: var(--clr-primary-15);
@@ -161,7 +162,8 @@
 
         --clr-accent-color: hsl(10, 100%, 65%);
 
-        --clr-nav-blur-background: hsla(200, 10%, 80%, 0.5);
+        --clr-nav-blur-background: hsla(200, 10%, 90%, 0.5);
+        --clr-nav-dropdown-blur-background: hsla(200, 10%, 80%, 0.5);
 
         --clr-background: var(--clr-primary-10);
         --clr-section: var(--clr-primary-15);
@@ -206,7 +208,7 @@ section {
 }
 
 .container {
-    max-width: 1280px;
+    max-width: 1440px;
     margin-right: auto;
     margin-left: auto;
 }

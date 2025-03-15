@@ -196,16 +196,18 @@ class NavComponent extends HTMLElement {
 
         const navHtml = `
             <nav id="${componentConfig.navId}">
-                <div class="nav-container">
-                    ${generateLogo(logoData)}
+                <div class="nav-inner-container">
+                    <div class="nav-container">
+                        ${generateLogo(logoData)}
 
-                    <div class="desktop-nav">
-                        ${generateDesktopNav(navItemsData)}
-                    </div>
+                        <div class="desktop-nav">
+                            ${generateDesktopNav(navItemsData)}
+                        </div>
 
-                    <div class="cta-buttons">
-                        ${generateCtaButtons(ctaButtonsData)}
-                        ${generateBurgerButton(componentConfig.burgerMenuId)}
+                        <div class="cta-buttons">
+                            ${generateCtaButtons(ctaButtonsData)}
+                            ${generateBurgerButton(componentConfig.burgerMenuId)}
+                        </div>
                     </div>
                 </div>
             </nav>
