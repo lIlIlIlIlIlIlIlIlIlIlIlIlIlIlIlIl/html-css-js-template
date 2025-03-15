@@ -55,7 +55,6 @@
     --clr-primary-100: hsl(200, 10%, 100%);
 
     --clr-accent-color: hsl(10, 100%, 65%);
-    --clr-accent-color-pale: hsla(270, 100%, 100%, 0.75);
 
     --clr-nav-blur-background: hsla(200, 10%, 20%, 0.5);
 
@@ -161,7 +160,6 @@
         --clr-primary-100: hsl(200, 10%, 0%);
 
         --clr-accent-color: hsl(10, 100%, 65%);
-        --clr-accent-color-pale: hsla(270, 100%, 0%, 0.75);
 
         --clr-nav-blur-background: hsla(200, 10%, 80%, 0.5);
 
@@ -204,7 +202,7 @@ body {
 }
 
 section {
-    padding: var(--padding-24);
+    padding: var(--padding-16);
 }
 
 .container {

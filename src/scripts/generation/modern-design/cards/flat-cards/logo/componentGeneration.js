@@ -12,6 +12,8 @@ class CardsLogoComponent extends HTMLElement {
                 const response = await fetch(path);
                 let svgText = await response.text();
 
+                svgText = svgText.replace(/fill="[^"]*"/g, '');
+
                 if (!svgText.includes('viewBox')) {
                     svgText = svgText.replace('<svg', '<svg viewBox="0 0 24 24"');
                 }
