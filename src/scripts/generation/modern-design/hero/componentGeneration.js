@@ -21,11 +21,20 @@ class HeroSectionComponent extends HTMLElement {
 
         const arrowSVG = await generateArrowSVG(arrowData);
 
+        const texts = [
+            "Adipiscing elit",
+            "Sed non risus",
+            "Suspendisse lectus"
+        ];
+
         this.innerHTML = `
             <section class="hero">
                 <div class="hero-content">
-                    <h1>Lorem Ipsum</h1>
-                    <p>Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.</p>
+                    <div class="title-container">
+                        <h1>Lorem Ipsum dolor sit</h1>
+                        <div id="changing-text" class="subtitle">Amet consectetur</div>
+                    </div>
+                    <p>Adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam.</p>
                     <div class="cta-container">
                         <button class="cta-button">
                             <a href="#">
@@ -39,6 +48,16 @@ class HeroSectionComponent extends HTMLElement {
                 </div>
             </section>
         `;
+
+        window.dispatchEvent(new CustomEvent('changingText', {
+            detail: {
+                container: this,
+                selector: '#changing-text',
+                texts: texts,
+                interval: 3000,
+                fadeTime: 500
+            }
+        }));
     }
 }
 

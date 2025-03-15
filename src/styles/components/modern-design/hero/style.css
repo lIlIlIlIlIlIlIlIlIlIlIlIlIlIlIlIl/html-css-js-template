@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 85vh;
     position: relative;
     overflow: hidden;
 }
@@ -32,6 +32,7 @@
     position: relative;
     z-index: 2;
     max-width: 1280px;
+    padding-top: 10vh;
     color: white;
     text-align: center;
     display: flex;
@@ -41,10 +42,18 @@
     gap: 8px;
 }
 
+.title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
 h1 {
     font-family: inherit;
-    font-size: clamp(3rem, 8vw, 7.5rem);
+    font-size: clamp(2.2rem, 7vw, 5.5rem);
     font-weight: 600;
+    line-height: normal;
     margin: 0;
     background-color: var(--clr-primary-100);
     /* background: linear-gradient(
@@ -58,11 +67,24 @@ h1 {
     text-align: center;
 }
 
+#changing-text {
+    font-size: clamp(2.2rem, 7vw, 5.5rem);
+    font-weight: 600;
+    line-height: normal;
+    background-color: var(--clr-accent-color);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: opacity 0.5s ease-in-out;
+    text-align: center;
+    min-height: 1.5em;
+}
+
 .hero-content p {
     color: var(--clr-primary-100);
     font-size: clamp(1.2rem, 3vw, 1.75rem);
     font-weight: 200;
-    margin: 0 0 3rem;
+    margin: 0 10rem 3rem 10rem;
 }
 
 .cta-container {
@@ -92,5 +114,13 @@ h1 {
     .hero::before {
         left: -300%;
         right: -300%;
+    }
+
+    .hero-content {
+        padding-top: 4rem;
+    }
+
+    .hero-content p {
+        margin: 0 0 3rem;
     }
 }
