@@ -1,5 +1,50 @@
 class NavComponent extends HTMLElement {
     async connectedCallback() {
+        const largeData = [
+            {
+                title: "Lorem ipsum",
+                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                link: "#",
+                itemIndex: 0,
+                subItems: [
+                    { title: "Lorem ipsum", link: "#", itemIndex: 0 },
+                    { title: "Lorem ipsum", link: "#", itemIndex: 1 },
+                    { title: "Lorem ipsum", link: "#", itemIndex: 2 },
+                    { title: "Lorem ipsum", link: "#", itemIndex: 3 },
+                    { title: "Lorem ipsum", link: "#", itemIndex: 4 },
+                    { title: "Lorem ipsum", link: "#", itemIndex: 5 }
+                ]
+            },
+            {
+                title: "Lorem ipsum",
+                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                link: "#",
+                itemIndex: 1,
+                subItems: [
+                    { title: "Lorem ipsum", link: "#", itemIndex: 0 },
+                    { title: "Lorem ipsum", link: "#", itemIndex: 1 },
+                    { title: "Lorem ipsum", link: "#", itemIndex: 2 }
+                ]
+            },
+            {
+                title: "Lorem ipsum",
+                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                link: "#",
+                itemIndex: 2,
+                subItems: [
+                    { title: "Lorem ipsum", link: "#", itemIndex: 0 },
+                    { title: "Lorem ipsum", link: "#", itemIndex: 1 }
+                ]
+            },
+            {
+                title: "Lorem ipsum",
+                description: "",
+                link: "#",
+                itemIndex: 3,
+                subItems: []
+            }
+        ];
+
         const mediumData = [
             {
                 title: "Lorem ipsum",
@@ -37,9 +82,9 @@ class NavComponent extends HTMLElement {
         ];
 
         const navItemsData = [
+            { type: "dropdown", id: "large-dropdown-container", dataType: "large", title: "Lorem ipsum", items: largeData },
             { type: "dropdown", id: "medium-dropdown-container", dataType: "medium", title: "Lorem ipsum", items: mediumData },
             { type: "dropdown", id: "small-dropdown-container", dataType: "small", title: "Lorem ipsum", items: smallData },
-            { type: "link", title: "Lorem ipsum", link: "#" },
             { type: "link", title: "Lorem ipsum", link: "#" }
         ];
 
@@ -111,38 +156,64 @@ class NavComponent extends HTMLElement {
         };
 
         const generateDropdownItem = (item, isMobile = false) => {
-            return `
-                <a href="${item.link}" class="dropdown-item" style="--item-index: ${item.itemIndex}">
-                    <span class="item-title">${item.title}</span>
-                    ${item.description ? `<span class="item-description">${item.description}</span>` : ''}
+            if (item.subItems && item.subItems.length > 0) {
+                return `
+            <div class="dropdown-item-with-sub" style="--item-index: ${item.itemIndex}">
+                <a href="${item.link}" class="dropdown-item has-sub-items">
+                    <div class="item-wrapper">
+                        <div class="item-main-content">
+                            <span class="item-title">${item.title}</span>
+                            ${item.description ? `<span class="item-description">${item.description}</span>` : ''}
+                        </div>
+                        <span class="chevron-right">›</span>
+                    </div>
                 </a>
-            `;
+                <div class="sub-dropdown-container">
+                    <div class="sub-dropdown-content">
+                        ${item.subItems.map(subItem => `
+                            <a href="${subItem.link}" class="sub-dropdown-item" style="--item-index: ${subItem.itemIndex}">
+                                <span class="item-title">${subItem.title}</span>
+                            </a>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+            } else {
+                return `
+            <a href="${item.link}" class="dropdown-item" style="--item-index: ${item.itemIndex}">
+                <span class="item-title">${item.title}</span>
+                ${item.description ? `<span class="item-description">${item.description}</span>` : ''}
+            </a>
+        `;
+            }
         };
 
         const generateDropdownContent = (items, dataType) => {
             return items.map(item => generateDropdownItem(item)).join('');
         };
 
+
         const generateDesktopNav = (navItems) => {
             return navItems.map(item => {
                 if (item.type === "dropdown") {
                     return `
-                        <div class="nav-group" id="${item.id}">
-                            <button class="ghost-button">${item.title}</button>
-                            <div class="nav-bridge"></div>
-                            <div class="dropdown-container">
-                                <div class="dropdown-content">
-                                    ${generateDropdownContent(item.items, item.dataType)}
-                                </div>
-                            </div>
+                <div class="nav-group" id="${item.id}">
+                    <button class="ghost-button">${item.title}</button>
+                    <div class="nav-bridge"></div>
+                    <div class="dropdown-container ${item.dataType}">
+                        <div class="dropdown-content">
+                            ${generateDropdownContent(item.items, item.dataType)}
                         </div>
-                    `;
+                    </div>
+                </div>
+            `;
                 } else {
                     return `
-                        <a href="${item.link}">
-                            <button class="ghost-button">${item.title}</button>
-                        </a>
-                    `;
+                <a href="${item.link}">
+                    <button class="ghost-button">${item.title}</button>
+                </a>
+            `;
                 }
             }).join('');
         };
@@ -153,6 +224,20 @@ class NavComponent extends HTMLElement {
                     ${generateButton(button)}
                 </a>
             `).join('');
+        };
+
+        const generateMobileSubItemsContent = (subItems) => {
+            if (!subItems || subItems.length === 0) return '';
+
+            return `
+                <div class="mobile-sub-items">
+                    ${subItems.map(subItem => `
+                        <a href="${subItem.link}" class="mobile-sub-item">
+                            ${subItem.title}
+                        </a>
+                    `).join('')}
+                </div>
+            `;
         };
 
         const generateMobileNav = (navItems) => {
@@ -166,7 +251,19 @@ class NavComponent extends HTMLElement {
                                 <span class="chevron">↓</span>
                             </button>
                             <div class="mobile-dropdown ${item.dataType}" id="${dropdownId}">
-                                ${item.items.map(subItem => generateDropdownItem(subItem, true)).join('')}
+                                ${item.items.map(subItem => `
+                                    <div class="mobile-dropdown-item-container">
+                                        ${generateDropdownItem(subItem, true)}
+                                        ${subItem.subItems && subItem.subItems.length > 0 ?
+                            `<button class="mobile-sub-button" data-sub-target="mobile-sub-${dropdownId}-${subItem.itemIndex}">
+                                                <span class="chevron">↓</span>
+                                            </button>
+                                            <div class="mobile-sub-dropdown" id="mobile-sub-${dropdownId}-${subItem.itemIndex}">
+                                                ${generateMobileSubItemsContent(subItem.subItems)}
+                                            </div>` :
+                            ''}
+                                    </div>
+                                `).join('')}
                             </div>
                         </div>
                     `;
