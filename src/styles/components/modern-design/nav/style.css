@@ -426,8 +426,7 @@ nav::before,
 
 #medium-dropdown-container .dropdown-item:last-child .item-title,
 #medium-dropdown-container .dropdown-item:last-child .item-description,
-.mobile-dropdown.medium .dropdown-item:last-child .item-title,
-.mobile-dropdown.medium .dropdown-item:last-child .item-description {
+.mobile-dropdown.medium .dropdown-item:last-child .item-title {
     color: var(--clr-primary-100);
     font-size: 1rem;
 }
@@ -653,6 +652,19 @@ nav::before,
     .mobile-dropdown.open {
         max-height: 500px;
         padding: 0.5rem 0;
+    }
+
+    .item-main-content {
+        width: 100%;
+    }
+
+    .chevron-right {
+        display: none;
+    }
+
+    .mobile-sub-items,
+    .mobile-sub-button {
+        display: none;
     }
 
     .mobile-cta {
