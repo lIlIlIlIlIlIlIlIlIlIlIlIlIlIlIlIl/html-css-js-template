@@ -27,6 +27,14 @@ class NavComponent extends HTMLElement {
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 4,
                         iconPath: "src/assets/images/icons/card-icon.svg"
+                    },
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 5,
+                        iconPath: "src/assets/images/icons/card-icon.svg"
+                    },
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 6,
+                        iconPath: "src/assets/images/icons/card-icon.svg"
                     }
                 ]
             },
@@ -52,6 +60,14 @@ class NavComponent extends HTMLElement {
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 3,
                         iconPath: ""
+                    },
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 4,
+                        iconPath: ""
+                    },
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 5,
+                        iconPath: ""
                     }
                 ]
             },
@@ -73,6 +89,14 @@ class NavComponent extends HTMLElement {
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 2,
                         iconPath: "src/assets/images/icons/card-icon.svg"
+                    },
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 3,
+                        iconPath: "src/assets/images/icons/card-icon.svg"
+                    },
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 4,
+                        iconPath: "src/assets/images/icons/card-icon.svg"
                     }
                 ]
             },
@@ -89,6 +113,14 @@ class NavComponent extends HTMLElement {
                     },
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 1,
+                        iconPath: ""
+                    },
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 2,
+                        iconPath: ""
+                    },
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 3,
                         iconPath: ""
                     }
                 ]
