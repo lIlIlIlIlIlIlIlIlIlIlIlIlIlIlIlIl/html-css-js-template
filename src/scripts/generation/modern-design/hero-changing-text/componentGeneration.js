@@ -1,4 +1,4 @@
-class HeroSectionComponent extends HTMLElement {
+class HeroChangingTextComponent extends HTMLElement {
     async connectedCallback() {
         const arrowData = {
             path: "src/assets/images/icons/arrow.svg"
@@ -61,4 +61,4 @@ class HeroSectionComponent extends HTMLElement {
     }
 }
 
-customElements.define('hero-section', HeroSectionComponent);
+customElements.define('hero-changing-text', HeroChangingTextComponent);
