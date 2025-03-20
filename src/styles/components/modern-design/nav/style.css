@@ -303,9 +303,15 @@ nav::before,
     z-index: 9;
 }
 
+.sub-dropdown-content {
+    overflow-y: auto;
+}
+
 .sub-dropdown-item {
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
+    min-height: auto;
     text-decoration: none;
     color: var(--clr-primary-100);
     position: relative;
@@ -329,7 +335,8 @@ nav::before,
 
 .sub-dropdown-item span,
 .sub-dropdown-item a {
-    white-space: nowrap;
+    white-space: normal;
+    word-wrap: break-word;
     display: inline-block;
 }
 
