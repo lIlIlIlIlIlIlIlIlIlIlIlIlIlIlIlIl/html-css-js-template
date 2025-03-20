@@ -692,7 +692,7 @@ nav::before,
     }
 
     .mobile-dropdown.open {
-        max-height: 500px;
+        max-height: 100vh;
         padding: 0.5rem 0;
     }
 
@@ -716,6 +716,15 @@ nav::before,
         width: 100%;
     }
 
+    .item-content,
+    .item-main-content {
+        margin: 0;
+    }
+
+    .item-icon-container {
+        margin: 0.25rem 0.75rem 0.25rem 0.25rem;
+    }
+
     .chevron-right,
     .mobile-sub-items,
     .mobile-sub-button {
@@ -723,10 +732,10 @@ nav::before,
     }
 
     .mobile-cta {
-        margin-top: 2rem;
         display: flex;
         flex-direction: column;
         gap: 1rem;
+        margin: 2rem 0;
     }
 
     .chevron {
