@@ -173,21 +173,21 @@ nav::before,
     width: 24rem;
 }
 
-#large-dropdown-container .dropdown-container {
+#medium-with-sub-dropdown-container .dropdown-container {
     width: 24rem;
     transition: width 0.3s ease, opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
         visibility 0.5s cubic-bezier(0.16, 1, 0.3, 1),
         transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-#large-dropdown-container:has(.dropdown-item-with-sub:hover)
+#medium-with-sub-dropdown-container:has(.dropdown-item-with-sub:hover)
     .dropdown-container,
-#large-dropdown-container:has(.sub-dropdown-container:hover)
+#medium-with-sub-dropdown-container:has(.sub-dropdown-container:hover)
     .dropdown-container {
     width: 40rem;
 }
 
-#large-dropdown-container .dropdown-content {
+#medium-with-sub-dropdown-container .dropdown-content {
     width: 24rem;
     box-sizing: border-box;
     position: relative;

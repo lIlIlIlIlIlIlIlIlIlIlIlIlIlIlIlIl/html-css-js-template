@@ -1,6 +1,6 @@
 class NavComponent extends HTMLElement {
     async connectedCallback() {
-        const largeData = [
+        const mediumWithSubData = [
             {
                 title: "Lorem ipsum",
                 description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
@@ -82,7 +82,7 @@ class NavComponent extends HTMLElement {
         ];
 
         const navItemsData = [
-            { type: "dropdown", id: "large-dropdown-container", dataType: "large", title: "Lorem ipsum", items: largeData },
+            { type: "dropdown", id: "medium-with-sub-dropdown-container", dataType: "large", title: "Lorem ipsum", items: mediumWithSubData },
             { type: "dropdown", id: "medium-dropdown-container", dataType: "medium", title: "Lorem ipsum", items: mediumData },
             { type: "dropdown", id: "small-dropdown-container", dataType: "small", title: "Lorem ipsum", items: smallData },
             { type: "link", title: "Lorem ipsum", link: "#" }
