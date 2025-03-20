@@ -722,7 +722,7 @@ nav::before,
     }
 
     .item-icon-container {
-        margin: 0.25rem 0.75rem 0.25rem 0.25rem;
+        margin: 0.25rem 0.75rem 0.25rem 0;
     }
 
     .chevron-right,
@@ -744,10 +744,6 @@ nav::before,
 
     .mobile-nav-button.active .chevron {
         transform: rotate(180deg);
-    }
-
-    .item-icon-container {
-        margin-left: 0;
     }
 
     .mobile-primary-button {
