@@ -22,19 +22,19 @@ class HeroSectionComponent extends HTMLElement {
         const arrowSVG = await generateArrowSVG(arrowData);
 
         const texts = [
+            "Consectetur",
             "Adipiscing elit",
-            "Sed non risus",
-            "Suspendisse lectus"
+            "Sed non risus"
         ];
 
         this.innerHTML = `
             <section class="hero">
                 <div class="hero-content">
                     <div class="title-container">
-                        <h1>Lorem Ipsum dolor sit</h1>
-                        <div id="changing-text" class="subtitle">Amet consectetur</div>
+                        <h1>Lorem Ipsum dolor sit amet</h1>
+                        <div id="changing-text" class="subtitle"></div>
                     </div>
-                    <p>Adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam.</p>
+                    <p>Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.</p>
                     <div class="cta-container">
                         <button class="cta-button">
                             <a href="#">
