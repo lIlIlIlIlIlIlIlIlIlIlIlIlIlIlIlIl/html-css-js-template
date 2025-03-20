@@ -10,24 +10,6 @@ nav {
     z-index: 101;
 }
 
-.nav-inner-container {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    width: 100%;
-}
-
-.nav-container {
-    width: 100%;
-    margin: 0 auto;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    position: relative;
-    z-index: 1;
-}
-
 nav::before,
 .mobile-menu::before,
 .dropdown-container {
@@ -45,6 +27,24 @@ nav::before,
     bottom: 0;
     z-index: -1;
     background-color: var(--clr-nav-blur-background);
+}
+
+.nav-inner-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+.nav-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    z-index: 1;
 }
 
 .logo {
@@ -111,9 +111,12 @@ nav::before,
     margin-bottom: 2px;
 }
 
-.primary-button {
+.primary-button,
+.mobile-primary-button {
     padding: 0.5rem 1rem;
     font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
     white-space: nowrap;
     position: relative;
     overflow: hidden;
@@ -131,17 +134,14 @@ nav::before,
 
 .mobile-primary-button,
 .mobile-ghost-button {
-    font-family: inherit;
-    cursor: pointer;
     padding: 0.75rem 1rem;
-    font-size: 1rem;
+    border-radius: var(--border-radius-8);
+    text-align: center;
 }
 
 .mobile-ghost-button {
     background: transparent;
     color: var(--clr-primary-100);
-    border-radius: var(--border-radius-8);
-    text-align: center;
     text-decoration: none;
 }
 
@@ -229,7 +229,8 @@ nav::before,
     margin-bottom: 0;
 }
 
-.dropdown-content .dropdown-item::before {
+.dropdown-content .dropdown-item::before,
+.sub-dropdown-item::before {
     content: "";
     position: absolute;
     top: 0;
@@ -296,7 +297,7 @@ nav::before,
     content: "";
     position: absolute;
     top: 0;
-    left: 0;
+    left: -15px;
     width: 30px;
     height: 100%;
     background-color: transparent;
@@ -340,25 +341,13 @@ nav::before,
     display: inline-block;
 }
 
-.sub-dropdown-item::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--clr-button-opacity);
-    opacity: 0;
-    transition: opacity 0.2s ease-out;
-    border-radius: var(--border-radius-8);
-    z-index: -1;
-}
-
-.sub-dropdown-item:hover::before {
+.sub-dropdown-item:hover::before,
+.dropdown-content .dropdown-item:hover::before {
     opacity: 1;
 }
 
-.sub-dropdown-item:hover {
+.sub-dropdown-item:hover,
+.dropdown-content .dropdown-item:hover {
     transform: translateY(-2px);
 }
 
@@ -393,13 +382,21 @@ nav::before,
 
 .nav-group:hover .dropdown-container,
 .dropdown-container:hover,
-.dropdown-item-with-sub:hover .sub-dropdown-container,
-.sub-dropdown-container:hover {
+.nav-group.open .dropdown-container {
     opacity: 1;
     visibility: visible;
     transform: translateY(0) scale(1);
     pointer-events: auto;
-    transition: none;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+        visibility 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dropdown-item-with-sub:hover .sub-dropdown-container,
+.sub-dropdown-container:hover {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.2s ease, visibility 0s linear 0s;
 }
 
 .dropdown-item-with-sub:hover > .dropdown-item,
@@ -421,21 +418,6 @@ nav::before,
     opacity: 1;
     transform: translateY(0);
     transition-delay: calc(0.05s * var(--item-index, 0));
-}
-
-.dropdown-content .dropdown-item:hover::before {
-    opacity: 1;
-}
-
-.dropdown-content .dropdown-item:hover {
-    transform: translateY(-2px);
-}
-
-.nav-group.open .dropdown-container {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-    pointer-events: auto;
 }
 
 #medium-dropdown-container .dropdown-item .item-description,
@@ -463,8 +445,6 @@ nav::before,
 
 .burger-menu-btn {
     display: none;
-    font-family: inherit;
-    cursor: pointer;
 }
 
 .mobile-dropdown .dropdown-item {
@@ -522,6 +502,12 @@ nav::before,
         border-radius: var(--border-radius-8);
         position: relative;
         transition: background-color 0.3s ease;
+        font-family: inherit;
+        cursor: pointer;
+    }
+
+    .burger-menu-btn:hover {
+        background-color: var(--clr-button-opacity-hover);
     }
 
     .burger-menu-btn.active .burger-icon {
@@ -573,10 +559,6 @@ nav::before,
         transform: translateY(6px);
     }
 
-    .burger-menu-btn:hover {
-        background-color: var(--clr-button-opacity-hover);
-    }
-
     .mobile-menu {
         display: block;
         position: fixed;
@@ -594,15 +576,8 @@ nav::before,
     }
 
     .mobile-menu::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: -1;
-        border-radius: 0;
         background-color: var(--clr-primary-10);
+        border-radius: 0;
     }
 
     .mobile-menu.active {
@@ -615,7 +590,7 @@ nav::before,
         position: relative;
         height: 100%;
         overflow-y: auto;
-        padding: 0.25rem 1.25rem 0.25rem 1.25rem;
+        padding: 0.25rem 1.25rem;
         z-index: 1;
     }
 
@@ -641,6 +616,7 @@ nav::before,
         -webkit-tap-highlight-color: transparent;
         margin: 0;
         font-family: inherit;
+        cursor: pointer;
     }
 
     .mobile-nav-button:active,
@@ -657,6 +633,11 @@ nav::before,
         position: relative;
     }
 
+    .mobile-dropdown.open {
+        max-height: 500px;
+        padding: 0.5rem 0;
+    }
+
     .mobile-dropdown.open::before {
         content: "";
         position: absolute;
@@ -668,19 +649,11 @@ nav::before,
         z-index: 1;
     }
 
-    .mobile-dropdown.open {
-        max-height: 500px;
-        padding: 0.5rem 0;
-    }
-
     .item-main-content {
         width: 100%;
     }
 
-    .chevron-right {
-        display: none;
-    }
-
+    .chevron-right,
     .mobile-sub-items,
     .mobile-sub-button {
         display: none;
@@ -705,8 +678,6 @@ nav::before,
         background-color: var(--clr-primary-100);
         color: var(--clr-primary-0);
         border: none;
-        border-radius: var(--border-radius-8);
-        text-align: center;
     }
 
     .mobile-ghost-button {
