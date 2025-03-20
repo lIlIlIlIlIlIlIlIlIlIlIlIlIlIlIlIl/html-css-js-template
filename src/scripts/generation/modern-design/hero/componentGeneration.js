@@ -34,7 +34,7 @@ class HeroSectionComponent extends HTMLElement {
                         <h1>Lorem Ipsum dolor sit amet</h1>
                         <div id="changing-text" class="subtitle"></div>
                     </div>
-                    <p>Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.</p>
+                    <p>Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor, cras elementum ultrices diam, maecenas ligula massa, varius a, semper congue, euismod non, mi.</p>
                     <div class="cta-container">
                         <button class="cta-button">
                             <a href="#">
