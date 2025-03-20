@@ -1,10 +1,10 @@
-class CardsLogoComponent extends HTMLElement {
+class CardsNoImageWithIconComponent extends HTMLElement {
     async connectedCallback() {
         const arrowData = {
             path: "src/assets/images/icons/arrow.svg"
         };
-        const logoData = {
-            path: "src/assets/images/icons/card-logo.svg"
+        const iconData = {
+            path: "src/assets/images/icons/card-icon.svg"
         };
 
         const generateSVG = async ({ path }) => {
@@ -25,32 +25,32 @@ class CardsLogoComponent extends HTMLElement {
         };
 
         const arrowSVG = await generateSVG(arrowData);
-        const logoSVG = await generateSVG(logoData);
+        const iconSVG = await generateSVG(iconData);
 
         const cardsData = [
             {
                 title: "Lorem ipsum",
                 description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
                 link: "#",
-                type: "logo"
+                type: "icon"
             },
             {
                 title: "Lorem ipsum",
                 description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
                 link: "#",
-                type: "logo"
+                type: "icon"
             },
             {
                 title: "Lorem ipsum",
                 description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
                 link: "#",
-                type: "logo"
+                type: "icon"
             },
             {
                 title: "Lorem ipsum",
                 description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
                 link: "#",
-                type: "logo"
+                type: "icon"
             }
         ];
 
@@ -58,9 +58,9 @@ class CardsLogoComponent extends HTMLElement {
             return `
                 <div class="card">
                     <a href="${card.link}">
-                        <div class="card-logo">
-                            <div class="logo">
-                                ${logoSVG}
+                        <div class="card-icon">
+                            <div class="icon">
+                                ${iconSVG}
                             </div>
                         </div>
                         <div class="card-content">
@@ -91,4 +91,4 @@ class CardsLogoComponent extends HTMLElement {
     }
 }
 
-customElements.define('cards-logo', CardsLogoComponent);
+customElements.define('cards-no-image-with-icon', CardsNoImageWithIconComponent);
