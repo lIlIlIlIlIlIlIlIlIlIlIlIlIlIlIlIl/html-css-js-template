@@ -198,6 +198,7 @@ body {
     color: var(--clr-neutral-90);
     font-family: "Outfit", sans-serif;
     line-height: 1.6;
+    word-wrap: break-word;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
