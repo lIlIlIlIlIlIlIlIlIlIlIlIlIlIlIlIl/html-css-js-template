@@ -189,7 +189,7 @@ class NavComponent extends HTMLElement {
             }
         };
 
-        const generateDropdownContent = (items, dataType) => {
+        const generateDropdownContent = (items, _dataType) => {
             return items.map(item => generateDropdownItem(item)).join('');
         };
 
