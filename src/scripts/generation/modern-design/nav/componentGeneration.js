@@ -6,13 +6,53 @@ class NavComponent extends HTMLElement {
                 description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
                 link: "#",
                 itemIndex: 0,
+                iconPath: "src/assets/images/icons/card-icon.svg",
                 subItems: [
-                    { title: "Lorem ipsum", link: "#", itemIndex: 0 },
-                    { title: "Lorem ipsum", link: "#", itemIndex: 1 },
-                    { title: "Lorem ipsum", link: "#", itemIndex: 2 },
-                    { title: "Lorem ipsum", link: "#", itemIndex: 3 },
-                    { title: "Lorem ipsum", link: "#", itemIndex: 4 },
-                    { title: "Lorem ipsum", link: "#", itemIndex: 5 }
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 0,
+                        iconPath: "src/assets/images/icons/card-icon.svg"
+                    },
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 1,
+                        iconPath: "src/assets/images/icons/card-icon.svg"
+                    },
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 2,
+                        iconPath: "src/assets/images/icons/card-icon.svg"
+                    },
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 3,
+                        iconPath: "src/assets/images/icons/card-icon.svg"
+                    },
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 4,
+                        iconPath: "src/assets/images/icons/card-icon.svg"
+                    }
+                ]
+            },
+            {
+                title: "Lorem ipsum",
+                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                link: "#",
+                itemIndex: 0,
+                iconPath: "src/assets/images/icons/card-icon.svg",
+                subItems: [
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 0,
+                        iconPath: "src/assets/images/icons/card-icon.svg"
+                    },
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 1,
+                        iconPath: "src/assets/images/icons/card-icon.svg"
+                    },
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 2,
+                        iconPath: "src/assets/images/icons/card-icon.svg"
+                    },
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 3,
+                        iconPath: "src/assets/images/icons/card-icon.svg"
+                    }
                 ]
             },
             {
@@ -20,10 +60,20 @@ class NavComponent extends HTMLElement {
                 description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
                 link: "#",
                 itemIndex: 1,
+                iconPath: "src/assets/images/icons/card-icon.svg",
                 subItems: [
-                    { title: "Lorem ipsum", link: "#", itemIndex: 0 },
-                    { title: "Lorem ipsum", link: "#", itemIndex: 1 },
-                    { title: "Lorem ipsum", link: "#", itemIndex: 2 }
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 0,
+                        iconPath: "src/assets/images/icons/card-icon.svg"
+                    },
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 1,
+                        iconPath: "src/assets/images/icons/card-icon.svg"
+                    },
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 2,
+                        iconPath: "src/assets/images/icons/card-icon.svg"
+                    }
                 ]
             },
             {
@@ -31,17 +81,17 @@ class NavComponent extends HTMLElement {
                 description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
                 link: "#",
                 itemIndex: 2,
+                iconPath: "src/assets/images/icons/card-icon.svg",
                 subItems: [
-                    { title: "Lorem ipsum", link: "#", itemIndex: 0 },
-                    { title: "Lorem ipsum", link: "#", itemIndex: 1 }
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 0,
+                        iconPath: "src/assets/images/icons/card-icon.svg"
+                    },
+                    {
+                        title: "Lorem ipsum", link: "#", itemIndex: 1,
+                        iconPath: "src/assets/images/icons/card-icon.svg"
+                    }
                 ]
-            },
-            {
-                title: "Lorem ipsum",
-                description: "",
-                link: "#",
-                itemIndex: 3,
-                subItems: []
             }
         ];
 
@@ -123,7 +173,9 @@ class NavComponent extends HTMLElement {
             `;
         };
 
-        const generateArrowSVG = async ({ path }) => {
+        const generateSVG = async (path) => {
+            if (!path) return '';
+
             try {
                 const response = await fetch(path);
                 let svgText = await response.text();
@@ -135,11 +187,10 @@ class NavComponent extends HTMLElement {
                 return svgText;
             } catch (error) {
                 console.error(error);
-                return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>';
             }
         };
 
-        const arrowSVG = await generateArrowSVG(arrowData);
+        const arrowSVG = await generateSVG(arrowData.path);
 
         const generateButton = (buttonData) => {
             const buttonClass = buttonData.type === "primary" ? "cta-button" : "ghost-button";
@@ -155,67 +206,113 @@ class NavComponent extends HTMLElement {
             }
         };
 
-        const generateDropdownItem = (item, isMobile = false) => {
-            if (item.subItems && item.subItems.length > 0) {
-                return `
-            <div class="dropdown-item-with-sub" style="--item-index: ${item.itemIndex}">
-                <a href="${item.link}" class="dropdown-item has-sub-items">
-                    <div class="item-wrapper">
-                        <div class="item-main-content">
-                            <span class="item-title">${item.title}</span>
-                            ${item.description ? `<span class="item-description">${item.description}</span>` : ''}
-                        </div>
-                        <span class="chevron-right">›</span>
+        const generateItemIcon = async (iconPath) => {
+            if (!iconPath) return '';
+            const iconSvg = await generateSVG(iconPath);
+            return iconSvg ? `
+                <div class="item-icon-container">
+                    <div class="item-icon">${iconSvg}</div>
+                </div>
+            ` : '';
+        };
+
+        const generateSubItem = async (subItem) => {
+            const subIconHtml = await generateItemIcon(subItem.iconPath);
+
+            return `
+                <a href="${subItem.link}" class="sub-dropdown-item" style="--item-index: ${subItem.itemIndex}">
+                    <div class="sub-item-wrapper">
+                        ${subIconHtml}
+                        <span class="item-title">${subItem.title}</span>
                     </div>
                 </a>
-                <div class="sub-dropdown-container">
-                    <div class="sub-dropdown-content">
-                        ${item.subItems.map(subItem => `
-                            <a href="${subItem.link}" class="sub-dropdown-item" style="--item-index: ${subItem.itemIndex}">
-                                <span class="item-title">${subItem.title}</span>
-                            </a>
-                        `).join('')}
+            `;
+        };
+
+        const generateItemWithSubItems = async (item, hasDescription, dataType, iconHtml) => {
+            const subItemsHtml = await Promise.all(item.subItems.map(subItem => generateSubItem(subItem)));
+
+            return `
+                <div class="dropdown-item-with-sub" style="--item-index: ${item.itemIndex}">
+                    <a href="${item.link}" class="dropdown-item has-sub-items">
+                        <div class="item-wrapper ${hasDescription ? 'has-description' : ''} ${dataType === 'medium' ? 'medium-item' : ''}">
+                            ${iconHtml}
+                            <div class="item-main-content">
+                                <div class="title-row">
+                                    <span class="item-title">${item.title}</span>
+                                </div>
+                                ${hasDescription ? `<span class="item-description">${item.description}</span>` : ''}
+                            </div>
+                            <div class="chevron-container">
+                                <span class="chevron-right">›</span>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="sub-dropdown-container">
+                        <div class="sub-dropdown-content">
+                            ${subItemsHtml.join('')}
+                        </div>
                     </div>
                 </div>
-            </div>
-        `;
+            `;
+        };
+
+        const generateSimpleItem = (item, hasDescription, dataType, iconHtml) => {
+            return `
+                <a href="${item.link}" class="dropdown-item" style="--item-index: ${item.itemIndex}">
+                    <div class="item-wrapper ${hasDescription ? 'has-description' : ''} ${dataType === 'medium' ? 'medium-item' : ''}">
+                        ${iconHtml}
+                        <div class="item-content">
+                            <div class="title-row">
+                                <span class="item-title">${item.title}</span>
+                            </div>
+                            ${hasDescription ? `<span class="item-description">${item.description}</span>` : ''}
+                        </div>
+                    </div>
+                </a>
+            `;
+        };
+
+        const generateDropdownItem = async (item, isMobile = false, dataType = "") => {
+            const hasDescription = item.description && item.description.trim() !== '';
+            const iconHtml = await generateItemIcon(item.iconPath);
+
+            if (item.subItems && item.subItems.length > 0) {
+                return generateItemWithSubItems(item, hasDescription, dataType, iconHtml);
             } else {
-                return `
-            <a href="${item.link}" class="dropdown-item" style="--item-index: ${item.itemIndex}">
-                <span class="item-title">${item.title}</span>
-                ${item.description ? `<span class="item-description">${item.description}</span>` : ''}
-            </a>
-        `;
+                return generateSimpleItem(item, hasDescription, dataType, iconHtml);
             }
         };
 
-        const generateDropdownContent = (items, _dataType) => {
-            return items.map(item => generateDropdownItem(item)).join('');
+        const generateDropdownContent = async (items, dataType) => {
+            const contentItems = await Promise.all(items.map(item => generateDropdownItem(item, false, dataType)));
+            return contentItems.join('');
         };
 
-
-        const generateDesktopNav = (navItems) => {
-            return navItems.map(item => {
+        const generateDesktopNav = async (navItems) => {
+            const navElements = await Promise.all(navItems.map(async item => {
                 if (item.type === "dropdown") {
                     return `
-                <div class="nav-group" id="${item.id}">
-                    <button class="ghost-button">${item.title}</button>
-                    <div class="nav-bridge"></div>
-                    <div class="dropdown-container ${item.dataType}">
-                        <div class="dropdown-content">
-                            ${generateDropdownContent(item.items, item.dataType)}
+                        <div class="nav-group" id="${item.id}">
+                            <button class="ghost-button">${item.title}</button>
+                            <div class="nav-bridge"></div>
+                            <div class="dropdown-container ${item.dataType}">
+                                <div class="dropdown-content">
+                                    ${await generateDropdownContent(item.items, item.dataType)}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            `;
+                    `;
                 } else {
                     return `
-                <a href="${item.link}">
-                    <button class="ghost-button">${item.title}</button>
-                </a>
-            `;
+                        <a href="${item.link}">
+                            <button class="ghost-button">${item.title}</button>
+                        </a>
+                    `;
                 }
-            }).join('');
+            }));
+
+            return navElements.join('');
         };
 
         const generateCtaButtons = (buttons) => {
@@ -226,24 +323,52 @@ class NavComponent extends HTMLElement {
             `).join('');
         };
 
-        const generateMobileSubItemsContent = (subItems) => {
+        const generateMobileSubItemsContent = async (subItems) => {
             if (!subItems || subItems.length === 0) return '';
+
+            const mobileSubItems = await Promise.all(subItems.map(async subItem => {
+                const subIconHtml = await generateItemIcon(subItem.iconPath);
+
+                return `
+                    <a href="${subItem.link}" class="mobile-sub-item">
+                        <div class="mobile-sub-item-wrapper">
+                            ${subIconHtml}
+                            <span>${subItem.title}</span>
+                        </div>
+                    </a>
+                `;
+            }));
 
             return `
                 <div class="mobile-sub-items">
-                    ${subItems.map(subItem => `
-                        <a href="${subItem.link}" class="mobile-sub-item">
-                            ${subItem.title}
-                        </a>
-                    `).join('')}
+                    ${mobileSubItems.join('')}
                 </div>
             `;
         };
 
-        const generateMobileNav = (navItems) => {
-            return navItems.map(item => {
+        const generateMobileNav = async (navItems) => {
+            const mobileNavItems = await Promise.all(navItems.map(async item => {
                 if (item.type === "dropdown") {
                     const dropdownId = `mobile-${item.id.replace('-container', '')}`;
+
+                    const dropdownItems = await Promise.all(item.items.map(async subItem => {
+                        const subDropdownContent = subItem.subItems && subItem.subItems.length > 0
+                            ? `<button class="mobile-sub-button" data-sub-target="mobile-sub-${dropdownId}-${subItem.itemIndex}">
+                                <span class="chevron">↓</span>
+                              </button>
+                              <div class="mobile-sub-dropdown" id="mobile-sub-${dropdownId}-${subItem.itemIndex}">
+                                  ${await generateMobileSubItemsContent(subItem.subItems)}
+                              </div>`
+                            : '';
+
+                        return `
+                            <div class="mobile-dropdown-item-container">
+                                ${await generateDropdownItem(subItem, true, item.dataType)}
+                                ${subDropdownContent}
+                            </div>
+                        `;
+                    }));
+
                     return `
                         <div class="mobile-nav-item">
                             <button class="mobile-nav-button" data-target="${dropdownId}">
@@ -251,19 +376,7 @@ class NavComponent extends HTMLElement {
                                 <span class="chevron">↓</span>
                             </button>
                             <div class="mobile-dropdown ${item.dataType}" id="${dropdownId}">
-                                ${item.items.map(subItem => `
-                                    <div class="mobile-dropdown-item-container">
-                                        ${generateDropdownItem(subItem, true)}
-                                        ${subItem.subItems && subItem.subItems.length > 0 ?
-                            `<button class="mobile-sub-button" data-sub-target="mobile-sub-${dropdownId}-${subItem.itemIndex}">
-                                                <span class="chevron">↓</span>
-                                            </button>
-                                            <div class="mobile-sub-dropdown" id="mobile-sub-${dropdownId}-${subItem.itemIndex}">
-                                                ${generateMobileSubItemsContent(subItem.subItems)}
-                                            </div>` :
-                            ''}
-                                    </div>
-                                `).join('')}
+                                ${dropdownItems.join('')}
                             </div>
                         </div>
                     `;
@@ -276,7 +389,9 @@ class NavComponent extends HTMLElement {
                         </div>
                     `;
                 }
-            }).join('');
+            }));
+
+            return mobileNavItems.join('');
         };
 
         const generateBurgerButton = (id) => {
@@ -291,6 +406,9 @@ class NavComponent extends HTMLElement {
             `;
         };
 
+        const desktopNav = await generateDesktopNav(navItemsData);
+        const mobileNav = await generateMobileNav(navItemsData);
+
         const navHtml = `
             <nav id="${componentConfig.navId}">
                 <div class="nav-inner-container">
@@ -298,7 +416,7 @@ class NavComponent extends HTMLElement {
                         ${generateLogo(logoData)}
 
                         <div class="desktop-nav">
-                            ${generateDesktopNav(navItemsData)}
+                            ${desktopNav}
                         </div>
 
                         <div class="cta-buttons">
@@ -311,7 +429,7 @@ class NavComponent extends HTMLElement {
 
             <div class="mobile-menu" id="${componentConfig.mobileMenuId}">
                 <div class="mobile-menu-content">
-                    ${generateMobileNav(navItemsData)}
+                    ${mobileNav}
                     <div class="mobile-cta">
                         <a href="${mobileCta.link}" class="mobile-ghost-button">
                             ${mobileCta.title}
