@@ -284,11 +284,23 @@ nav::before,
 .sub-dropdown-container::before {
     content: "";
     position: absolute;
+    top: 2.5%;
+    left: 0;
+    width: 1px;
+    height: 95%;
+    background-color: var(--clr-primary-25);
+    z-index: 10;
+}
+
+.sub-dropdown-container::after {
+    content: "";
+    position: absolute;
     top: 0;
-    left: -30px;
+    left: 0;
     width: 30px;
     height: 100%;
     background-color: transparent;
+    z-index: 9;
 }
 
 .sub-dropdown-item {
