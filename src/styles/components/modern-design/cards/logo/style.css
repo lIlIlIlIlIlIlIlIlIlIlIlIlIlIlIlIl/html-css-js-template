@@ -11,7 +11,7 @@
     transform: scale(1.005);
 }
 
-.card-logo .logo-circle {
+.card-logo .logo {
     width: 48px;
     height: 48px;
     background-color: var(--clr-accent-color);
@@ -21,7 +21,7 @@
     justify-content: center;
 }
 
-.card-logo .logo-circle svg {
+.card-logo .logo svg {
     width: 32px;
     height: 32px;
     fill: var(--clr-primary-100);

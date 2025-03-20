@@ -4,7 +4,7 @@ class CardsLogoComponent extends HTMLElement {
             path: "src/assets/images/icons/arrow.svg"
         };
         const logoData = {
-            path: "src/assets/images/icons/logo.svg"
+            path: "src/assets/images/icons/card-logo.svg"
         };
 
         const generateSVG = async ({ path }) => {
@@ -59,7 +59,7 @@ class CardsLogoComponent extends HTMLElement {
                 <div class="card">
                     <a href="${card.link}">
                         <div class="card-logo">
-                            <div class="logo-circle">
+                            <div class="logo">
                                 ${logoSVG}
                             </div>
                         </div>
