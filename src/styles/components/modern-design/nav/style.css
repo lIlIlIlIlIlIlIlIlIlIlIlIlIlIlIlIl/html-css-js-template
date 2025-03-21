@@ -139,8 +139,7 @@ nav::before,
 }
 
 #large-dropdown-container .dropdown-container {
-    width: 64rem;
-    max-width: calc(100vw - 2rem);
+    width: 72rem;
 }
 
 .large-dropdown-group {
@@ -549,7 +548,7 @@ nav::before,
 }
 
 /* --- MOBILE VERSION --- */
-@media (max-width: 1024px) {
+@media (max-width: 1440px) {
     nav {
         top: 0;
         left: 0;

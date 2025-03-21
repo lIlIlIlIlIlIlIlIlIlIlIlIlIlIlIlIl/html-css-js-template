@@ -1,7 +1,7 @@
 document.addEventListener('navLoaded', () => {
     const burgerBtn = document.getElementById('burger-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    const MOBILE_WIDTH = 1025;
+    const MOBILE_WIDTH = 1445;
 
     const resetDropdowns = () => {
         document.querySelectorAll('.mobile-dropdown.open').forEach(dropdown => {

@@ -66,27 +66,6 @@ class NavComponent extends HTMLElement {
                     link: "#",
                     itemIndex: 2,
                     iconPath: "src/assets/images/icons/database.svg"
-                },
-                {
-                    title: "Lorem ipsum",
-                    description: "Dolor sit amet, consectetur adipiscing elit.",
-                    link: "#",
-                    itemIndex: 3,
-                    iconPath: "src/assets/images/icons/bank.svg"
-                },
-                {
-                    title: "Lorem ipsum",
-                    description: "Dolor sit amet, consectetur adipiscing elit.",
-                    link: "#",
-                    itemIndex: 4,
-                    iconPath: "src/assets/images/icons/credit-card.svg"
-                },
-                {
-                    title: "Lorem ipsum",
-                    description: "Dolor sit amet, consectetur adipiscing elit.",
-                    link: "#",
-                    itemIndex: 5,
-                    iconPath: "src/assets/images/icons/wallet.svg"
                 }
             ],
             group3: [
@@ -117,20 +96,6 @@ class NavComponent extends HTMLElement {
                     link: "#",
                     itemIndex: 3,
                     iconPath: "src/assets/images/icons/bank.svg"
-                },
-                {
-                    title: "Lorem ipsum",
-                    description: "Dolor sit amet, consectetur adipiscing elit.",
-                    link: "#",
-                    itemIndex: 4,
-                    iconPath: "src/assets/images/icons/credit-card.svg"
-                },
-                {
-                    title: "Lorem ipsum",
-                    description: "Dolor sit amet, consectetur adipiscing elit.",
-                    link: "#",
-                    itemIndex: 5,
-                    iconPath: "src/assets/images/icons/wallet.svg"
                 }
             ]
         };
