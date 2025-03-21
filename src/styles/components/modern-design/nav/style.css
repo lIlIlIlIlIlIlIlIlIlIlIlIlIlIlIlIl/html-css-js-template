@@ -155,6 +155,7 @@ nav::before,
     flex-direction: column;
     text-decoration: none;
     color: var(--clr-primary-100);
+    background-color: var(--clr-menu-items-opacity);
     position: relative;
     overflow: hidden;
     font-family: inherit;
@@ -238,10 +239,10 @@ nav::before,
 .sub-dropdown-container::before {
     content: "";
     position: absolute;
-    top: 2.5%;
+    top: 1.5%;
     left: 0;
     width: 1px;
-    height: 95%;
+    height: 97%;
     background-color: var(--clr-primary-25);
     z-index: 10;
 }
@@ -269,6 +270,7 @@ nav::before,
     padding: 0.5rem;
     text-decoration: none;
     color: var(--clr-primary-100);
+    background-color: var(--clr-menu-items-opacity);
     position: relative;
     overflow: hidden;
     opacity: 0;
@@ -438,7 +440,7 @@ nav::before,
 
 .sub-dropdown-item:hover::before,
 .dropdown-content .dropdown-item:hover::before {
-    opacity: 1;
+    opacity: 0.5;
 }
 
 .sub-dropdown-item:hover,
@@ -727,6 +729,11 @@ nav::before,
     .mobile-dropdown .dropdown-item {
         padding: 1rem 0;
         position: relative;
+        background-color: transparent;
+    }
+
+    .sub-dropdown-container {
+        display: none;
     }
 
     .item-main-content {
@@ -739,7 +746,7 @@ nav::before,
     }
 
     .item-icon-container {
-        margin: 0.25rem 1rem 0.25rem 0;
+        display: none;
     }
 
     .chevron-container {

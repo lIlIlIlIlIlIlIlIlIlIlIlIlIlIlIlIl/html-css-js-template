@@ -79,6 +79,7 @@
     --clr-button-text: var(--clr-primary-100);
     --clr-button-opacity: hsla(0, 0%, 80%, 0.1);
     --clr-button-opacity-hover: hsla(0, 0%, 80%, 0.2);
+    --clr-menu-items-opacity: hsla(0, 0%, 80%, 0.05);
 
     --clr-card: var(--clr-primary-15);
     --clr-card-hover: var(--clr-primary-20);
@@ -175,6 +176,7 @@
         --clr-button-text: var(--clr-primary-0);
         --clr-button-opacity: hsla(0, 0%, 20%, 0.1);
         --clr-button-opacity-hover: hsla(0, 0%, 20%, 0.2);
+        --clr-menu-items-opacity: hsla(0, 0%, 20%, 0.05);
 
         --clr-card: var(--clr-primary-15);
         --clr-card-hover: var(--clr-primary-20);
