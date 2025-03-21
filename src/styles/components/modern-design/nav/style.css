@@ -163,19 +163,15 @@ nav::before,
     position: relative;
     flex: 1;
     min-width: 0;
+    padding: 0 0.5rem;
 }
 
 .large-dropdown-section:first-child {
-    padding-right: 0.5rem;
-}
-
-.large-dropdown-section:nth-child(2) {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding-left: 0;
 }
 
 .large-dropdown-section:last-child {
-    padding-left: 0.5rem;
+    padding-right: 0;
 }
 
 /* --- DROPDOWN CONTENT --- */
