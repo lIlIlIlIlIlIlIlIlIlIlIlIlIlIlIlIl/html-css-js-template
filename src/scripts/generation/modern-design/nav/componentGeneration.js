@@ -3,109 +3,109 @@ class NavComponent extends HTMLElement {
         const mediumWithSubData = [
             {
                 title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                description: "Dolor sit amet, consectetur adipiscing elit.",
                 link: "#",
                 itemIndex: 0,
                 iconPath: "src/assets/images/icons/card-icon.svg",
                 subItems: [
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 0,
-                        iconPath: "src/assets/images/icons/card-icon.svg"
+                        iconPath: ""
                     },
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 1,
-                        iconPath: "src/assets/images/icons/card-icon.svg"
+                        iconPath: ""
                     },
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 2,
-                        iconPath: "src/assets/images/icons/card-icon.svg"
+                        iconPath: ""
                     },
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 3,
-                        iconPath: "src/assets/images/icons/card-icon.svg"
+                        iconPath: ""
                     },
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 4,
-                        iconPath: "src/assets/images/icons/card-icon.svg"
+                        iconPath: ""
                     },
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 5,
-                        iconPath: "src/assets/images/icons/card-icon.svg"
+                        iconPath: ""
                     },
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 6,
-                        iconPath: "src/assets/images/icons/card-icon.svg"
+                        iconPath: ""
                     }
                 ]
             },
             {
                 title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                description: "Dolor sit amet, consectetur adipiscing elit.",
                 link: "#",
                 itemIndex: 1,
                 iconPath: "src/assets/images/icons/card-icon.svg",
                 subItems: [
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 0,
-                        iconPath: "src/assets/images/icons/card-icon.svg"
+                        iconPath: ""
                     },
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 1,
-                        iconPath: "src/assets/images/icons/card-icon.svg"
+                        iconPath: ""
                     },
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 2,
-                        iconPath: "src/assets/images/icons/card-icon.svg"
+                        iconPath: ""
                     },
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 3,
-                        iconPath: "src/assets/images/icons/card-icon.svg"
+                        iconPath: ""
                     },
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 4,
-                        iconPath: "src/assets/images/icons/card-icon.svg"
+                        iconPath: ""
                     },
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 5,
-                        iconPath: "src/assets/images/icons/card-icon.svg"
+                        iconPath: ""
                     }
                 ]
             },
             {
                 title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                description: "Dolor sit amet, consectetur adipiscing elit.",
                 link: "#",
                 itemIndex: 2,
                 iconPath: "src/assets/images/icons/card-icon.svg",
                 subItems: [
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 0,
-                        iconPath: "src/assets/images/icons/card-icon.svg"
+                        iconPath: ""
                     },
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 1,
-                        iconPath: "src/assets/images/icons/card-icon.svg"
+                        iconPath: ""
                     },
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 2,
-                        iconPath: "src/assets/images/icons/card-icon.svg"
+                        iconPath: ""
                     },
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 3,
-                        iconPath: "src/assets/images/icons/card-icon.svg"
+                        iconPath: ""
                     },
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 4,
-                        iconPath: "src/assets/images/icons/card-icon.svg"
+                        iconPath: ""
                     }
                 ]
             },
             {
                 title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                description: "Dolor sit amet, consectetur adipiscing elit.",
                 link: "#",
                 itemIndex: 3,
-                iconPath: "",
+                iconPath: "src/assets/images/icons/card-icon.svg",
                 subItems: [
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 0,
@@ -127,10 +127,10 @@ class NavComponent extends HTMLElement {
             },
             {
                 title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                description: "Dolor sit amet, consectetur adipiscing elit.",
                 link: "#",
                 itemIndex: 4,
-                iconPath: "",
+                iconPath: "src/assets/images/icons/card-icon.svg",
                 subItems: [
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 0,
@@ -148,10 +148,10 @@ class NavComponent extends HTMLElement {
             },
             {
                 title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                description: "Dolor sit amet, consectetur adipiscing elit.",
                 link: "#",
                 itemIndex: 5,
-                iconPath: "",
+                iconPath: "src/assets/images/icons/card-icon.svg",
                 subItems: [
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 0,
@@ -168,21 +168,33 @@ class NavComponent extends HTMLElement {
         const mediumData = [
             {
                 title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                description: "Dolor sit amet, consectetur adipiscing elit.",
                 link: "#",
                 itemIndex: 0
             },
             {
                 title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                description: "Dolor sit amet, consectetur adipiscing elit.",
                 link: "#",
                 itemIndex: 1
             },
             {
                 title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
+                description: "Dolor sit amet, consectetur adipiscing elit.",
                 link: "#",
                 itemIndex: 2
+            },
+            {
+                title: "Lorem ipsum",
+                description: "Dolor sit amet, consectetur adipiscing elit.",
+                link: "#",
+                itemIndex: 3
+            },
+            {
+                title: "Lorem ipsum",
+                description: "Dolor sit amet, consectetur adipiscing elit.",
+                link: "#",
+                itemIndex: 4
             }
         ];
 

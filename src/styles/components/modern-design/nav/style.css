@@ -144,36 +144,43 @@ nav::before,
     border-radius: var(--border-radius-8);
     padding: 0.5rem;
     display: flex;
+    line-height: normal;
     flex-direction: column;
     gap: 0;
     height: 100%;
     width: 100%;
 }
 
-.dropdown-item {
+.dropdown-item,
+.sub-dropdown-item {
     display: flex;
     flex-direction: column;
     text-decoration: none;
     color: var(--clr-primary-100);
-    background-color: var(--clr-menu-items-opacity);
     position: relative;
     overflow: hidden;
     font-family: inherit;
     cursor: pointer;
-}
-
-.dropdown-content .dropdown-item {
     margin-bottom: 0.5rem;
     font-size: 1rem;
     padding: 0.5rem;
-    border-radius: var(--border-radius-8);
+    min-height: 2.75rem;
+    justify-content: center;
     opacity: 0;
+    border-radius: var(--border-radius-8);
     transform: translateY(10px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: opacity 0.4s ease, transform 0.4s ease,
+        background-color 0.2s ease-out;
+}
+
+.dropdown-content .dropdown-item,
+.sub-dropdown-content .sub-dropdown-item {
+    margin-bottom: 0.5rem;
 }
 
 .dropdown-content > .dropdown-item:last-child,
-.dropdown-content > .dropdown-item-with-sub:last-child .dropdown-item {
+.dropdown-content > .dropdown-item-with-sub:last-child .dropdown-item,
+.sub-dropdown-content .sub-dropdown-item:last-child {
     margin-bottom: 0;
 }
 
@@ -197,11 +204,13 @@ nav::before,
     z-index: -1;
 }
 
-.dropdown-item .item-title {
+.dropdown-item .item-title,
+.sub-dropdown-item .item-title {
     font-size: 1rem;
 }
 
-.dropdown-item .item-description {
+.dropdown-item .item-description,
+.sub-dropdown-item .item-description {
     font-size: 0.85rem;
     color: var(--clr-primary-75);
     margin-top: 0.25rem;
@@ -262,40 +271,19 @@ nav::before,
     overflow-y: auto;
 }
 
-.sub-dropdown-item {
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    min-height: auto;
-    padding: 0.5rem;
-    text-decoration: none;
-    color: var(--clr-primary-100);
-    background-color: var(--clr-menu-items-opacity);
-    position: relative;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.4s ease, transform 0.4s ease,
-        background-color 0.2s ease-out;
-}
-
-.sub-dropdown-content .sub-dropdown-item {
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
-    padding: 0.5rem;
-    border-radius: var(--border-radius-8);
-}
-
-.sub-dropdown-content .sub-dropdown-item:last-child {
-    margin-bottom: 0;
-}
-
 /* --- ITEM STYLES --- */
-.item-wrapper {
+.item-wrapper,
+.sub-item-wrapper,
+.mobile-sub-item-wrapper {
     position: relative;
     display: flex;
     align-items: center;
     width: 100%;
+}
+
+.item-wrapper:has(.item-description),
+.sub-item-wrapper:has(.item-description) {
+    align-items: flex-start;
 }
 
 .item-main-content {
@@ -307,12 +295,12 @@ nav::before,
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    margin: 0.25rem 0.5rem 0.25rem 0.25rem;
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    margin: 0 0.5rem 0 0;
     border-radius: var(--border-radius-8);
-    background-color: var(--clr-accent-color);
+    background-color: var(--clr-button-opacity);
     padding: 0.25rem;
     flex-shrink: 0;
 }
@@ -326,13 +314,9 @@ nav::before,
 }
 
 .item-icon svg {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     fill: currentColor;
-}
-
-.item-wrapper:has(.item-description) {
-    align-items: flex-start;
 }
 
 .item-content,
@@ -340,6 +324,7 @@ nav::before,
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    justify-content: center;
     margin: 0 0.25rem;
 }
 
@@ -354,15 +339,23 @@ nav::before,
     color: var(--clr-primary-60);
 }
 
-.sub-item-wrapper,
 .mobile-sub-item-wrapper {
     display: flex;
     align-items: center;
     width: 100%;
 }
 
-.sub-item-wrapper .item-title {
+.sub-item-wrapper .item-title,
+.mobile-sub-item-wrapper .item-title {
     margin: 0 0.25rem;
+}
+
+.sub-item-wrapper .item-icon-container,
+.mobile-sub-item-wrapper .item-icon-container {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    margin: 0.25rem 0.5rem 0.25rem 0.25rem;
 }
 
 /* --- CHEVRONS AND ARROWS --- */
@@ -727,9 +720,10 @@ nav::before,
     }
 
     .mobile-dropdown .dropdown-item {
-        padding: 1rem 0;
+        padding: 0.5rem 0;
         position: relative;
         background-color: transparent;
+        opacity: 1;
     }
 
     .sub-dropdown-container {
