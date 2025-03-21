@@ -6,7 +6,7 @@ class NavComponent extends HTMLElement {
                 description: "Dolor sit amet, consectetur adipiscing elit.",
                 link: "#",
                 itemIndex: 0,
-                iconPath: "src/assets/images/icons/icon.svg",
+                iconPath: "src/assets/images/icons/cloud.svg",
                 subItems: [
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 0,
@@ -43,7 +43,7 @@ class NavComponent extends HTMLElement {
                 description: "Dolor sit amet, consectetur adipiscing elit.",
                 link: "#",
                 itemIndex: 1,
-                iconPath: "src/assets/images/icons/icon.svg",
+                iconPath: "src/assets/images/icons/server.svg",
                 subItems: [
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 0,
@@ -76,7 +76,7 @@ class NavComponent extends HTMLElement {
                 description: "Dolor sit amet, consectetur adipiscing elit.",
                 link: "#",
                 itemIndex: 2,
-                iconPath: "src/assets/images/icons/icon.svg",
+                iconPath: "src/assets/images/icons/database.svg",
                 subItems: [
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 0,
@@ -105,7 +105,7 @@ class NavComponent extends HTMLElement {
                 description: "Dolor sit amet, consectetur adipiscing elit.",
                 link: "#",
                 itemIndex: 3,
-                iconPath: "src/assets/images/icons/icon.svg",
+                iconPath: "src/assets/images/icons/bank.svg",
                 subItems: [
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 0,
@@ -130,7 +130,7 @@ class NavComponent extends HTMLElement {
                 description: "Dolor sit amet, consectetur adipiscing elit.",
                 link: "#",
                 itemIndex: 4,
-                iconPath: "src/assets/images/icons/icon.svg",
+                iconPath: "src/assets/images/icons/credit-card.svg",
                 subItems: [
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 0,
@@ -151,7 +151,7 @@ class NavComponent extends HTMLElement {
                 description: "Dolor sit amet, consectetur adipiscing elit.",
                 link: "#",
                 itemIndex: 5,
-                iconPath: "src/assets/images/icons/icon.svg",
+                iconPath: "src/assets/images/icons/wallet.svg",
                 subItems: [
                     {
                         title: "Lorem ipsum", link: "#", itemIndex: 0,
