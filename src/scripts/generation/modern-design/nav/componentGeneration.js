@@ -1,102 +1,104 @@
 class NavComponent extends HTMLElement {
     async connectedCallback() {
         const largeData = {
-            group1: [
-                {
-                    title: "Lorem ipsum",
-                    description: "Dolor sit amet, consectetur adipiscing elit.",
-                    link: "#",
-                    itemIndex: 0,
-                    iconPath: "src/assets/images/icons/cloud.svg"
-                },
-                {
-                    title: "Lorem ipsum",
-                    description: "Dolor sit amet, consectetur adipiscing elit.",
-                    link: "#",
-                    itemIndex: 1,
-                    iconPath: "src/assets/images/icons/server.svg"
-                },
-                {
-                    title: "Lorem ipsum",
-                    description: "Dolor sit amet, consectetur adipiscing elit.",
-                    link: "#",
-                    itemIndex: 2,
-                    iconPath: "src/assets/images/icons/database.svg"
-                },
-                {
-                    title: "Lorem ipsum",
-                    description: "Dolor sit amet, consectetur adipiscing elit.",
-                    link: "#",
-                    itemIndex: 3,
-                    iconPath: "src/assets/images/icons/bank.svg"
-                },
-                {
-                    title: "Lorem ipsum",
-                    description: "Dolor sit amet, consectetur adipiscing elit.",
-                    link: "#",
-                    itemIndex: 4,
-                    iconPath: "src/assets/images/icons/credit-card.svg"
-                },
-                {
-                    title: "Lorem ipsum",
-                    description: "Dolor sit amet, consectetur adipiscing elit.",
-                    link: "#",
-                    itemIndex: 5,
-                    iconPath: "src/assets/images/icons/wallet.svg"
-                }
-            ],
-            group2: [
-                {
-                    title: "Lorem ipsum",
-                    description: "Dolor sit amet, consectetur adipiscing elit.",
-                    link: "#",
-                    itemIndex: 0,
-                    iconPath: "src/assets/images/icons/cloud.svg"
-                },
-                {
-                    title: "Lorem ipsum",
-                    description: "Dolor sit amet, consectetur adipiscing elit.",
-                    link: "#",
-                    itemIndex: 1,
-                    iconPath: "src/assets/images/icons/server.svg"
-                },
-                {
-                    title: "Lorem ipsum",
-                    description: "Dolor sit amet, consectetur adipiscing elit.",
-                    link: "#",
-                    itemIndex: 2,
-                    iconPath: "src/assets/images/icons/database.svg"
-                }
-            ],
-            group3: [
-                {
-                    title: "Lorem ipsum",
-                    description: "Dolor sit amet, consectetur adipiscing elit.",
-                    link: "#",
-                    itemIndex: 0,
-                    iconPath: "src/assets/images/icons/cloud.svg"
-                },
-                {
-                    title: "Lorem ipsum",
-                    description: "Dolor sit amet, consectetur adipiscing elit.",
-                    link: "#",
-                    itemIndex: 1,
-                    iconPath: "src/assets/images/icons/server.svg"
-                },
-                {
-                    title: "Lorem ipsum",
-                    description: "Dolor sit amet, consectetur adipiscing elit.",
-                    link: "#",
-                    itemIndex: 2,
-                    iconPath: "src/assets/images/icons/database.svg"
-                },
-                {
-                    title: "Lorem ipsum",
-                    description: "Dolor sit amet, consectetur adipiscing elit.",
-                    link: "#",
-                    itemIndex: 3,
-                    iconPath: "src/assets/images/icons/bank.svg"
-                }
+            groups: [
+                [
+                    {
+                        title: "Lorem ipsum",
+                        description: "Dolor sit amet, consectetur adipiscing elit.",
+                        link: "#",
+                        itemIndex: 0,
+                        iconPath: "src/assets/images/icons/cloud.svg"
+                    },
+                    {
+                        title: "Lorem ipsum",
+                        description: "Dolor sit amet, consectetur adipiscing elit.",
+                        link: "#",
+                        itemIndex: 1,
+                        iconPath: "src/assets/images/icons/server.svg"
+                    },
+                    {
+                        title: "Lorem ipsum",
+                        description: "Dolor sit amet, consectetur adipiscing elit.",
+                        link: "#",
+                        itemIndex: 2,
+                        iconPath: "src/assets/images/icons/database.svg"
+                    },
+                    {
+                        title: "Lorem ipsum",
+                        description: "Dolor sit amet, consectetur adipiscing elit.",
+                        link: "#",
+                        itemIndex: 3,
+                        iconPath: "src/assets/images/icons/bank.svg"
+                    },
+                    {
+                        title: "Lorem ipsum",
+                        description: "Dolor sit amet, consectetur adipiscing elit.",
+                        link: "#",
+                        itemIndex: 4,
+                        iconPath: "src/assets/images/icons/credit-card.svg"
+                    },
+                    {
+                        title: "Lorem ipsum",
+                        description: "Dolor sit amet, consectetur adipiscing elit.",
+                        link: "#",
+                        itemIndex: 5,
+                        iconPath: "src/assets/images/icons/wallet.svg"
+                    }
+                ],
+                [
+                    {
+                        title: "Lorem ipsum",
+                        description: "Dolor sit amet, consectetur adipiscing elit.",
+                        link: "#",
+                        itemIndex: 0,
+                        iconPath: "src/assets/images/icons/cloud.svg"
+                    },
+                    {
+                        title: "Lorem ipsum",
+                        description: "Dolor sit amet, consectetur adipiscing elit.",
+                        link: "#",
+                        itemIndex: 1,
+                        iconPath: "src/assets/images/icons/server.svg"
+                    },
+                    {
+                        title: "Lorem ipsum",
+                        description: "Dolor sit amet, consectetur adipiscing elit.",
+                        link: "#",
+                        itemIndex: 2,
+                        iconPath: "src/assets/images/icons/database.svg"
+                    }
+                ],
+                [
+                    {
+                        title: "Lorem ipsum",
+                        description: "Dolor sit amet, consectetur adipiscing elit.",
+                        link: "#",
+                        itemIndex: 0,
+                        iconPath: "src/assets/images/icons/cloud.svg"
+                    },
+                    {
+                        title: "Lorem ipsum",
+                        description: "Dolor sit amet, consectetur adipiscing elit.",
+                        link: "#",
+                        itemIndex: 1,
+                        iconPath: "src/assets/images/icons/server.svg"
+                    },
+                    {
+                        title: "Lorem ipsum",
+                        description: "Dolor sit amet, consectetur adipiscing elit.",
+                        link: "#",
+                        itemIndex: 2,
+                        iconPath: "src/assets/images/icons/database.svg"
+                    },
+                    {
+                        title: "Lorem ipsum",
+                        description: "Dolor sit amet, consectetur adipiscing elit.",
+                        link: "#",
+                        itemIndex: 3,
+                        iconPath: "src/assets/images/icons/bank.svg"
+                    }
+                ]
             ]
         };
 
@@ -462,27 +464,21 @@ class NavComponent extends HTMLElement {
         };
 
         const generateLargeDropdownContent = async (largeData) => {
-            const group1Html = await Promise.all(largeData.group1.map(item => generateDropdownItem(item, false, 'medium')));
-            const group2Html = await Promise.all(largeData.group2.map(item => generateDropdownItem(item, false, 'medium')));
-            const group3Html = await Promise.all(largeData.group3.map(item => generateDropdownItem(item, false, 'medium')));
+            const groupHtmls = await Promise.all(largeData.groups.map(group => Promise.all(group.map(item => generateDropdownItem(item, false, 'medium')))));
 
             return `
                 <div class="large-dropdown-group">
-                    <div class="large-dropdown-section">
-                        ${group1Html.join('')}
-                    </div>
-                    <div class="large-dropdown-section">
-                        ${group2Html.join('')}
-                    </div>
-                    <div class="large-dropdown-section">
-                        ${group3Html.join('')}
-                    </div>
+                    ${groupHtmls.map(groupHtml => `
+                        <div class="large-dropdown-section">
+                            ${groupHtml.join('')}
+                        </div>
+                    `).join('')}
                 </div>
             `;
         };
 
         const generateDropdownContent = async (items, dataType) => {
-            if (dataType === 'large' && items.group1) {
+            if (dataType === 'large' && items.groups) {
                 return generateLargeDropdownContent(items);
             }
 
@@ -548,7 +544,7 @@ class NavComponent extends HTMLElement {
         };
 
         const generateMobileLargeDropdown = async (largeData, dropdownId) => {
-            const allGroups = [...largeData.group1, ...largeData.group2, ...largeData.group3];
+            const allGroups = largeData.groups.flat();
 
             const mobileItems = await Promise.all(allGroups.map(async item => {
                 return `<div class="mobile-dropdown-item-container">
@@ -566,7 +562,7 @@ class NavComponent extends HTMLElement {
 
                     let dropdownItems;
 
-                    if (item.dataType === 'large' && item.items.group1) {
+                    if (item.dataType === 'large' && item.items.groups) {
                         dropdownItems = await generateMobileLargeDropdown(item.items, dropdownId);
                     } else {
                         dropdownItems = await Promise.all(item.items.map(async subItem => {
