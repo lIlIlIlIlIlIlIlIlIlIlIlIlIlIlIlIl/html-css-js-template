@@ -168,31 +168,31 @@ class NavComponent extends HTMLElement {
         const mediumData = [
             {
                 title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit.",
+                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
                 link: "#",
                 itemIndex: 0
             },
             {
                 title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit.",
+                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
                 link: "#",
                 itemIndex: 1
             },
             {
                 title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit.",
+                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
                 link: "#",
                 itemIndex: 2
             },
             {
                 title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit.",
+                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
                 link: "#",
                 itemIndex: 3
             },
             {
                 title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit.",
+                description: "Dolor sit amet, consectetur adipiscing elit. Praesent elementum ultricies metus.",
                 link: "#",
                 itemIndex: 4
             }

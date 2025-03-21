@@ -144,7 +144,6 @@ nav::before,
     border-radius: var(--border-radius-8);
     padding: 0.5rem;
     display: flex;
-    line-height: normal;
     flex-direction: column;
     gap: 0;
     height: 100%;
@@ -160,6 +159,7 @@ nav::before,
     position: relative;
     overflow: hidden;
     font-family: inherit;
+    line-height: normal;
     cursor: pointer;
     margin-bottom: 0.5rem;
     font-size: 1rem;
@@ -279,11 +279,6 @@ nav::before,
     display: flex;
     align-items: center;
     width: 100%;
-}
-
-.item-wrapper:has(.item-description),
-.sub-item-wrapper:has(.item-description) {
-    align-items: flex-start;
 }
 
 .item-main-content {
@@ -670,7 +665,6 @@ nav::before,
 
     .mobile-nav-button {
         box-sizing: border-box;
-        line-height: 1.5;
         height: 4rem;
         padding: 1rem 0;
         display: flex;
