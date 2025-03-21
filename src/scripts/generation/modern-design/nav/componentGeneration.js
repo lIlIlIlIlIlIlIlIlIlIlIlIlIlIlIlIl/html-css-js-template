@@ -1,5 +1,140 @@
 class NavComponent extends HTMLElement {
     async connectedCallback() {
+        const largeData = {
+            group1: [
+                {
+                    title: "Lorem ipsum",
+                    description: "Dolor sit amet, consectetur adipiscing elit.",
+                    link: "#",
+                    itemIndex: 0,
+                    iconPath: "src/assets/images/icons/cloud.svg"
+                },
+                {
+                    title: "Lorem ipsum",
+                    description: "Dolor sit amet, consectetur adipiscing elit.",
+                    link: "#",
+                    itemIndex: 1,
+                    iconPath: "src/assets/images/icons/server.svg"
+                },
+                {
+                    title: "Lorem ipsum",
+                    description: "Dolor sit amet, consectetur adipiscing elit.",
+                    link: "#",
+                    itemIndex: 2,
+                    iconPath: "src/assets/images/icons/database.svg"
+                },
+                {
+                    title: "Lorem ipsum",
+                    description: "Dolor sit amet, consectetur adipiscing elit.",
+                    link: "#",
+                    itemIndex: 3,
+                    iconPath: "src/assets/images/icons/bank.svg"
+                },
+                {
+                    title: "Lorem ipsum",
+                    description: "Dolor sit amet, consectetur adipiscing elit.",
+                    link: "#",
+                    itemIndex: 4,
+                    iconPath: "src/assets/images/icons/credit-card.svg"
+                },
+                {
+                    title: "Lorem ipsum",
+                    description: "Dolor sit amet, consectetur adipiscing elit.",
+                    link: "#",
+                    itemIndex: 5,
+                    iconPath: "src/assets/images/icons/wallet.svg"
+                }
+            ],
+            group2: [
+                {
+                    title: "Lorem ipsum",
+                    description: "Dolor sit amet, consectetur adipiscing elit.",
+                    link: "#",
+                    itemIndex: 0,
+                    iconPath: "src/assets/images/icons/cloud.svg"
+                },
+                {
+                    title: "Lorem ipsum",
+                    description: "Dolor sit amet, consectetur adipiscing elit.",
+                    link: "#",
+                    itemIndex: 1,
+                    iconPath: "src/assets/images/icons/server.svg"
+                },
+                {
+                    title: "Lorem ipsum",
+                    description: "Dolor sit amet, consectetur adipiscing elit.",
+                    link: "#",
+                    itemIndex: 2,
+                    iconPath: "src/assets/images/icons/database.svg"
+                },
+                {
+                    title: "Lorem ipsum",
+                    description: "Dolor sit amet, consectetur adipiscing elit.",
+                    link: "#",
+                    itemIndex: 3,
+                    iconPath: "src/assets/images/icons/bank.svg"
+                },
+                {
+                    title: "Lorem ipsum",
+                    description: "Dolor sit amet, consectetur adipiscing elit.",
+                    link: "#",
+                    itemIndex: 4,
+                    iconPath: "src/assets/images/icons/credit-card.svg"
+                },
+                {
+                    title: "Lorem ipsum",
+                    description: "Dolor sit amet, consectetur adipiscing elit.",
+                    link: "#",
+                    itemIndex: 5,
+                    iconPath: "src/assets/images/icons/wallet.svg"
+                }
+            ],
+            group3: [
+                {
+                    title: "Lorem ipsum",
+                    description: "Dolor sit amet, consectetur adipiscing elit.",
+                    link: "#",
+                    itemIndex: 0,
+                    iconPath: "src/assets/images/icons/cloud.svg"
+                },
+                {
+                    title: "Lorem ipsum",
+                    description: "Dolor sit amet, consectetur adipiscing elit.",
+                    link: "#",
+                    itemIndex: 1,
+                    iconPath: "src/assets/images/icons/server.svg"
+                },
+                {
+                    title: "Lorem ipsum",
+                    description: "Dolor sit amet, consectetur adipiscing elit.",
+                    link: "#",
+                    itemIndex: 2,
+                    iconPath: "src/assets/images/icons/database.svg"
+                },
+                {
+                    title: "Lorem ipsum",
+                    description: "Dolor sit amet, consectetur adipiscing elit.",
+                    link: "#",
+                    itemIndex: 3,
+                    iconPath: "src/assets/images/icons/bank.svg"
+                },
+                {
+                    title: "Lorem ipsum",
+                    description: "Dolor sit amet, consectetur adipiscing elit.",
+                    link: "#",
+                    itemIndex: 4,
+                    iconPath: "src/assets/images/icons/credit-card.svg"
+                },
+                {
+                    title: "Lorem ipsum",
+                    description: "Dolor sit amet, consectetur adipiscing elit.",
+                    link: "#",
+                    itemIndex: 5,
+                    iconPath: "src/assets/images/icons/wallet.svg"
+                }
+            ]
+        };
+
         const mediumWithSubData = [
             {
                 title: "Lorem ipsum",
@@ -208,6 +343,7 @@ class NavComponent extends HTMLElement {
         ];
 
         const navItemsData = [
+            { type: "dropdown", id: "large-dropdown-container", dataType: "large", title: "Lorem ipsum", items: largeData },
             { type: "dropdown", id: "medium-with-sub-dropdown-container", dataType: "large", title: "Lorem ipsum", items: mediumWithSubData },
             { type: "dropdown", id: "medium-dropdown-container", dataType: "medium", title: "Lorem ipsum", items: mediumData },
             { type: "dropdown", id: "small-dropdown-container", dataType: "small", title: "Lorem ipsum", items: smallData },
@@ -360,7 +496,31 @@ class NavComponent extends HTMLElement {
             }
         };
 
+        const generateLargeDropdownContent = async (largeData) => {
+            const group1Html = await Promise.all(largeData.group1.map(item => generateDropdownItem(item, false, 'medium')));
+            const group2Html = await Promise.all(largeData.group2.map(item => generateDropdownItem(item, false, 'medium')));
+            const group3Html = await Promise.all(largeData.group3.map(item => generateDropdownItem(item, false, 'medium')));
+
+            return `
+                <div class="large-dropdown-group">
+                    <div class="large-dropdown-section">
+                        ${group1Html.join('')}
+                    </div>
+                    <div class="large-dropdown-section">
+                        ${group2Html.join('')}
+                    </div>
+                    <div class="large-dropdown-section">
+                        ${group3Html.join('')}
+                    </div>
+                </div>
+            `;
+        };
+
         const generateDropdownContent = async (items, dataType) => {
+            if (dataType === 'large' && items.group1) {
+                return generateLargeDropdownContent(items);
+            }
+
             const contentItems = await Promise.all(items.map(item => generateDropdownItem(item, false, dataType)));
             return contentItems.join('');
         };
@@ -422,28 +582,46 @@ class NavComponent extends HTMLElement {
             `;
         };
 
+        const generateMobileLargeDropdown = async (largeData, dropdownId) => {
+            const allGroups = [...largeData.group1, ...largeData.group2, ...largeData.group3];
+
+            const mobileItems = await Promise.all(allGroups.map(async item => {
+                return `<div class="mobile-dropdown-item-container">
+                    ${await generateDropdownItem(item, true, 'large')}
+                </div>`;
+            }));
+
+            return mobileItems.join('');
+        };
+
         const generateMobileNav = async (navItems) => {
             const mobileNavItems = await Promise.all(navItems.map(async item => {
                 if (item.type === "dropdown") {
                     const dropdownId = `mobile-${item.id.replace('-container', '')}`;
 
-                    const dropdownItems = await Promise.all(item.items.map(async subItem => {
-                        const subDropdownContent = subItem.subItems && subItem.subItems.length > 0
-                            ? `<button class="mobile-sub-button" data-sub-target="mobile-sub-${dropdownId}-${subItem.itemIndex}">
-                                <span class="chevron">↓</span>
-                              </button>
-                              <div class="mobile-sub-dropdown" id="mobile-sub-${dropdownId}-${subItem.itemIndex}">
-                                  ${await generateMobileSubItemsContent(subItem.subItems)}
-                              </div>`
-                            : '';
+                    let dropdownItems;
 
-                        return `
-                            <div class="mobile-dropdown-item-container">
-                                ${await generateDropdownItem(subItem, true, item.dataType)}
-                                ${subDropdownContent}
-                            </div>
-                        `;
-                    }));
+                    if (item.dataType === 'large' && item.items.group1) {
+                        dropdownItems = await generateMobileLargeDropdown(item.items, dropdownId);
+                    } else {
+                        dropdownItems = await Promise.all(item.items.map(async subItem => {
+                            const subDropdownContent = subItem.subItems && subItem.subItems.length > 0
+                                ? `<button class="mobile-sub-button" data-sub-target="mobile-sub-${dropdownId}-${subItem.itemIndex}">
+                                    <span class="chevron">↓</span>
+                                  </button>
+                                  <div class="mobile-sub-dropdown" id="mobile-sub-${dropdownId}-${subItem.itemIndex}">
+                                      ${await generateMobileSubItemsContent(subItem.subItems)}
+                                  </div>`
+                                : '';
+
+                            return `
+                                <div class="mobile-dropdown-item-container">
+                                    ${await generateDropdownItem(subItem, true, item.dataType)}
+                                    ${subDropdownContent}
+                                </div>
+                            `;
+                        }));
+                    }
 
                     return `
                         <div class="mobile-nav-item">
@@ -452,7 +630,7 @@ class NavComponent extends HTMLElement {
                                 <span class="chevron">↓</span>
                             </button>
                             <div class="mobile-dropdown ${item.dataType}" id="${dropdownId}">
-                                ${dropdownItems.join('')}
+                                ${typeof dropdownItems === 'string' ? dropdownItems : dropdownItems.join('')}
                             </div>
                         </div>
                     `;

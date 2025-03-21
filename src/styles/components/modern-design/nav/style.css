@@ -138,6 +138,47 @@ nav::before,
     position: relative;
 }
 
+#large-dropdown-container .dropdown-container {
+    width: 64rem;
+    max-width: calc(100vw - 2rem);
+}
+
+.large-dropdown-group {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.large-dropdown-section:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background-color: var(--clr-primary-25);
+    z-index: 10;
+}
+
+.large-dropdown-section {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+}
+
+.large-dropdown-section:first-child {
+    padding-right: 0.5rem;
+}
+
+.large-dropdown-section:nth-child(2) {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.large-dropdown-section:last-child {
+    padding-left: 0.5rem;
+}
+
 /* --- DROPDOWN CONTENT --- */
 .dropdown-content,
 .sub-dropdown-content {
@@ -173,19 +214,9 @@ nav::before,
         background-color 0.2s ease-out;
 }
 
-.dropdown-content .dropdown-item,
-.sub-dropdown-content .sub-dropdown-item {
-    margin-bottom: 0.5rem;
-}
-
-.dropdown-content > .dropdown-item:last-child,
-.dropdown-content > .dropdown-item-with-sub:last-child .dropdown-item,
-.sub-dropdown-content .sub-dropdown-item:last-child {
-    margin-bottom: 0;
-}
-
-.dropdown-content > :last-child,
-.dropdown-content > :last-child .dropdown-item {
+.dropdown-item:last-child,
+.dropdown-item-with-sub:last-child .dropdown-item,
+.sub-dropdown-item:last-child {
     margin-bottom: 0;
 }
 
@@ -220,13 +251,6 @@ nav::before,
 .dropdown-item-with-sub {
     position: static;
     height: 100%;
-}
-
-.dropdown-item-with-sub::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 1px;
 }
 
 .dropdown-item-with-sub:last-child::after {
