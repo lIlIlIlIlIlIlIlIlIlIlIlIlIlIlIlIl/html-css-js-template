@@ -248,10 +248,10 @@ nav::before,
 .sub-dropdown-container::before {
     content: "";
     position: absolute;
-    top: 1.5%;
+    top: 2.5%;
     left: 0;
     width: 1px;
-    height: 97%;
+    height: 95%;
     background-color: var(--clr-primary-25);
     z-index: 10;
 }
