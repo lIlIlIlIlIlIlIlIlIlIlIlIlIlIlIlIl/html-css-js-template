@@ -4,7 +4,7 @@ class CardsNoImageWithIconComponent extends HTMLElement {
             path: "src/assets/images/icons/arrow.svg"
         };
         const iconData = {
-            path: "src/assets/images/icons/card-icon.svg"
+            path: "src/assets/images/icons/icon.svg"
         };
 
         const generateSVG = async ({ path }) => {
