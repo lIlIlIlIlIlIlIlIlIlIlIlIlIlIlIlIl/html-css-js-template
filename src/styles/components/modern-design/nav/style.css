@@ -706,6 +706,7 @@ nav::before,
     }
 
     .mobile-dropdown .dropdown-item {
+        margin-bottom: 0.5rem;
         padding: 0.5rem 0;
         position: relative;
         background-color: transparent;
@@ -720,13 +721,8 @@ nav::before,
         width: 100%;
     }
 
-    .item-content,
-    .item-main-content {
-        margin: 0;
-    }
-
     .item-icon-container {
-        display: none;
+        margin-right: 1rem;
     }
 
     .chevron-container {
