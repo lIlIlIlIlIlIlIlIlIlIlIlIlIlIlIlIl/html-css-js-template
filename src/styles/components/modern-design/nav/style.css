@@ -114,11 +114,9 @@ nav::before,
     width: 16rem;
 }
 
-#medium-dropdown-container .dropdown-container {
-    width: 24rem;
-}
-
-#medium-with-sub-dropdown-container .dropdown-container {
+#medium-dropdown-container .dropdown-container,
+#medium-with-sub-dropdown-container .dropdown-container,
+#medium-with-sub-dropdown-container .dropdown-content {
     width: 24rem;
     transition: width 0.3s ease, opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
         visibility 0.5s cubic-bezier(0.16, 1, 0.3, 1),
@@ -132,12 +130,6 @@ nav::before,
     width: 40rem;
 }
 
-#medium-with-sub-dropdown-container .dropdown-content {
-    width: 24rem;
-    box-sizing: border-box;
-    position: relative;
-}
-
 #large-dropdown-container .dropdown-container {
     width: 72rem;
 }
@@ -146,6 +138,13 @@ nav::before,
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
+}
+
+.large-dropdown-section {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    padding: 0 0.5rem;
 }
 
 .large-dropdown-section:not(:last-child)::after {
@@ -157,13 +156,6 @@ nav::before,
     height: 100%;
     background-color: var(--clr-primary-25);
     z-index: 10;
-}
-
-.large-dropdown-section {
-    position: relative;
-    flex: 1;
-    min-width: 0;
-    padding: 0 0.5rem;
 }
 
 .large-dropdown-section:first-child {
@@ -453,25 +445,6 @@ nav::before,
 .sub-dropdown-item:hover,
 .dropdown-content .dropdown-item:hover {
     transform: translateY(-2px);
-}
-
-/* --- SPECIFIC DROPDOWN STYLES --- */
-#medium-dropdown-container .dropdown-item .item-description,
-.mobile-dropdown.medium .dropdown-item .item-description {
-    color: var(--clr-primary-75);
-}
-
-#medium-dropdown-container .dropdown-item:last-child .item-title,
-.mobile-dropdown.medium .dropdown-item:last-child .item-title {
-    color: var(--clr-primary-100);
-    font-size: 1rem;
-}
-
-#small-dropdown-container .dropdown-item .item-title,
-#small-dropdown-container .dropdown-item .item-description,
-.mobile-dropdown.small .dropdown-item .item-title,
-.mobile-dropdown.small .dropdown-item .item-description {
-    color: var(--clr-primary-100);
 }
 
 /* --- CTA BUTTONS --- */
