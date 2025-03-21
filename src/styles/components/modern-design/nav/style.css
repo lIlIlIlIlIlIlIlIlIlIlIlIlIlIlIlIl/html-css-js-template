@@ -1,5 +1,6 @@
 @import url("../../../global.css");
 
+/* --- MAIN NAVIGATION --- */
 nav {
     position: fixed;
     top: 0;
@@ -47,6 +48,7 @@ nav::before,
     z-index: 1;
 }
 
+/* --- LOGO --- */
 .logo {
     display: flex;
     align-items: center;
@@ -65,6 +67,7 @@ nav::before,
     margin-bottom: 4px;
 }
 
+/* --- DESKTOP NAVIGATION --- */
 .desktop-nav {
     display: flex;
     align-items: center;
@@ -86,6 +89,7 @@ nav::before,
     pointer-events: none;
 }
 
+/* --- DROPDOWN CONTAINERS --- */
 .dropdown-container {
     position: absolute;
     left: 0;
@@ -134,6 +138,7 @@ nav::before,
     position: relative;
 }
 
+/* --- DROPDOWN CONTENT --- */
 .dropdown-content,
 .sub-dropdown-content {
     border-radius: var(--border-radius-8);
@@ -201,6 +206,7 @@ nav::before,
     margin-top: 0.25rem;
 }
 
+/* --- DROPDOWN WITH SUB --- */
 .dropdown-item-with-sub {
     position: static;
     height: 100%;
@@ -282,6 +288,7 @@ nav::before,
     margin-bottom: 0;
 }
 
+/* --- ITEM STYLES --- */
 .item-wrapper {
     position: relative;
     display: flex;
@@ -356,6 +363,7 @@ nav::before,
     margin: 0 0.25rem;
 }
 
+/* --- CHEVRONS AND ARROWS --- */
 .chevron-container {
     display: flex;
     align-items: flex-start;
@@ -378,6 +386,11 @@ nav::before,
     transform: translateY(-50%);
 }
 
+.chevron {
+    transition: transform 0.3s ease;
+}
+
+/* --- DROPDOWN INTERACTIONS --- */
 .nav-group:hover .nav-bridge,
 .dropdown-container:hover ~ .nav-bridge {
     pointer-events: auto;
@@ -433,6 +446,26 @@ nav::before,
     transform: translateY(-2px);
 }
 
+/* --- SPECIFIC DROPDOWN STYLES --- */
+#medium-dropdown-container .dropdown-item .item-description,
+.mobile-dropdown.medium .dropdown-item .item-description {
+    color: var(--clr-primary-75);
+}
+
+#medium-dropdown-container .dropdown-item:last-child .item-title,
+.mobile-dropdown.medium .dropdown-item:last-child .item-title {
+    color: var(--clr-primary-100);
+    font-size: 1rem;
+}
+
+#small-dropdown-container .dropdown-item .item-title,
+#small-dropdown-container .dropdown-item .item-description,
+.mobile-dropdown.small .dropdown-item .item-title,
+.mobile-dropdown.small .dropdown-item .item-description {
+    color: var(--clr-primary-100);
+}
+
+/* --- CTA BUTTONS --- */
 .cta-buttons {
     display: flex;
     align-items: center;
@@ -492,24 +525,7 @@ nav::before,
     text-decoration: none;
 }
 
-#medium-dropdown-container .dropdown-item .item-description,
-.mobile-dropdown.medium .dropdown-item .item-description {
-    color: var(--clr-primary-75);
-}
-
-#medium-dropdown-container .dropdown-item:last-child .item-title,
-.mobile-dropdown.medium .dropdown-item:last-child .item-title {
-    color: var(--clr-primary-100);
-    font-size: 1rem;
-}
-
-#small-dropdown-container .dropdown-item .item-title,
-#small-dropdown-container .dropdown-item .item-description,
-.mobile-dropdown.small .dropdown-item .item-title,
-.mobile-dropdown.small .dropdown-item .item-description {
-    color: var(--clr-primary-100);
-}
-
+/* --- MOBILE MENU AND BURGER --- */
 .mobile-menu {
     display: none;
 }
@@ -518,6 +534,7 @@ nav::before,
     display: none;
 }
 
+/* --- MOBILE VERSION --- */
 @media (max-width: 1024px) {
     nav {
         top: 0;
@@ -735,19 +752,15 @@ nav::before,
         display: none;
     }
 
+    .mobile-nav-button.active .chevron {
+        transform: rotate(180deg);
+    }
+
     .mobile-cta {
         display: flex;
         flex-direction: column;
         gap: 1rem;
         margin: 2rem 0;
-    }
-
-    .chevron {
-        transition: transform 0.3s ease;
-    }
-
-    .mobile-nav-button.active .chevron {
-        transform: rotate(180deg);
     }
 
     .mobile-primary-button {
@@ -765,6 +778,7 @@ nav::before,
     }
 }
 
+/* --- ANIMATIONS --- */
 @keyframes fadeInUp {
     to {
         opacity: 1;
