@@ -193,6 +193,9 @@
 
 * {
     box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: var(--clr-primary-100) var(--clr-primary-15);
+    -ms-overflow-style: auto;
 }
 
 body {
