@@ -4,6 +4,8 @@
 
 Template HTML, CSS & JS.
 
+## Disclaimer
+
 🚨 The `componentGeneration.js` files are only intended to showcase the different components of the project.  
 If these components need to be used in a framework, they should be split into two separate parts (not possible with vanilla HTML and JavaScript):
 

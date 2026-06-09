@@ -1,9 +1,11 @@
-# File types
-.DS_Store
-*.xml
+# Build
 *.txt
-*.code-workspace
-
-# Folders
-.vscode/*
+*.xml
 dist/
+
+# Editors
+*.code-workspace
+.vscode/*
+
+# OS
+.DS_Store
