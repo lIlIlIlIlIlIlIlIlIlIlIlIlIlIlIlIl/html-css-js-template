@@ -2,33 +2,33 @@
 @import url("../common.css");
 
 .card-icon {
-    padding: var(--padding-32) var(--padding-32) 0 var(--padding-32);
-    display: flex;
-    align-items: center;
+  padding: var(--padding-32) var(--padding-32) 0 var(--padding-32);
+  display: flex;
+  align-items: center;
 }
 
 .card:hover {
-    transform: scale(1.005);
+  transform: scale(1.005);
 }
 
 .card-icon .icon {
-    width: 48px;
-    height: 48px;
-    background-color: var(--clr-accent-color);
-    border-radius: var(--border-radius-8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: var(--clr-accent-color);
+  border-radius: var(--border-radius-8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-icon .icon svg {
-    width: 32px;
-    height: 32px;
-    fill: var(--clr-primary-100);
+  width: 32px;
+  height: 32px;
+  fill: var(--clr-primary-100);
 }
 
 @media (max-width: 768px) {
-    .card-icon {
-        padding: var(--padding-24) var(--padding-24) 0 var(--padding-24);
-    }
+  .card-icon {
+    padding: var(--padding-24) var(--padding-24) 0 var(--padding-24);
+  }
 }

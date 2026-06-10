@@ -1,61 +1,61 @@
 class CardsNoImageWithIconComponent extends HTMLElement {
-    async connectedCallback() {
-        const arrowData = {
-            path: "src/assets/images/icons/arrow.svg"
-        };
-        const iconData = {
-            path: "src/assets/images/icons/icon.svg"
-        };
+  async connectedCallback() {
+    const arrowData = {
+      path: "src/assets/images/icons/arrow.svg"
+    };
+    const iconData = {
+      path: "src/assets/images/icons/icon.svg"
+    };
 
-        const generateSVG = async ({ path }) => {
-            try {
-                const response = await fetch(path);
-                let svgText = await response.text();
+    const generateSVG = async ({ path }) => {
+      try {
+        const response = await fetch(path);
+        let svgText = await response.text();
 
-                svgText = svgText.replace(/fill="[^"]*"/g, '');
+        svgText = svgText.replace(/fill="[^"]*"/g, '');
 
-                if (!svgText.includes('viewBox')) {
-                    svgText = svgText.replace('<svg', '<svg viewBox="0 0 24 24"');
-                }
+        if (!svgText.includes('viewBox')) {
+          svgText = svgText.replace('<svg', '<svg viewBox="0 0 24 24"');
+        }
 
-                return svgText;
-            } catch (error) {
-                console.error(error);
-            }
-        };
+        return svgText;
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-        const arrowSVG = await generateSVG(arrowData);
-        const iconSVG = await generateSVG(iconData);
+    const arrowSVG = await generateSVG(arrowData);
+    const iconSVG = await generateSVG(iconData);
 
-        const cardsData = [
-            {
-                title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                link: "#",
-                type: "icon"
-            },
-            {
-                title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                link: "#",
-                type: "icon"
-            },
-            {
-                title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                link: "#",
-                type: "icon"
-            },
-            {
-                title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                link: "#",
-                type: "icon"
-            }
-        ];
+    const cardsData = [
+      {
+        title: "Lorem ipsum",
+        description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
+        link: "#",
+        type: "icon"
+      },
+      {
+        title: "Lorem ipsum",
+        description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
+        link: "#",
+        type: "icon"
+      },
+      {
+        title: "Lorem ipsum",
+        description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
+        link: "#",
+        type: "icon"
+      },
+      {
+        title: "Lorem ipsum",
+        description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
+        link: "#",
+        type: "icon"
+      }
+    ];
 
-        let cardsHtml = cardsData.map(card => {
-            return `
+    let cardsHtml = cardsData.map(card => {
+      return `
                 <div class="card">
                     <a href="${card.link}">
                         <div class="card-icon">
@@ -76,9 +76,9 @@ class CardsNoImageWithIconComponent extends HTMLElement {
                     </a>
                 </div>
             `;
-        }).join("");
+    }).join("");
 
-        this.innerHTML = `
+    this.innerHTML = `
         <section>
             <div class="container">
                 <h2>Lorem ipsum</h2>
@@ -88,7 +88,7 @@ class CardsNoImageWithIconComponent extends HTMLElement {
             </div>
         </section>
         `;
-    }
+  }
 }
 
 customElements.define('cards-no-image-with-icon', CardsNoImageWithIconComponent);

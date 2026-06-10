@@ -1,85 +1,182 @@
 @font-face {
-    font-family: "Outfit";
-    src: url("../assets/fonts/Outfit/Outfit-Regular.ttf") format("truetype");
-    font-style: normal;
+  font-family: "Outfit";
+  src: url("../assets/fonts/Outfit/Outfit-Regular.ttf") format("truetype");
+  font-style: normal;
 }
 
 :root {
-    color-scheme: dark light;
-    font-family: "Outfit", sans-serif;
+  color-scheme: dark light;
+  font-family: "Outfit", sans-serif;
 
-    --clr-neutral-0: hsl(0, 0%, 0%);
-    --clr-neutral-5: hsl(0, 0%, 5%);
-    --clr-neutral-10: hsl(0, 0%, 10%);
-    --clr-neutral-15: hsl(0, 0%, 15%);
-    --clr-neutral-20: hsl(0, 0%, 20%);
-    --clr-neutral-25: hsl(0, 0%, 25%);
-    --clr-neutral-30: hsl(0, 0%, 30%);
-    --clr-neutral-35: hsl(0, 0%, 35%);
-    --clr-neutral-40: hsl(0, 0%, 40%);
-    --clr-neutral-45: hsl(0, 0%, 45%);
+  --clr-neutral-0: hsl(0, 0%, 0%);
+  --clr-neutral-5: hsl(0, 0%, 5%);
+  --clr-neutral-10: hsl(0, 0%, 10%);
+  --clr-neutral-15: hsl(0, 0%, 15%);
+  --clr-neutral-20: hsl(0, 0%, 20%);
+  --clr-neutral-25: hsl(0, 0%, 25%);
+  --clr-neutral-30: hsl(0, 0%, 30%);
+  --clr-neutral-35: hsl(0, 0%, 35%);
+  --clr-neutral-40: hsl(0, 0%, 40%);
+  --clr-neutral-45: hsl(0, 0%, 45%);
+  --clr-neutral-50: hsl(0, 0%, 50%);
+  --clr-neutral-55: hsl(0, 0%, 55%);
+  --clr-neutral-60: hsl(0, 0%, 60%);
+  --clr-neutral-65: hsl(0, 0%, 65%);
+  --clr-neutral-70: hsl(0, 0%, 70%);
+  --clr-neutral-75: hsl(0, 0%, 75%);
+  --clr-neutral-80: hsl(0, 0%, 80%);
+  --clr-neutral-85: hsl(0, 0%, 85%);
+  --clr-neutral-90: hsl(0, 0%, 90%);
+  --clr-neutral-95: hsl(0, 0%, 95%);
+  --clr-neutral-100: hsl(0, 0%, 100%);
+
+  --clr-primary-0: hsl(200, 10%, 0%);
+  --clr-primary-5: hsl(200, 10%, 5%);
+  --clr-primary-10: hsl(200, 10%, 10%);
+  --clr-primary-15: hsl(200, 10%, 15%);
+  --clr-primary-17-5: hsl(200, 10%, 17.5%);
+  --clr-primary-20: hsl(200, 10%, 20%);
+  --clr-primary-22-5: hsl(200, 10%, 22.5%);
+  --clr-primary-25: hsl(200, 10%, 25%);
+  --clr-primary-30: hsl(200, 10%, 30%);
+  --clr-primary-35: hsl(200, 10%, 35%);
+  --clr-primary-40: hsl(200, 10%, 40%);
+  --clr-primary-45: hsl(200, 10%, 45%);
+  --clr-primary-50: hsl(200, 10%, 50%);
+  --clr-primary-55: hsl(200, 10%, 55%);
+  --clr-primary-60: hsl(200, 10%, 60%);
+  --clr-primary-65: hsl(200, 10%, 65%);
+  --clr-primary-70: hsl(200, 10%, 70%);
+  --clr-primary-75: hsl(200, 10%, 75%);
+  --clr-primary-80: hsl(200, 10%, 80%);
+  --clr-primary-85: hsl(200, 10%, 85%);
+  --clr-primary-90: hsl(200, 10%, 90%);
+  --clr-primary-95: hsl(200, 10%, 95%);
+  --clr-primary-100: hsl(200, 10%, 100%);
+
+  --clr-accent-color: hsl(10, 100%, 65%);
+
+  --clr-nav-blur-background: hsla(200, 10%, 10%, 0.5);
+  --clr-nav-dropdown-blur-background: hsla(200, 10%, 20%, 0.5);
+
+  --clr-background: var(--clr-primary-10);
+  --clr-section: var(--clr-primary-15);
+  --clr-section-border: var(--clr-primary-25);
+
+  --clr-carousel-text: var(--clr-primary-100);
+
+  --grid-1-column: repeat(1, 1fr);
+  --grid-2-columns: repeat(2, 1fr);
+  --grid-3-columns: repeat(3, 1fr);
+  --grid-4-columns: repeat(4, 1fr);
+
+  --grid-1-row: auto;
+  --grid-2-rows: repeat(2, auto);
+  --grid-3-rows: repeat(3, auto);
+  --grid-4-rows: repeat(4, auto);
+
+  --clr-button-background: hsla(200, 10%, 0%, 0.5);
+  --clr-button-text: var(--clr-primary-100);
+  --clr-button-opacity: hsla(0, 0%, 80%, 0.1);
+  --clr-button-opacity-hover: hsla(0, 0%, 80%, 0.2);
+  --clr-menu-items-opacity: hsla(0, 0%, 80%, 0.05);
+
+  --clr-card: var(--clr-primary-15);
+  --clr-card-hover: var(--clr-primary-20);
+  --clr-card-border: var(--clr-primary-25);
+  --clr-card-underline: var(--clr-primary-25);
+  --card-shadow: 0 0 24px var(--clr-primary-0);
+
+  --clr-slider-line: var(--clr-primary-15);
+  --clr-slider-handle: var(--clr-primary-15);
+
+  --shadow-primary: 0 1px 4px 0 var(--clr-primary-20);
+
+  --padding-8: 8px;
+  --padding-12: 12px;
+  --padding-16: 16px;
+  --padding-24: 24px;
+  --padding-32: 32px;
+
+  --margin-4: 4px;
+  --margin-8: 8px;
+  --margin-12: 12px;
+  --margin-16: 16px;
+  --margin-24: 24px;
+  --margin-32: 32px;
+
+  --border-radius-4: 4px;
+  --border-radius-8: 8px;
+  --border-radius-12: 12px;
+  --border-radius-16: 16px;
+  --border-radius-24: 24px;
+  --border-radius-32: 32px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --clr-neutral-0: hsl(0, 0%, 100%);
+    --clr-neutral-5: hsl(0, 0%, 95%);
+    --clr-neutral-10: hsl(0, 0%, 90%);
+    --clr-neutral-15: hsl(0, 0%, 85%);
+    --clr-neutral-20: hsl(0, 0%, 80%);
+    --clr-neutral-25: hsl(0, 0%, 75%);
+    --clr-neutral-30: hsl(0, 0%, 70%);
+    --clr-neutral-35: hsl(0, 0%, 65%);
+    --clr-neutral-40: hsl(0, 0%, 60%);
+    --clr-neutral-45: hsl(0, 0%, 55%);
     --clr-neutral-50: hsl(0, 0%, 50%);
-    --clr-neutral-55: hsl(0, 0%, 55%);
-    --clr-neutral-60: hsl(0, 0%, 60%);
-    --clr-neutral-65: hsl(0, 0%, 65%);
-    --clr-neutral-70: hsl(0, 0%, 70%);
-    --clr-neutral-75: hsl(0, 0%, 75%);
-    --clr-neutral-80: hsl(0, 0%, 80%);
-    --clr-neutral-85: hsl(0, 0%, 85%);
-    --clr-neutral-90: hsl(0, 0%, 90%);
-    --clr-neutral-95: hsl(0, 0%, 95%);
-    --clr-neutral-100: hsl(0, 0%, 100%);
+    --clr-neutral-55: hsl(0, 0%, 45%);
+    --clr-neutral-60: hsl(0, 0%, 40%);
+    --clr-neutral-65: hsl(0, 0%, 35%);
+    --clr-neutral-70: hsl(0, 0%, 30%);
+    --clr-neutral-75: hsl(0, 0%, 25%);
+    --clr-neutral-80: hsl(0, 0%, 20%);
+    --clr-neutral-85: hsl(0, 0%, 15%);
+    --clr-neutral-90: hsl(0, 0%, 10%);
+    --clr-neutral-95: hsl(0, 0%, 5%);
+    --clr-neutral-100: hsl(0, 0%, 0%);
 
-    --clr-primary-0: hsl(200, 10%, 0%);
-    --clr-primary-5: hsl(200, 10%, 5%);
-    --clr-primary-10: hsl(200, 10%, 10%);
-    --clr-primary-15: hsl(200, 10%, 15%);
-    --clr-primary-17-5: hsl(200, 10%, 17.5%);
-    --clr-primary-20: hsl(200, 10%, 20%);
-    --clr-primary-22-5: hsl(200, 10%, 22.5%);
-    --clr-primary-25: hsl(200, 10%, 25%);
-    --clr-primary-30: hsl(200, 10%, 30%);
-    --clr-primary-35: hsl(200, 10%, 35%);
-    --clr-primary-40: hsl(200, 10%, 40%);
-    --clr-primary-45: hsl(200, 10%, 45%);
+    --clr-primary-0: hsl(200, 10%, 100%);
+    --clr-primary-5: hsl(200, 10%, 95%);
+    --clr-primary-10: hsl(200, 10%, 90%);
+    --clr-primary-15: hsl(200, 10%, 85%);
+    --clr-primary-17-5: hsl(200, 10%, 82.5%);
+    --clr-primary-20: hsl(200, 10%, 80%);
+    --clr-primary-22-5: hsl(200, 10%, 77.5%);
+    --clr-primary-25: hsl(200, 10%, 75%);
+    --clr-primary-30: hsl(200, 10%, 70%);
+    --clr-primary-35: hsl(200, 10%, 65%);
+    --clr-primary-40: hsl(200, 10%, 60%);
+    --clr-primary-45: hsl(200, 10%, 55%);
     --clr-primary-50: hsl(200, 10%, 50%);
-    --clr-primary-55: hsl(200, 10%, 55%);
-    --clr-primary-60: hsl(200, 10%, 60%);
-    --clr-primary-65: hsl(200, 10%, 65%);
-    --clr-primary-70: hsl(200, 10%, 70%);
-    --clr-primary-75: hsl(200, 10%, 75%);
-    --clr-primary-80: hsl(200, 10%, 80%);
-    --clr-primary-85: hsl(200, 10%, 85%);
-    --clr-primary-90: hsl(200, 10%, 90%);
-    --clr-primary-95: hsl(200, 10%, 95%);
-    --clr-primary-100: hsl(200, 10%, 100%);
+    --clr-primary-55: hsl(200, 10%, 45%);
+    --clr-primary-60: hsl(200, 10%, 40%);
+    --clr-primary-65: hsl(200, 10%, 35%);
+    --clr-primary-70: hsl(200, 10%, 30%);
+    --clr-primary-75: hsl(200, 10%, 25%);
+    --clr-primary-80: hsl(200, 10%, 20%);
+    --clr-primary-85: hsl(200, 10%, 15%);
+    --clr-primary-90: hsl(200, 10%, 10%);
+    --clr-primary-95: hsl(200, 10%, 5%);
+    --clr-primary-100: hsl(200, 10%, 0%);
 
     --clr-accent-color: hsl(10, 100%, 65%);
 
-    --clr-nav-blur-background: hsla(200, 10%, 10%, 0.5);
-    --clr-nav-dropdown-blur-background: hsla(200, 10%, 20%, 0.5);
+    --clr-nav-blur-background: hsla(200, 10%, 90%, 0.5);
+    --clr-nav-dropdown-blur-background: hsla(200, 10%, 80%, 0.5);
 
     --clr-background: var(--clr-primary-10);
     --clr-section: var(--clr-primary-15);
     --clr-section-border: var(--clr-primary-25);
 
-    --clr-carousel-text: var(--clr-primary-100);
+    --clr-carousel-text: var(--clr-primary-0);
 
-    --grid-1-column: repeat(1, 1fr);
-    --grid-2-columns: repeat(2, 1fr);
-    --grid-3-columns: repeat(3, 1fr);
-    --grid-4-columns: repeat(4, 1fr);
-
-    --grid-1-row: auto;
-    --grid-2-rows: repeat(2, auto);
-    --grid-3-rows: repeat(3, auto);
-    --grid-4-rows: repeat(4, auto);
-
-    --clr-button-background: hsla(200, 10%, 0%, 0.5);
-    --clr-button-text: var(--clr-primary-100);
-    --clr-button-opacity: hsla(0, 0%, 80%, 0.1);
-    --clr-button-opacity-hover: hsla(0, 0%, 80%, 0.2);
-    --clr-menu-items-opacity: hsla(0, 0%, 80%, 0.05);
+    --clr-button-background: hsla(200, 10%, 100%, 0.5);
+    --clr-button-text: var(--clr-primary-0);
+    --clr-button-opacity: hsla(0, 0%, 20%, 0.1);
+    --clr-button-opacity-hover: hsla(0, 0%, 20%, 0.2);
+    --clr-menu-items-opacity: hsla(0, 0%, 20%, 0.05);
 
     --clr-card: var(--clr-primary-15);
     --clr-card-hover: var(--clr-primary-20);
@@ -91,130 +188,33 @@
     --clr-slider-handle: var(--clr-primary-15);
 
     --shadow-primary: 0 1px 4px 0 var(--clr-primary-20);
-
-    --padding-8: 8px;
-    --padding-12: 12px;
-    --padding-16: 16px;
-    --padding-24: 24px;
-    --padding-32: 32px;
-
-    --margin-4: 4px;
-    --margin-8: 8px;
-    --margin-12: 12px;
-    --margin-16: 16px;
-    --margin-24: 24px;
-    --margin-32: 32px;
-
-    --border-radius-4: 4px;
-    --border-radius-8: 8px;
-    --border-radius-12: 12px;
-    --border-radius-16: 16px;
-    --border-radius-24: 24px;
-    --border-radius-32: 32px;
-}
-
-@media (prefers-color-scheme: light) {
-    :root {
-        --clr-neutral-0: hsl(0, 0%, 100%);
-        --clr-neutral-5: hsl(0, 0%, 95%);
-        --clr-neutral-10: hsl(0, 0%, 90%);
-        --clr-neutral-15: hsl(0, 0%, 85%);
-        --clr-neutral-20: hsl(0, 0%, 80%);
-        --clr-neutral-25: hsl(0, 0%, 75%);
-        --clr-neutral-30: hsl(0, 0%, 70%);
-        --clr-neutral-35: hsl(0, 0%, 65%);
-        --clr-neutral-40: hsl(0, 0%, 60%);
-        --clr-neutral-45: hsl(0, 0%, 55%);
-        --clr-neutral-50: hsl(0, 0%, 50%);
-        --clr-neutral-55: hsl(0, 0%, 45%);
-        --clr-neutral-60: hsl(0, 0%, 40%);
-        --clr-neutral-65: hsl(0, 0%, 35%);
-        --clr-neutral-70: hsl(0, 0%, 30%);
-        --clr-neutral-75: hsl(0, 0%, 25%);
-        --clr-neutral-80: hsl(0, 0%, 20%);
-        --clr-neutral-85: hsl(0, 0%, 15%);
-        --clr-neutral-90: hsl(0, 0%, 10%);
-        --clr-neutral-95: hsl(0, 0%, 5%);
-        --clr-neutral-100: hsl(0, 0%, 0%);
-
-        --clr-primary-0: hsl(200, 10%, 100%);
-        --clr-primary-5: hsl(200, 10%, 95%);
-        --clr-primary-10: hsl(200, 10%, 90%);
-        --clr-primary-15: hsl(200, 10%, 85%);
-        --clr-primary-17-5: hsl(200, 10%, 82.5%);
-        --clr-primary-20: hsl(200, 10%, 80%);
-        --clr-primary-22-5: hsl(200, 10%, 77.5%);
-        --clr-primary-25: hsl(200, 10%, 75%);
-        --clr-primary-30: hsl(200, 10%, 70%);
-        --clr-primary-35: hsl(200, 10%, 65%);
-        --clr-primary-40: hsl(200, 10%, 60%);
-        --clr-primary-45: hsl(200, 10%, 55%);
-        --clr-primary-50: hsl(200, 10%, 50%);
-        --clr-primary-55: hsl(200, 10%, 45%);
-        --clr-primary-60: hsl(200, 10%, 40%);
-        --clr-primary-65: hsl(200, 10%, 35%);
-        --clr-primary-70: hsl(200, 10%, 30%);
-        --clr-primary-75: hsl(200, 10%, 25%);
-        --clr-primary-80: hsl(200, 10%, 20%);
-        --clr-primary-85: hsl(200, 10%, 15%);
-        --clr-primary-90: hsl(200, 10%, 10%);
-        --clr-primary-95: hsl(200, 10%, 5%);
-        --clr-primary-100: hsl(200, 10%, 0%);
-
-        --clr-accent-color: hsl(10, 100%, 65%);
-
-        --clr-nav-blur-background: hsla(200, 10%, 90%, 0.5);
-        --clr-nav-dropdown-blur-background: hsla(200, 10%, 80%, 0.5);
-
-        --clr-background: var(--clr-primary-10);
-        --clr-section: var(--clr-primary-15);
-        --clr-section-border: var(--clr-primary-25);
-
-        --clr-carousel-text: var(--clr-primary-0);
-
-        --clr-button-background: hsla(200, 10%, 100%, 0.5);
-        --clr-button-text: var(--clr-primary-0);
-        --clr-button-opacity: hsla(0, 0%, 20%, 0.1);
-        --clr-button-opacity-hover: hsla(0, 0%, 20%, 0.2);
-        --clr-menu-items-opacity: hsla(0, 0%, 20%, 0.05);
-
-        --clr-card: var(--clr-primary-15);
-        --clr-card-hover: var(--clr-primary-20);
-        --clr-card-border: var(--clr-primary-25);
-        --clr-card-underline: var(--clr-primary-25);
-        --card-shadow: 0 0 24px var(--clr-primary-0);
-
-        --clr-slider-line: var(--clr-primary-15);
-        --clr-slider-handle: var(--clr-primary-15);
-
-        --shadow-primary: 0 1px 4px 0 var(--clr-primary-20);
-    }
+  }
 }
 
 * {
-    box-sizing: border-box;
-    scrollbar-width: thin;
-    scrollbar-color: var(--clr-primary-100) var(--clr-primary-15);
-    -ms-overflow-style: auto;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--clr-primary-100) var(--clr-primary-15);
+  -ms-overflow-style: auto;
 }
 
 body {
-    background-color: var(--clr-background);
-    color: var(--clr-neutral-90);
-    font-family: "Outfit", sans-serif;
-    line-height: 1.5;
-    word-wrap: break-word;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+  background-color: var(--clr-background);
+  color: var(--clr-neutral-90);
+  font-family: "Outfit", sans-serif;
+  line-height: 1.5;
+  word-wrap: break-word;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 section {
-    padding: var(--padding-16);
+  padding: var(--padding-16);
 }
 
 .container {
-    max-width: 1440px;
-    margin-right: auto;
-    margin-left: auto;
+  max-width: 1440px;
+  margin-right: auto;
+  margin-left: auto;
 }

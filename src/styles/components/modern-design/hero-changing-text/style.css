@@ -2,23 +2,23 @@
 @import url("../buttons.css");
 
 .hero {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 10rem);
-    min-height: 600px;
-    position: relative;
-    overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 10rem);
+  min-height: 600px;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero::before {
-    content: "";
-    position: absolute;
-    top: -20%;
-    left: -150%;
-    right: -150%;
-    bottom: -50%;
-    /* background: radial-gradient(
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -150%;
+  right: -150%;
+  bottom: -50%;
+  /* background: radial-gradient(
         ellipse at top,
         hsl(280, 100%, 100%) 0%,
         hsl(270, 90%, 90%) 10%,
@@ -26,103 +26,103 @@
         hsl(250, 70%, 30%) 30%,
         var(--clr-primary-5) 50%
     ); */
-    z-index: 0;
+  z-index: 0;
 }
 
 .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 1440px;
-    padding-top: max(4rem, calc(10vh));
-    color: white;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+  position: relative;
+  z-index: 2;
+  max-width: 1440px;
+  padding-top: max(4rem, calc(10vh));
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .title-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {
-    font-family: inherit;
-    font-size: clamp(2.75rem, 7vw, 5.5rem);
-    font-weight: 600;
-    text-wrap: balance;
-    line-height: normal;
-    margin: 0;
-    background-color: var(--clr-primary-100);
-    /* background: linear-gradient(
+  font-family: inherit;
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
+  font-weight: 600;
+  text-wrap: balance;
+  line-height: normal;
+  margin: 0;
+  background-color: var(--clr-primary-100);
+  /* background: linear-gradient(
         90deg,
         hsl(270, 100%, 90%),
         hsl(270, 100%, 100%)
     ); */
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-align: center;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
 }
 
 #changing-text {
-    font-size: clamp(2.75rem, 7vw, 5.5rem);
-    font-weight: 600;
-    text-wrap: balance;
-    line-height: normal;
-    background-color: var(--clr-accent-color);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transition: opacity 0.5s ease-in-out;
-    text-align: center;
-    min-height: 1.5em;
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
+  font-weight: 600;
+  text-wrap: balance;
+  line-height: normal;
+  background-color: var(--clr-accent-color);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: opacity 0.5s ease-in-out;
+  text-align: center;
+  min-height: 1.5em;
 }
 
 .hero-content p {
-    color: var(--clr-primary-75);
-    font-size: clamp(1.25rem, 3vw, 1.5rem);
-    font-weight: 200;
-    text-wrap: balance;
-    margin: 0 10rem 2.5rem 10rem;
+  color: var(--clr-primary-75);
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 200;
+  text-wrap: balance;
+  margin: 0 10rem 2.5rem 10rem;
 }
 
 .cta-container {
-    display: flex;
-    gap: 32px;
-    justify-content: center;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .cta-container .cta-button {
-    padding: 0.65rem 1.25rem;
+  padding: 0.65rem 1.25rem;
 }
 
 .cta-container .cta-button p {
-    color: var(--clr-primary-0);
-    margin: 0;
-    font-size: 1.15rem;
-    font-weight: normal;
+  color: var(--clr-primary-0);
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: normal;
 }
 
 @media (max-width: 1024px) {
-    .hero::before {
-        left: -300%;
-        right: -300%;
-    }
+  .hero::before {
+    left: -300%;
+    right: -300%;
+  }
 
-    .hero {
-        height: 70vh;
-    }
+  .hero {
+    height: 70vh;
+  }
 
-    .hero-content {
-        padding-top: 5rem;
-    }
+  .hero-content {
+    padding-top: 5rem;
+  }
 
-    .hero-content p {
-        margin: 0 0 1.5rem;
-    }
+  .hero-content p {
+    margin: 0 0 1.5rem;
+  }
 }

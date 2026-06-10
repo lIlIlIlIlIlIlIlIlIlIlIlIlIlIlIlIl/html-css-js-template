@@ -1,57 +1,57 @@
 @import url("../../../../global.css");
 
 .auto-scroll-container {
-    display: flex;
-    overflow: hidden;
-    user-select: none;
-    gap: var(--padding-16);
-    mask-image: linear-gradient(
-        to right,
-        hsl(0 0% 0% / 0),
-        hsl(0 0% 0% / 1) 20%,
-        hsl(0 0% 0% / 1) 80%,
-        hsl(0 0% 0% / 0)
-    );
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: var(--padding-16);
+  mask-image: linear-gradient(
+    to right,
+    hsl(0 0% 0% / 0),
+    hsl(0 0% 0% / 1) 20%,
+    hsl(0 0% 0% / 1) 80%,
+    hsl(0 0% 0% / 0)
+  );
 }
 
 .auto-scroll-track {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    gap: var(--padding-16);
-    min-width: 100%;
-    animation: scroll-infinite 30s linear infinite;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: var(--padding-16);
+  min-width: 100%;
+  animation: scroll-infinite 30s linear infinite;
 }
 
 .auto-scroll-container:hover .auto-scroll-track {
-    animation-play-state: paused;
+  animation-play-state: paused;
 }
 
 @keyframes scroll-infinite {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(calc(-100% - var(--padding-16)));
-    }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--padding-16)));
+  }
 }
 
 .auto-scroll-container svg,
 .auto-scroll-container svg * {
-    display: block;
-    width: clamp(9rem, 5vw + 7rem, 10rem);
-    height: auto;
-    max-width: 100%;
-    object-fit: contain;
-    aspect-ratio: 3 / 2;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    fill: var(--clr-primary-95);
+  display: block;
+  width: clamp(9rem, 5vw + 7rem, 10rem);
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  aspect-ratio: 3 / 2;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  fill: var(--clr-primary-95);
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .auto-scroll-track {
-        animation-play-state: paused;
-    }
+  .auto-scroll-track {
+    animation-play-state: paused;
+  }
 }

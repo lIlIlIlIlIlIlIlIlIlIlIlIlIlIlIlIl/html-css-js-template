@@ -2,9 +2,9 @@
 @import url("../common.css");
 
 .card img {
-    width: 100%;
-    height: clamp(20vh, 15vh, 30vh);
-    padding: 0.5rem;
-    border-radius: var(--border-radius-16);
-    object-fit: cover;
+  width: 100%;
+  height: clamp(20vh, 15vh, 30vh);
+  padding: 0.5rem;
+  border-radius: var(--border-radius-16);
+  object-fit: cover;
 }

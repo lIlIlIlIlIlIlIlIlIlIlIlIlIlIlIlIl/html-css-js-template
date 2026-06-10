@@ -1,90 +1,90 @@
 class CarouselFullImageComponent extends HTMLElement {
-    async connectedCallback() {
-        const arrowData = {
-            path: "src/assets/images/icons/arrow.svg"
-        };
+  async connectedCallback() {
+    const arrowData = {
+      path: "src/assets/images/icons/arrow.svg"
+    };
 
-        const generateSVG = async ({ path }) => {
-            try {
-                const response = await fetch(path);
-                let svgText = await response.text();
+    const generateSVG = async ({ path }) => {
+      try {
+        const response = await fetch(path);
+        let svgText = await response.text();
 
-                if (!svgText.includes('viewBox')) {
-                    svgText = svgText.replace('<svg', '<svg viewBox="0 0 24 24"');
-                }
+        if (!svgText.includes('viewBox')) {
+          svgText = svgText.replace('<svg', '<svg viewBox="0 0 24 24"');
+        }
 
-                return svgText;
-            } catch (error) {
-                console.error(error);
-            }
-        };
+        return svgText;
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-        const arrowSVG = await generateSVG(arrowData);
+    const arrowSVG = await generateSVG(arrowData);
 
-        const cardsData = [
-            {
-                title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/1.jpg",
-                link: "#"
-            },
-            {
-                title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/2.jpg",
-                link: "#"
-            },
-            {
-                title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/3.jpg",
-                link: "#"
-            },
-            {
-                title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/4.jpg",
-                link: "#"
-            },
-            {
-                title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/5.jpg",
-                link: "#"
-            },
-            {
-                title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/6.jpg",
-                link: "#"
-            },
-            {
-                title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/7.jpg",
-                link: "#"
-            },
-            {
-                title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/8.jpg",
-                link: "#"
-            },
-            {
-                title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/9.jpg",
-                link: "#"
-            },
-            {
-                title: "Lorem ipsum",
-                description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
-                imgSrc: "src/assets/images/illustrations/10.jpg",
-                link: "#"
-            },
-        ]
+    const cardsData = [
+      {
+        title: "Lorem ipsum",
+        description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
+        imgSrc: "src/assets/images/illustrations/1.jpg",
+        link: "#"
+      },
+      {
+        title: "Lorem ipsum",
+        description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
+        imgSrc: "src/assets/images/illustrations/2.jpg",
+        link: "#"
+      },
+      {
+        title: "Lorem ipsum",
+        description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
+        imgSrc: "src/assets/images/illustrations/3.jpg",
+        link: "#"
+      },
+      {
+        title: "Lorem ipsum",
+        description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
+        imgSrc: "src/assets/images/illustrations/4.jpg",
+        link: "#"
+      },
+      {
+        title: "Lorem ipsum",
+        description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
+        imgSrc: "src/assets/images/illustrations/5.jpg",
+        link: "#"
+      },
+      {
+        title: "Lorem ipsum",
+        description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
+        imgSrc: "src/assets/images/illustrations/6.jpg",
+        link: "#"
+      },
+      {
+        title: "Lorem ipsum",
+        description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
+        imgSrc: "src/assets/images/illustrations/7.jpg",
+        link: "#"
+      },
+      {
+        title: "Lorem ipsum",
+        description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
+        imgSrc: "src/assets/images/illustrations/8.jpg",
+        link: "#"
+      },
+      {
+        title: "Lorem ipsum",
+        description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
+        imgSrc: "src/assets/images/illustrations/9.jpg",
+        link: "#"
+      },
+      {
+        title: "Lorem ipsum",
+        description: "Dolor sit amet, consectetur adipiscing elit.<br>Praesent elementum ultricies metus.",
+        imgSrc: "src/assets/images/illustrations/10.jpg",
+        link: "#"
+      },
+    ]
 
-        let cardsHtml = cardsData.map(card => `
+    let cardsHtml = cardsData.map(card => `
             <div class="carousel-card">
                 <img src="${card.imgSrc}" alt="Illustration">
                 <div class="overlay-transparent"></div>
@@ -106,7 +106,7 @@ class CarouselFullImageComponent extends HTMLElement {
             </div>
         `).join("");
 
-        this.innerHTML = `
+    this.innerHTML = `
         <section class="carousel-section">
             <div class="container">
                 <div class="carousel-header">
@@ -129,8 +129,8 @@ class CarouselFullImageComponent extends HTMLElement {
         </section>
         `;
 
-        window.dispatchEvent(new CustomEvent('carouselLoaded'));
-    }
+    window.dispatchEvent(new CustomEvent('carouselLoaded'));
+  }
 }
 
 customElements.define('carousel-full-image', CarouselFullImageComponent);

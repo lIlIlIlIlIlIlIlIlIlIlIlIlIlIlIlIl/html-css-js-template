@@ -1,35 +1,35 @@
 class ImageComparisonSliderComponent extends HTMLElement {
-    async connectedCallback() {
-        const sliderArrowData = {
-            path: "src/assets/images/icons/slider-arrows.svg"
-        };
+  async connectedCallback() {
+    const sliderArrowData = {
+      path: "src/assets/images/icons/slider-arrows.svg"
+    };
 
-        const generateSVG = async ({ path }) => {
-            try {
-                const response = await fetch(path);
-                let svgText = await response.text();
+    const generateSVG = async ({ path }) => {
+      try {
+        const response = await fetch(path);
+        let svgText = await response.text();
 
-                if (!svgText.includes('viewBox')) {
-                    svgText = svgText.replace('<svg', '<svg viewBox="0 0 24 24"');
-                }
+        if (!svgText.includes('viewBox')) {
+          svgText = svgText.replace('<svg', '<svg viewBox="0 0 24 24"');
+        }
 
-                return svgText;
-            } catch (error) {
-                console.error(error);
-            }
-        };
+        return svgText;
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-        const sliderArrowSVG = await generateSVG(sliderArrowData);
+    const sliderArrowSVG = await generateSVG(sliderArrowData);
 
-        const cardsData = [
-            {
-                beforeImage: "src/assets/images/illustrations/17.jpg",
-                afterImage: "src/assets/images/illustrations/18.jpg"
-            }
-        ];
+    const cardsData = [
+      {
+        beforeImage: "src/assets/images/illustrations/17.jpg",
+        afterImage: "src/assets/images/illustrations/18.jpg"
+      }
+    ];
 
-        let slidersHtml = cardsData.map(slider => {
-            return `
+    let slidersHtml = cardsData.map(slider => {
+      return `
                 <div class="card">
                     <div class="image-comparison">
                         <img src="${slider.afterImage}" alt="After">
@@ -47,9 +47,9 @@ class ImageComparisonSliderComponent extends HTMLElement {
                     </div>
                 </div>
             `;
-        }).join("");
+    }).join("");
 
-        this.innerHTML = `
+    this.innerHTML = `
             <section>
                 <div class="container">
                     <h2>Lorem ipsum</h2>
@@ -60,8 +60,8 @@ class ImageComparisonSliderComponent extends HTMLElement {
             </section>
         `;
 
-        window.dispatchEvent(new CustomEvent('imageComparisonLoaded'));
-    }
+    window.dispatchEvent(new CustomEvent('imageComparisonLoaded'));
+  }
 }
 
 customElements.define('image-comparison-slider', ImageComparisonSliderComponent);

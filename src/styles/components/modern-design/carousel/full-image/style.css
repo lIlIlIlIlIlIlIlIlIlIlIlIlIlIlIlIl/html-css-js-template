@@ -2,246 +2,246 @@
 @import url("../../buttons.css");
 
 .carousel-section {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .carousel-header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    height: 6.5rem;
-    margin: var(--margin-24);
-    position: relative;
-    white-space: nowrap;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 6.5rem;
+  margin: var(--margin-24);
+  position: relative;
+  white-space: nowrap;
 }
 
 .carousel-header h2 {
-    color: var(--clr-primary-100);
-    font-size: clamp(3rem, 5vw, 4rem);
-    font-weight: normal;
-    margin: 0;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+  color: var(--clr-primary-100);
+  font-size: clamp(3rem, 5vw, 4rem);
+  font-weight: normal;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .carousel-controls {
-    display: flex;
-    gap: 16px;
+  display: flex;
+  gap: 16px;
 }
 
 .carousel-controls button {
-    background: var(--clr-primary-100);
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    color: var(--clr-neutral-0);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s ease;
+  background: var(--clr-primary-100);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: var(--clr-neutral-0);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
 }
 
 .carousel-controls button:hover {
-    background: var(--clr-primary-90);
+  background: var(--clr-primary-90);
 }
 
 .carousel-controls button:disabled {
-    cursor: not-allowed;
-    background: var(--clr-primary-100);
-    opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--clr-primary-100);
+  opacity: 0.5;
 }
 
 .carousel-prev svg {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .carousel-controls button .arrow-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .carousel-container {
-    display: flex;
-    transition: transform 0.3s ease-out;
-    touch-action: pan-y;
-    width: auto;
-    position: relative;
-    overflow: visible;
-    margin: 0 auto;
-    cursor: grab;
+  display: flex;
+  transition: transform 0.3s ease-out;
+  touch-action: pan-y;
+  width: auto;
+  position: relative;
+  overflow: visible;
+  margin: 0 auto;
+  cursor: grab;
 }
 
 .carousel-track {
-    display: flex;
-    gap: var(--padding-24);
-    padding-bottom: var(--padding-16);
-    user-select: none;
-    overflow: visible;
-    touch-action: none;
+  display: flex;
+  gap: var(--padding-24);
+  padding-bottom: var(--padding-16);
+  user-select: none;
+  overflow: visible;
+  touch-action: none;
 }
 
 .carousel-card {
-    flex: 0 0 auto;
-    width: 350px;
-    height: 500px;
-    position: relative;
-    border-radius: var(--border-radius-12);
-    overflow: hidden;
-    background-color: var(--clr-card);
-    transition: transform 0.15s ease-out;
-    user-select: none;
-    z-index: 1;
-    transform: translateZ(0);
-    will-change: transform;
-    backface-visibility: hidden;
+  flex: 0 0 auto;
+  width: 350px;
+  height: 500px;
+  position: relative;
+  border-radius: var(--border-radius-12);
+  overflow: hidden;
+  background-color: var(--clr-card);
+  transition: transform 0.15s ease-out;
+  user-select: none;
+  z-index: 1;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .carousel-card:active {
-    cursor: grabbing;
+  cursor: grabbing;
 }
 
 .carousel-card:hover {
-    transform: none;
+  transform: none;
 }
 
 .carousel-card img {
-    width: 100%;
-    height: 100%;
-    padding: 0.5rem;
-    border-radius: var(--border-radius-16);
-    object-fit: cover;
-    transition: transform 0.3s ease;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+  border-radius: var(--border-radius-16);
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
 .carousel-card:hover img {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
 }
 
 .carousel-card .overlay-transparent {
-    position: absolute;
-    inset: 0;
-    border-radius: var(--border-radius-8);
-    background: transparent;
-    z-index: 1;
+  position: absolute;
+  inset: 0;
+  border-radius: var(--border-radius-8);
+  background: transparent;
+  z-index: 1;
 }
 
 .carousel-card .overlay-dark {
-    position: absolute;
-    inset: 0.5rem;
-    border-radius: var(--border-radius-8);
-    background: rgba(0, 0, 0, 0.25);
-    z-index: 1;
+  position: absolute;
+  inset: 0.5rem;
+  border-radius: var(--border-radius-8);
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 1;
 }
 
 .carousel-card .card-content {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    color: var(--clr-carousel-text);
-    padding: var(--padding-32);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    text-align: left;
-    z-index: 2;
-    gap: 8px;
-    user-select: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: var(--clr-carousel-text);
+  padding: var(--padding-32);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+  z-index: 2;
+  gap: 8px;
+  user-select: none;
 }
 
 .carousel-card .card-content h3 {
-    margin: 0;
-    font-size: clamp(1.25rem, 5vw, 1.75rem);
-    font-weight: 500;
+  margin: 0;
+  font-size: clamp(1.25rem, 5vw, 1.75rem);
+  font-weight: 500;
 }
 
 .carousel-card .card-content p {
-    margin: 0;
-    font-size: 1rem;
-    margin-bottom: 16px;
+  margin: 0;
+  font-size: 1rem;
+  margin-bottom: 16px;
 }
 
 .carousel-card .card-content .buttons-container {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
 }
 
 .carousel-card .card-content .buttons-container button {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .carousel-card .card-content .buttons-container:only-child {
-    justify-content: stretch;
+  justify-content: stretch;
 }
 
 .carousel-card .card-content .buttons-container button:only-child {
-    flex-grow: 0;
-    width: 100%;
-    margin: 0;
+  flex-grow: 0;
+  width: 100%;
+  margin: 0;
 }
 
 .buttons-container .cta-button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
 }
 
 .card-content .cta-button p {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .buttons-container .cta-button .arrow-icon {
-    margin-top: 2px;
+  margin-top: 2px;
 }
 
 @media (max-width: 1024px) {
-    .carousel-card img {
-        transition: none;
-    }
+  .carousel-card img {
+    transition: none;
+  }
 
-    .carousel-card:hover img {
-        transform: none;
-        transition: none;
-    }
+  .carousel-card:hover img {
+    transform: none;
+    transition: none;
+  }
 }
 
 @media (max-width: 768px) {
-    .carousel-section {
-        overflow: hidden;
-    }
+  .carousel-section {
+    overflow: hidden;
+  }
 
-    .carousel-card {
-        width: 320px;
-        height: 440px;
-    }
+  .carousel-card {
+    width: 320px;
+    height: 440px;
+  }
 
-    .carousel-controls {
-        display: none;
-    }
+  .carousel-controls {
+    display: none;
+  }
 
-    .carousel-card .card-content {
-        padding: var(--padding-24);
-    }
+  .carousel-card .card-content {
+    padding: var(--padding-24);
+  }
 }
 
 @media (max-width: 345px) {
-    .carousel-section {
-        overflow: hidden;
-    }
+  .carousel-section {
+    overflow: hidden;
+  }
 
-    .carousel-card {
-        width: 250px;
-        height: 350px;
-    }
+  .carousel-card {
+    width: 250px;
+    height: 350px;
+  }
 
-    .carousel-controls {
-        display: none;
-    }
+  .carousel-controls {
+    display: none;
+  }
 }

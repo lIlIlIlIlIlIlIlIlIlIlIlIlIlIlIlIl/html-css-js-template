@@ -1,33 +1,33 @@
 class HeroChangingTextComponent extends HTMLElement {
-    async connectedCallback() {
-        const arrowData = {
-            path: "src/assets/images/icons/arrow.svg"
-        };
+  async connectedCallback() {
+    const arrowData = {
+      path: "src/assets/images/icons/arrow.svg"
+    };
 
-        const generateArrowSVG = async ({ path }) => {
-            try {
-                const response = await fetch(path);
-                let svgText = await response.text();
+    const generateArrowSVG = async ({ path }) => {
+      try {
+        const response = await fetch(path);
+        let svgText = await response.text();
 
-                if (!svgText.includes('viewBox')) {
-                    svgText = svgText.replace('<svg', '<svg viewBox="0 0 24 24"');
-                }
+        if (!svgText.includes('viewBox')) {
+          svgText = svgText.replace('<svg', '<svg viewBox="0 0 24 24"');
+        }
 
-                return svgText;
-            } catch (error) {
-                console.error(error);
-            }
-        };
+        return svgText;
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-        const arrowSVG = await generateArrowSVG(arrowData);
+    const arrowSVG = await generateArrowSVG(arrowData);
 
-        const texts = [
-            "Consectetur",
-            "Adipiscing elit",
-            "Sed non risus"
-        ];
+    const texts = [
+      "Consectetur",
+      "Adipiscing elit",
+      "Sed non risus"
+    ];
 
-        this.innerHTML = `
+    this.innerHTML = `
             <section class="hero">
                 <div class="hero-content">
                     <div class="title-container">
@@ -49,16 +49,16 @@ class HeroChangingTextComponent extends HTMLElement {
             </section>
         `;
 
-        window.dispatchEvent(new CustomEvent('changingText', {
-            detail: {
-                container: this,
-                selector: '#changing-text',
-                texts: texts,
-                interval: 3000,
-                fadeTime: 500
-            }
-        }));
-    }
+    window.dispatchEvent(new CustomEvent('changingText', {
+      detail: {
+        container: this,
+        selector: '#changing-text',
+        texts: texts,
+        interval: 3000,
+        fadeTime: 500
+      }
+    }));
+  }
 }
 
 customElements.define('hero-changing-text', HeroChangingTextComponent);
