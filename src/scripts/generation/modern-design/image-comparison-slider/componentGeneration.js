@@ -60,7 +60,7 @@ class ImageComparisonSliderComponent extends HTMLElement {
             </section>
         `;
 
-    window.dispatchEvent(new CustomEvent('imageComparisonLoaded'));
+    globalThis.dispatchEvent(new CustomEvent('imageComparisonLoaded'));
   }
 }
 

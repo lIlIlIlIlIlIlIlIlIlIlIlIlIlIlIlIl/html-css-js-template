@@ -28,7 +28,7 @@ class BackToTopComponent extends HTMLElement {
                 ${chevronSVG}
             </button>
         `;
-    window.dispatchEvent(new CustomEvent('backToTopLoaded'));
+    globalThis.dispatchEvent(new CustomEvent('backToTopLoaded'));
   }
 }
 

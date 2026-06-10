@@ -33,7 +33,7 @@ document.addEventListener('navLoaded', () => {
     button.addEventListener('click', () => {
       if (window.innerWidth >= MOBILE_WIDTH) return;
 
-      const targetId = button.getAttribute('data-target');
+      const targetId = button.dataset('data-target');
       const dropdown = document.getElementById(targetId);
 
       document.querySelectorAll('.mobile-dropdown.open').forEach(openDropdown => {

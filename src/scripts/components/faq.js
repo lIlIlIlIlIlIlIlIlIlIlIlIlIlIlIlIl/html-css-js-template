@@ -1,4 +1,4 @@
-window.addEventListener('faqLoaded', (event) => {
+globalThis.addEventListener('faqLoaded', (event) => {
   const { plusSVG, minusSVG } = event.detail;
 
   const faqQuestions = document.querySelectorAll('.faq-question');

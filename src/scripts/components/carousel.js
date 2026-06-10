@@ -1,4 +1,4 @@
-window.addEventListener('carouselLoaded', () => {
+globalThis.addEventListener('carouselLoaded', () => {
   const carouselTrack = document.querySelector('.carousel-track');
   const carouselContainer = document.querySelector('.carousel-container');
   const carouselCards = document.querySelectorAll('.carousel-card');
@@ -22,7 +22,7 @@ window.addEventListener('carouselLoaded', () => {
 
   const calculateDimensions = () => {
     cardWidth = carouselCards[0].offsetWidth;
-    cardGap = parseInt(window.getComputedStyle(carouselTrack).gap) || 0;
+    cardGap = Number.parseInt(globalThis.getComputedStyle(carouselTrack).gap) || 0;
     containerWidth = globalContainer.offsetWidth;
     totalCardsWidth = carouselCards.length * (cardWidth + cardGap) - cardGap;
   };
@@ -53,14 +53,14 @@ window.addEventListener('carouselLoaded', () => {
       animationFrame = null;
     }
 
-    const computedTransform = window.getComputedStyle(carouselContainer).transform;
+    const computedTransform = globalThis.getComputedStyle(carouselContainer).transform;
     if (computedTransform !== 'none') {
-      const matrix = RegExp(/matrix.*\((.+)\)/).exec(computedTransform)[1].split(', ');
-      currentTranslate = parseFloat(matrix[4]);
+      const matrix = new RegExp(/matrix.*\((.+)\)/).exec(computedTransform)[1].split(', ');
+      currentTranslate = Number.parseFloat(matrix[4]);
       previousTranslate = currentTranslate;
     }
 
-    window.addEventListener('touchmove', handleCarouselDrag, { passive: false });
+    globalThis.addEventListener('touchmove', handleCarouselDrag, { passive: false });
   };
 
   const handleCarouselDrag = (event) => {
@@ -93,7 +93,7 @@ window.addEventListener('carouselLoaded', () => {
       isDragging = false;
       carouselContainer.style.cursor = 'grab';
       carouselContainer.style.userSelect = 'auto';
-      window.removeEventListener('touchmove', handleCarouselDrag);
+      globalThis.removeEventListener('touchmove', handleCarouselDrag);
       carouselContainer.style.transition = `transform ${TRANSITION_DURATION} ${TRANSITION_TIMING}`;
 
       if (Math.abs(velocity) > 0) {
@@ -206,9 +206,9 @@ window.addEventListener('carouselLoaded', () => {
 
   carouselContainer.addEventListener('mousedown', startCarouselDrag);
   carouselContainer.addEventListener('touchstart', startCarouselDrag, { passive: true });
-  window.addEventListener('mousemove', handleCarouselDrag);
-  window.addEventListener('mouseup', stopCarouselDrag);
-  window.addEventListener('touchend', stopCarouselDrag);
+  globalThis.addEventListener('mousemove', handleCarouselDrag);
+  globalThis.addEventListener('mouseup', stopCarouselDrag);
+  globalThis.addEventListener('touchend', stopCarouselDrag);
 
   prevButton.addEventListener('click', () => {
     if (!isCarouselEnabled() || currentTranslate >= 0) return;

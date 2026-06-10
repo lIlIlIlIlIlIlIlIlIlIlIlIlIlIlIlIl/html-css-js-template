@@ -69,7 +69,7 @@ class FAQComponent extends HTMLElement {
             </section>
         `;
 
-    window.dispatchEvent(new CustomEvent('faqLoaded', { detail: { plusSVG, minusSVG } }));
+    globalThis.dispatchEvent(new CustomEvent('faqLoaded', { detail: { plusSVG, minusSVG } }));
   }
 }
 

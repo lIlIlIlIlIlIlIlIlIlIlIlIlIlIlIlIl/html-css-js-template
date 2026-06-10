@@ -49,7 +49,7 @@ class HeroChangingTextComponent extends HTMLElement {
             </section>
         `;
 
-    window.dispatchEvent(new CustomEvent('changingText', {
+    globalThis.dispatchEvent(new CustomEvent('changingText', {
       detail: {
         container: this,
         selector: '#changing-text',

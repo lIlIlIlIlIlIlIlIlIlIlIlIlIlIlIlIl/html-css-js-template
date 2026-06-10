@@ -1,4 +1,4 @@
-window.addEventListener('changingText', (event) => {
+globalThis.addEventListener('changingText', (event) => {
   const { container, selector, texts, interval, fadeTime } = event.detail;
 
   if (!container || !selector) {

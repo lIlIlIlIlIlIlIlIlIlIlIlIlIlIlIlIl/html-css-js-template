@@ -129,7 +129,7 @@ class CarouselFullImageComponent extends HTMLElement {
         </section>
         `;
 
-    window.dispatchEvent(new CustomEvent('carouselLoaded'));
+    globalThis.dispatchEvent(new CustomEvent('carouselLoaded'));
   }
 }
 

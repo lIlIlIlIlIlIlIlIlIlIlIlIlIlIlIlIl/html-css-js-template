@@ -1,4 +1,4 @@
-window.addEventListener('imageComparisonLoaded', () => {
+globalThis.addEventListener('imageComparisonLoaded', () => {
   const sliders = document.querySelectorAll('.image-comparison input[type="range"]');
 
   sliders.forEach(slider => {
@@ -12,13 +12,13 @@ window.addEventListener('imageComparisonLoaded', () => {
     setSliderValue(parent, 50);
 
     slider.addEventListener('input', (e) => {
-      updateSliderValue(parseInt(e.target.value));
+      updateSliderValue(Number.parseInt(e.target.value));
     });
 
     slider.addEventListener('pointerdown', (e) => {
       isDragging = true;
       startX = e.clientX;
-      startValue = parseInt(slider.value);
+      startValue = Number.parseInt(slider.value);
       slider.setPointerCapture(e.pointerId);
     });
 

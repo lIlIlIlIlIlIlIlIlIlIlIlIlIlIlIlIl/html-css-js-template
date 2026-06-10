@@ -1,4 +1,4 @@
-window.addEventListener('backToTopLoaded', () => {
+globalThis.addEventListener('backToTopLoaded', () => {
   let lastScrollTop = 0;
 
   window.addEventListener("scroll", () => {

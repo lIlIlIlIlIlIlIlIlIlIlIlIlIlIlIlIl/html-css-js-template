@@ -97,7 +97,7 @@ class CardsHalfImageComponent extends HTMLElement {
         </section>
         `;
 
-    window.dispatchEvent(new CustomEvent('cardsLoaded'));
+    globalThis.dispatchEvent(new CustomEvent('cardsLoaded'));
   }
 }
 
