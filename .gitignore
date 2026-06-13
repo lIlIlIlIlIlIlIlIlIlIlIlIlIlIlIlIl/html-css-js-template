@@ -1,12 +1,25 @@
 # Build
-*.txt
-*.xml
 dist/
+
+# Claude Code
+.claude/*
+!.claude/agents/
+!.claude/hooks/
+!.claude/settings.json
 
 # Editors
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
 
+# Environment
+.env
+
 # OS
 .DS_Store
+desktop.ini
+Thumbs.db
+
+# Temp
+*.log
+*.tmp
