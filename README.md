@@ -19,5 +19,6 @@ It is essential not to use `innerHTML` in production projects, as it constitutes
 
 ## Recommended Tools
 
+- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
 - [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 - [VS Code](https://code.visualstudio.com/)
